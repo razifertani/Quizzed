@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "835782499183",
+    "firebase_url": "https://quizzedgame.firebaseio.com",
+    "project_id": "quizzedgame",
+    "storage_bucket": "quizzedgame.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:835782499183:android:5f9add7bd0e48bd12fe69a",
+        "android_client_info": {
+          "package_name": "com.example.quizzed"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "835782499183-n0h3uo319l5k6atcf6fdpbc8qhsosqsb.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAT0wcX3EpxZ-dSXe9KxoOzko2l8Lj_beA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "835782499183-n0h3uo319l5k6atcf6fdpbc8qhsosqsb.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

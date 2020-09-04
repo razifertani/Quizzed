@@ -1,0 +1,35 @@
+name: quizzed
+description: Perfect Game.
+
+publish_to: 'none' 
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.7.0 <3.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cloud_firestore: ^0.13.3
+  firebase_auth: ^0.15.2
+  provider: ^3.2.0
+  shared_preferences: ^0.5.6+3
+  random_string: ^2.0.1
+   
+  cupertino_icons: ^0.1.3
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true
+
+  assets:
+   - Assets/
+
+  fonts:
+  - family: Airbnb
+    fonts:
+    - asset: Assets/AirbnbCerealMedium.ttf
