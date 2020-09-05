@@ -1,5 +1,5 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:quizzed/models/user.dart';
+import 'package:QuizzedGame/models/user.dart';
 
 class AuthentificationService {
   FirebaseAuth _auth = FirebaseAuth.instance;

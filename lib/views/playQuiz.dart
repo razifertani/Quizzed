@@ -1,12 +1,11 @@
 import 'dart:async';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:quizzed/models/question.dart';
-import 'package:quizzed/services/database.dart';
-import 'package:quizzed/views/home.dart';
-import 'package:quizzed/views/results.dart';
-import 'package:quizzed/widgets/widgets.dart';
+import 'package:QuizzedGame/models/question.dart';
+import 'package:QuizzedGame/services/database.dart';
+import 'package:QuizzedGame/views/home.dart';
+import 'package:QuizzedGame/views/results.dart';
+import 'package:QuizzedGame/widgets/widgets.dart';
 
 class PlayQuiz extends StatefulWidget {
   final String quizId;

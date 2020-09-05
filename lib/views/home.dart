@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quizzed/services/database.dart';
-import 'package:quizzed/views/create.dart';
-import 'package:quizzed/views/playQuiz.dart';
-import 'package:quizzed/widgets/widgets.dart';
+import 'package:QuizzedGame/services/database.dart';
+import 'package:QuizzedGame/views/create.dart';
+import 'package:QuizzedGame/views/playQuiz.dart';
+import 'package:QuizzedGame/widgets/widgets.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -119,7 +119,7 @@ class QuizTile extends StatelessWidget {
               child: Image.network(
                 imageURL,
                 width: MediaQuery.of(context).size.width * 0.9,
-                fit: BoxFit.cover,
+                fit: BoxFit.fitWidth,
               ),
             ),
             Container(

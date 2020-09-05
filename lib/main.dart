@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:quizzed/views/landing.dart';
+import 'package:QuizzedGame/views/landing.dart';
 
 void main() {
   runApp(MyApp());

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quizzed/views/home.dart';
 import 'dart:async';
-import 'package:quizzed/views/signin.dart';
-import 'package:quizzed/services/database.dart';
+import 'package:QuizzedGame/views/signin.dart';
+import 'package:QuizzedGame/services/database.dart';
+import 'package:QuizzedGame/views/home.dart';
 
 class Landing extends StatefulWidget {
   Landing({Key key}) : super(key: key);

@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:quizzed/services/authentification.dart';
-import 'package:quizzed/views/home.dart';
-import 'package:quizzed/views/signin.dart';
-import 'package:quizzed/widgets/widgets.dart';
+import 'package:QuizzedGame/services/authentification.dart';
+import 'package:QuizzedGame/views/home.dart';
+import 'package:QuizzedGame/views/signin.dart';
+import 'package:QuizzedGame/widgets/widgets.dart';
 
 class SignUp extends StatefulWidget {
   SignUp({Key key}) : super(key: key);

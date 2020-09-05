@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:quizzed/views/home.dart';
-import 'package:quizzed/widgets/widgets.dart';
+import 'package:QuizzedGame/views/home.dart';
+import 'package:QuizzedGame/widgets/widgets.dart';
 
 class Results extends StatefulWidget {
   final int correctAnswers, total;
@@ -25,6 +25,24 @@ class _ResultsState extends State<Results> {
                 '${widget.correctAnswers * (100) / widget.total} %',
                 style: TextStyle(
                   fontSize: 40,
+                  color: widget.correctAnswers * (100) / widget.total > 70.0
+                      ? Colors.green
+                      : Colors.red,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+              Text(
+                widget.correctAnswers * (100) / widget.total > 70.0
+                    ? 'Congratulations ! \nYou passed the quiz'
+                    : 'Unfortunately ! \nYou failed the exam',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 35,
+                  color: widget.correctAnswers * (100) / widget.total > 70.0
+                      ? Colors.green
+                      : Colors.red,
                 ),
               ),
               SizedBox(
