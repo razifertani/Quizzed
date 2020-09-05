@@ -34,13 +34,13 @@ class _ResultsState extends State<Results> {
                 height: MediaQuery.of(context).size.height * 0.05,
               ),
               Text(
-                widget.correctAnswers * (100) / widget.total > 70.0
+                (widget.correctAnswers * (100) / widget.total) > 70.0
                     ? 'Congratulations ! \nYou passed the quiz'
                     : 'Unfortunately ! \nYou failed the exam',
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 35,
-                  color: widget.correctAnswers * (100) / widget.total > 70.0
+                  color: (widget.correctAnswers * (100) / widget.total) > 70.0
                       ? Colors.green
                       : Colors.red,
                 ),

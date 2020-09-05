@@ -52,9 +52,6 @@ class _AddQuestionState extends State<AddQuestion> {
         title: appBar(context),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        iconTheme: IconThemeData(
-          color: Colors.black,
-        ),
         brightness: Brightness.light,
       ),
       body: _isLoading

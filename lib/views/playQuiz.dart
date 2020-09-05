@@ -83,7 +83,6 @@ class _PlayQuizState extends State<PlayQuiz> {
         title: appBar(context),
         backgroundColor: Colors.transparent,
         elevation: 0.0,
-        iconTheme: IconThemeData(),
         brightness: Brightness.light,
         leading: IconButton(
           icon: Icon(Icons.arrow_back),
