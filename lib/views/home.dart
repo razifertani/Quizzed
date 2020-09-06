@@ -1,9 +1,11 @@
+import 'package:QuizzedGame/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:multilevel_drawer/multilevel_drawer.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -60,26 +62,84 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MultiLevelDrawer(header: null, children: null),
-      appBar: AppBar(
-        title: appBar(context),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        brightness: Brightness.light,
-      ),
-      body: quizList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Create(),
+        drawer: MultiLevelDrawer(
+            header: Container(
+              padding: EdgeInsets.symmetric(
+                vertical: MediaQuery.of(context).size.height * 0.1,
+              ),
+              child: Center(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Image.asset(
+                      'Assets/pdp.jpg',
+                      width: 120,
+                      height: 120,
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
+                    ),
+                    Text('Razi Fertani'),
+                  ],
+                ),
+              ),
             ),
-          );
-        },
-      ),
-    );
+            children: [
+              MLMenuItem(
+                leading: Icon(Icons.person),
+                trailing: Icon(Icons.arrow_right),
+                content: Text('Profile'),
+                onClick: () {},
+              ),
+              MLMenuItem(
+                leading: Icon(Icons.settings),
+                trailing: Icon(Icons.arrow_right),
+                content: Text('Settings'),
+                onClick: () {},
+              ),
+              MLMenuItem(
+                leading: Icon(Icons.close),
+                trailing: Icon(Icons.arrow_right),
+                content: Text('Logout'),
+                onClick: () {
+                  Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => SignIn(),
+                    ),
+                  );
+                },
+              ),
+            ]),
+        appBar: AppBar(
+          title: appBar(context),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          brightness: Brightness.light,
+        ),
+        body: quizList(),
+        floatingActionButton: FloatingActionButton(
+          child: Icon(Icons.add),
+          onPressed: () {
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Create(),
+              ),
+            );
+          },
+        ),
+        bottomNavigationBar: ConvexAppBar(
+          items: [
+            TabItem(icon: Icons.home, title: 'Home'),
+            TabItem(icon: Icons.map, title: 'Discovery'),
+            TabItem(icon: Icons.add, title: 'Add'),
+            TabItem(icon: Icons.message, title: 'Message'),
+            TabItem(icon: Icons.people, title: 'Profile'),
+          ],
+          initialActiveIndex: 2, //optional, default as 0
+          onTap: (int i) => print('click index=$i'),
+        ));
   }
 }
 
