@@ -3,6 +3,7 @@ import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
+import 'package:multilevel_drawer/multilevel_drawer.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -59,6 +60,7 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      drawer: MultiLevelDrawer(header: null, children: null),
       appBar: AppBar(
         title: appBar(context),
         backgroundColor: Colors.transparent,
