@@ -4,7 +4,7 @@ Widget appBar(BuildContext context) {
   return Center(
     child: RichText(
       text: TextSpan(
-        style: TextStyle(fontSize: 22),
+        style: TextStyle(fontSize: 28),
         children: <TextSpan>[
           TextSpan(
             text: 'Quizzed',

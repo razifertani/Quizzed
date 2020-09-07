@@ -1,10 +1,9 @@
-import 'package:QuizzedGame/views/signin.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
-import 'package:multilevel_drawer/multilevel_drawer.dart';
 
 class Home extends StatefulWidget {
   Home({Key key}) : super(key: key);
@@ -61,74 +60,32 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: MultiLevelDrawer(
-          header: Container(
-            padding: EdgeInsets.symmetric(
-              vertical: MediaQuery.of(context).size.height * 0.1,
-            ),
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Image.asset(
-                    'Assets/pdp.jpg',
-                    width: 120,
-                    height: 120,
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.03,
-                  ),
-                  Text('Razi Fertani'),
-                ],
-              ),
-            ),
-          ),
-          children: [
-            MLMenuItem(
-              leading: Icon(Icons.person),
-              trailing: Icon(Icons.arrow_right),
-              content: Text('Profile'),
-              onClick: () {},
-            ),
-            MLMenuItem(
-              leading: Icon(Icons.settings),
-              trailing: Icon(Icons.arrow_right),
-              content: Text('Settings'),
-              onClick: () {},
-            ),
-            MLMenuItem(
-              leading: Icon(Icons.close),
-              trailing: Icon(Icons.arrow_right),
-              content: Text('Logout'),
-              onClick: () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => SignIn(),
-                  ),
-                );
-              },
-            ),
-          ]),
-      appBar: AppBar(
-        title: appBar(context),
-        backgroundColor: Colors.transparent,
-        elevation: 0.0,
-        brightness: Brightness.light,
-      ),
-      body: quizList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Create(),
-            ),
-          );
-        },
-      ),
-    );
+        appBar: AppBar(
+          title: appBar(context),
+          backgroundColor: Colors.transparent,
+          elevation: 0.0,
+          brightness: Brightness.light,
+        ),
+        body: quizList(),
+        bottomNavigationBar: ConvexAppBar(
+          backgroundColor: Colors.blue,
+          items: [
+            TabItem(icon: Icons.people, title: 'Profile'),
+            TabItem(icon: Icons.add, title: 'Add'),
+            TabItem(icon: Icons.history, title: 'History'),
+          ],
+          initialActiveIndex: 1, //optional, default as 0
+          onTap: (int i) {
+            i == 2
+                ? Navigator.pushReplacement(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => Create(),
+                    ),
+                  )
+                : null;
+          },
+        ));
   }
 }
 
@@ -162,16 +119,14 @@ class QuizTile extends StatelessWidget {
           horizontal: MediaQuery.of(context).size.width * 0.05,
           vertical: MediaQuery.of(context).size.height * 0.01,
         ),
-        height: MediaQuery.of(context).size.height * 0.3,
+        height: MediaQuery.of(context).size.height * 0.26,
         child: Stack(
           children: <Widget>[
             ClipRRect(
               borderRadius: BorderRadius.circular(10),
-              child: Image.network(
-                imageURL,
-                width: MediaQuery.of(context).size.width * 0.9,
-                fit: BoxFit.fitWidth,
-              ),
+              child: Image.network(imageURL,
+                  width: MediaQuery.of(context).size.width * 0.9,
+                  fit: BoxFit.fitWidth),
             ),
             Container(
               decoration: BoxDecoration(
