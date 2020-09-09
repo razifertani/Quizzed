@@ -14,9 +14,7 @@ class DataBaseService {
         .setData(quizData)
         .catchError(
       (e) {
-        print(
-          e.toString(),
-        );
+        print(e.toString());
       },
     );
   }
@@ -29,21 +27,9 @@ class DataBaseService {
         .add(questionData)
         .catchError(
       (e) {
-        print(
-          e.toString(),
-        );
+        print(e.toString());
       },
     );
-  }
-
-  static Future saveUserLoggedInDetails({@required bool isLogged}) async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    prefs.setBool("ISLOGGEDIN", isLogged);
-  }
-
-  static Future<bool> getUserLogged() async {
-    SharedPreferences prefs = await SharedPreferences.getInstance();
-    return prefs.get("ISLOGGEDIN");
   }
 
   getQuizData() async {

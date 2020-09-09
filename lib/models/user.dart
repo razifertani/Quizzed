@@ -1,8 +1,8 @@
 class User {
-  String userId;
+  String uid;
   String userEmail;
   String password;
   String age;
 
-  User({this.userId});
+  User({this.userEmail, this.password, this.age});
 }

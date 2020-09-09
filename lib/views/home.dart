@@ -49,9 +49,8 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
-    print('****************');
-    print(widget.userUID);
-    print('****************');
+    print('Home UID: ' + widget.userUID + '  ******************');
+
     dataBaseService.getQuizData().then((value) {
       setState(() {
         quizStream = value;
@@ -68,6 +67,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
+        actions: [],
       ),
       body: quizList(),
       bottomNavigationBar: buildConvexAppBar(context, 1),

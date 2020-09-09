@@ -26,26 +26,31 @@ class _SignUpState extends State<SignUp> {
       });
 
       await authService.signUp(email, password, age).then(
-        (value) {
+        (value) async {
           if (value != null) {
-            DataBaseService.saveUserLoggedInDetails(isLogged: true);
-            authService.getCurrentUID().then(
-              (uid) {
-                userUID = uid;
+            await authService.signIn(email, password).then(
+              (value) {
+                if (value != null) {
+                  authService.getCurrentUID().then(
+                    (uid) {
+                      print('Sign Up UID: ' + uid + '  /////////////////');
 
-                Future.delayed(
-                  Duration(milliseconds: 200),
-                  () {
-                    Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(
-                          userUID: userUID,
-                        ),
-                      ),
-                    );
-                  },
-                );
+                      Future.delayed(
+                        Duration(milliseconds: 200),
+                        () {
+                          Navigator.pushReplacement(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => Home(
+                                userUID: uid,
+                              ),
+                            ),
+                          );
+                        },
+                      );
+                    },
+                  );
+                }
               },
             );
           }

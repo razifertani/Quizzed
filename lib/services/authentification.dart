@@ -12,22 +12,15 @@ class AuthentificationService {
   }
 
   User _userFromFirebase(FirebaseUser user) {
-    return user != null ? User(userId: user.uid) : null;
+    return user != null ? User() : null;
   }
 
   Future signIn(String email, String password) async {
     try {
       AuthResult authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser firebaseUser = authResult.user;
 
-      await DataBaseService(uid: firebaseUser.uid).updateUserData(
-          firebaseUser.uid,
-          firebaseUser.email,
-          'firebaseUser.password',
-          'firebaseUser.age');
-
-      return _userFromFirebase(firebaseUser);
+      return authResult.user;
     } catch (e) {
       print(e.toString());
     }
@@ -37,18 +30,12 @@ class AuthentificationService {
     try {
       AuthResult authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
-      FirebaseUser firebaseUser = authResult.user;
 
-      getCurrentUID().then(
-        (uid) {
-          userUID = uid;
-        },
-      );
+      dataBaseService.updateUserData(authResult.user.uid, email, password, age);
 
-      await DataBaseService(uid: userUID)
-          .updateUserData(userUID, email, password, age);
+      print('Firebase User: ' + authResult.user.uid + '  /////////////////');
 
-      return _userFromFirebase(firebaseUser);
+      return authResult.user;
     } catch (e) {
       print(e.toString());
     }

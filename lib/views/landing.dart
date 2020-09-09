@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:QuizzedGame/views/signin.dart';
-import 'package:QuizzedGame/services/database.dart';
-import 'package:QuizzedGame/views/home.dart';
 
 class Landing extends StatefulWidget {
   Landing({Key key}) : super(key: key);
@@ -12,23 +10,10 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> {
-  bool isLogged = false;
-
   @override
   void initState() {
-    super.initState();
-    checkUserLogged();
     startTime();
-  }
-
-  Future checkUserLogged() async {
-    DataBaseService.getUserLogged().then((value) {
-      if (value = true) {
-        setState(() {
-          isLogged = value;
-        });
-      }
-    });
+    super.initState();
   }
 
   startTime() async {
@@ -40,7 +25,6 @@ class _LandingState extends State<Landing> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        //  builder: (context) => (isLogged ?? false) ? Home() : SignIn(),
         builder: (context) => SignIn(),
         // builder: (context) => Home(),
       ),

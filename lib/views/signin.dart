@@ -30,24 +30,18 @@ class _SignInState extends State<SignIn> {
       await authService.signIn(email, password).then(
         (value) {
           if (value != null) {
-            DataBaseService.saveUserLoggedInDetails(isLogged: true);
-            authService.getCurrentUID().then(
-              (uid) {
-                dataBaseService.getUserData(uid).then(
-                  (userSnapchot) {
-                    userUID = userSnapchot.data['userId'];
+            print('Sign In UID: ' + value.uid + '  -------------');
 
-                    Future.delayed(Duration(milliseconds: 200), () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                          builder: (context) => Home(
-                            userUID: userUID,
-                          ),
-                        ),
-                      );
-                    });
-                  },
+            Future.delayed(
+              Duration(milliseconds: 200),
+              () {
+                Navigator.pushReplacement(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Home(
+                      userUID: value.uid,
+                    ),
+                  ),
                 );
               },
             );
