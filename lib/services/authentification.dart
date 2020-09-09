@@ -20,6 +20,8 @@ class AuthentificationService {
       AuthResult authResult = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
 
+      print('Firebase User: ' + authResult.user.uid + '  /////////////////');
+
       return authResult.user;
     } catch (e) {
       print(e.toString());
@@ -32,8 +34,6 @@ class AuthentificationService {
           email: email, password: password);
 
       dataBaseService.updateUserData(authResult.user.uid, email, password, age);
-
-      print('Firebase User: ' + authResult.user.uid + '  /////////////////');
 
       return authResult.user;
     } catch (e) {

@@ -1,12 +1,12 @@
-import 'package:QuizzedGame/models/user.dart';
 import 'package:QuizzedGame/services/authentification.dart';
+import 'package:QuizzedGame/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
 class Home extends StatefulWidget {
-  String userUID;
+  final String userUID;
   Home({Key key, this.userUID}) : super(key: key);
 
   @override
@@ -39,6 +39,7 @@ class _HomeState extends State<Home> {
                       title: snapchot.data.documents[index].data['quizzTitle'],
                       description: snapchot
                           .data.documents[index].data['quizzDescription'],
+                      userUID: widget.userUID,
                     );
                   },
                 );
@@ -64,29 +65,84 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
-        actions: [],
+        actions: <Widget>[
+          IconButton(
+            icon: Icon(
+              Icons.exit_to_app,
+              size: 30.0,
+              color: Colors.blue,
+            ),
+            onPressed: () {
+              showDialog(
+                context: context,
+                builder: (_) => new AlertDialog(
+                  title: Center(
+                    child: new Text(
+                      "Logout",
+                      style: TextStyle(fontSize: 25),
+                    ),
+                  ),
+                  content: new Text(
+                    "Are you sure you want to log out ?",
+                  ),
+                  actions: <Widget>[
+                    FlatButton(
+                      child: Text('Yes'),
+                      onPressed: () {
+                        authentificationService.signOut();
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => SignIn(),
+                          ),
+                        );
+                      },
+                    ),
+                    FlatButton(
+                      child: Text('No'),
+                      onPressed: () {
+                        Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) => Home(
+                              userUID: widget.userUID,
+                            ),
+                          ),
+                        );
+                      },
+                    ),
+                  ],
+                ),
+              );
+            },
+          ),
+        ],
       ),
       body: quizList(),
-      bottomNavigationBar: buildConvexAppBar(context, 1),
+      bottomNavigationBar: buildConvexAppBar(context, 1, widget.userUID),
     );
   }
 }
 
 class QuizTile extends StatelessWidget {
+  final String userUID;
   final String imageURL;
   final String title;
   final String description;
   final String quizId;
 
-  const QuizTile({
+  QuizTile({
+    @required this.userUID,
     @required this.imageURL,
     @required this.title,
     @required this.description,
     @required this.quizId,
   });
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -96,6 +152,7 @@ class QuizTile extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => PlayQuiz(
               quizId: quizId,
+              userUID: userUID,
             ),
           ),
         );

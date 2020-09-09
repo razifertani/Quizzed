@@ -26,7 +26,6 @@ class _LandingState extends State<Landing> {
       context,
       MaterialPageRoute(
         builder: (context) => SignIn(),
-        // builder: (context) => Home(),
       ),
     );
   }

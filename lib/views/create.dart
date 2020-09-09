@@ -6,7 +6,8 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:random_string/random_string.dart';
 
 class Create extends StatefulWidget {
-  Create({Key key}) : super(key: key);
+  final String userUID;
+  Create({Key key, this.userUID}) : super(key: key);
 
   @override
   _CreateState createState() => _CreateState();
@@ -40,6 +41,7 @@ class _CreateState extends State<Create> {
             MaterialPageRoute(
               builder: (context) => AddQuestion(
                 quizId: quizzId,
+                userUID: widget.userUID,
               ),
             ),
           );
@@ -53,6 +55,7 @@ class _CreateState extends State<Create> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
@@ -65,7 +68,9 @@ class _CreateState extends State<Create> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => Home(),
+                builder: (context) => Home(
+                  userUID: widget.userUID,
+                ),
               ),
             );
           },

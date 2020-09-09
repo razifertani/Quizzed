@@ -1,6 +1,4 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/material.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
 class DataBaseService {
   final String uid;
@@ -46,6 +44,17 @@ class DataBaseService {
 
   Future getUserData(String userId) async {
     return await Firestore.instance.collection("Users").document(userId).get();
+  }
+
+  Future updateUserImage(String userId, String imageURL) async {
+    return await Firestore.instance
+        .collection("Users")
+        .document(userId)
+        .setData(
+      {
+        'image': imageURL,
+      },
+    );
   }
 
   Future updateUserData(

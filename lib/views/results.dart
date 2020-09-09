@@ -3,8 +3,13 @@ import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
 class Results extends StatefulWidget {
+  final String userUID;
   final int correctAnswers, total;
-  Results({Key key, @required this.correctAnswers, @required this.total})
+  Results(
+      {Key key,
+      @required this.correctAnswers,
+      @required this.total,
+      this.userUID})
       : super(key: key);
 
   @override
@@ -64,7 +69,9 @@ class _ResultsState extends State<Results> {
                   Navigator.pushReplacement(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => Home(),
+                      builder: (context) => Home(
+                        userUID: widget.userUID,
+                      ),
                     ),
                   );
                 },

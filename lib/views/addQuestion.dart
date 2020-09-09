@@ -4,8 +4,9 @@ import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
 class AddQuestion extends StatefulWidget {
+  final String userUID;
   final String quizId;
-  AddQuestion({Key key, this.quizId}) : super(key: key);
+  AddQuestion({Key key, this.quizId, this.userUID}) : super(key: key);
 
   @override
   _AddQuestionState createState() => _AddQuestionState();
@@ -50,6 +51,7 @@ class _AddQuestionState extends State<AddQuestion> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
@@ -177,7 +179,9 @@ class _AddQuestionState extends State<AddQuestion> {
                                         Navigator.pushReplacement(
                                           context,
                                           MaterialPageRoute(
-                                            builder: (context) => Home(),
+                                            builder: (context) => Home(
+                                              userUID: widget.userUID,
+                                            ),
                                           ),
                                         );
                                       },

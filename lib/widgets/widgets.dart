@@ -1,5 +1,5 @@
-import 'package:QuizzedGame/models/user.dart';
 import 'package:QuizzedGame/views/create.dart';
+import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/profile.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
@@ -46,31 +46,6 @@ Widget blueButton(BuildContext context, String label, double width) {
         color: Colors.white,
         fontSize: 16,
       ),
-    ),
-  );
-}
-
-showMaterialDialog(BuildContext context) {
-  showDialog(
-    context: context,
-    builder: (_) => new AlertDialog(
-      title: Center(
-        child: new Text(
-          "Error",
-          style: TextStyle(color: Colors.red, fontSize: 25),
-        ),
-      ),
-      content: new Text(
-        "Incorrect Email/Password !",
-      ),
-      actions: <Widget>[
-        FlatButton(
-          child: Text('Close'),
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-        )
-      ],
     ),
   );
 }
@@ -140,12 +115,15 @@ class _OptionTileState extends State<OptionTile> {
   }
 }
 
-ConvexAppBar buildConvexAppBar(BuildContext context, int index) {
+ConvexAppBar buildConvexAppBar(
+    BuildContext context, int index, String userUID) {
   return ConvexAppBar(
     backgroundColor: Colors.blue,
     items: [
       TabItem(icon: Icons.people, title: 'Profile'),
-      TabItem(icon: Icons.add, title: 'Add'),
+      index == 1
+          ? TabItem(icon: Icons.add, title: 'Add')
+          : TabItem(icon: Icons.home, title: 'Home'),
       TabItem(icon: Icons.history, title: 'History'),
     ],
     initialActiveIndex: index, //optional, default as 0
@@ -154,20 +132,30 @@ ConvexAppBar buildConvexAppBar(BuildContext context, int index) {
           ? Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => Profile(),
+                builder: (context) => Profile(
+                  userUID: userUID,
+                ),
               ),
             )
-          // ignore: unnecessary_statements
-          : null;
-      i == 1
-          ? Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Create(),
-              ),
-            )
-          // ignore: unnecessary_statements
-          : null;
+          : i == 1
+              ? index == 1
+                  ? Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Create(
+                          userUID: userUID,
+                        ),
+                      ),
+                    )
+                  : Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(
+                          userUID: userUID,
+                        ),
+                      ),
+                    )
+              : null;
     },
   );
 }

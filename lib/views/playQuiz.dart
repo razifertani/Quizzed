@@ -8,9 +8,10 @@ import 'package:QuizzedGame/views/results.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
 class PlayQuiz extends StatefulWidget {
+  final String userUID;
   final String quizId;
 
-  const PlayQuiz({Key key, this.quizId}) : super(key: key);
+  const PlayQuiz({Key key, this.quizId, this.userUID}) : super(key: key);
 
   @override
   _PlayQuizState createState() => _PlayQuizState();
@@ -81,6 +82,7 @@ class _PlayQuizState extends State<PlayQuiz> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
@@ -93,7 +95,9 @@ class _PlayQuizState extends State<PlayQuiz> {
             Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (context) => Home(),
+                builder: (context) => Home(
+                  userUID: widget.userUID,
+                ),
               ),
             );
           },
@@ -146,6 +150,7 @@ class _PlayQuizState extends State<PlayQuiz> {
               builder: (context) => Results(
                 correctAnswers: _correct,
                 total: total,
+                userUID: widget.userUID,
               ),
             ),
           );

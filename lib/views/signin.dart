@@ -50,8 +50,27 @@ class _SignInState extends State<SignIn> {
             setState(() {
               isLoading = false;
             });
-            showMaterialDialog(
-              context,
+            showDialog(
+              context: context,
+              builder: (_) => new AlertDialog(
+                title: Center(
+                  child: new Text(
+                    "Error",
+                    style: TextStyle(color: Colors.red, fontSize: 25),
+                  ),
+                ),
+                content: new Text(
+                  "Incorrect Email/Password !",
+                ),
+                actions: <Widget>[
+                  FlatButton(
+                    child: Text('Close'),
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                  )
+                ],
+              ),
             );
           }
         },
@@ -64,6 +83,7 @@ class _SignInState extends State<SignIn> {
     return Scaffold(
       appBar: AppBar(
         title: appBar(context),
+        centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
@@ -87,7 +107,7 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         hintText: 'Email',
                       ),
-                      initialValue: 'razifertani@gmail.com',
+                      initialValue: 'neymar@gmail.com',
                       onChanged: (value) {
                         email = value;
                       },
@@ -103,7 +123,7 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         hintText: 'Password',
                       ),
-                      initialValue: 'Tunisie1999',
+                      initialValue: 'neymar',
                       onChanged: (value) {
                         password = value;
                       },
