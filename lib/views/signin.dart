@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -15,8 +17,10 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   String email, password;
+  DataBaseService dataBaseService = DataBaseService();
   AuthentificationService authService = new AuthentificationService();
   bool isLoading = false;
+  String userUID;
 
   signIn() async {
     if (_formKey.currentState.validate()) {
@@ -26,15 +30,26 @@ class _SignInState extends State<SignIn> {
       await authService.signIn(email, password).then(
         (value) {
           if (value != null) {
-            setState(() {
-              isLoading = false;
-            });
             DataBaseService.saveUserLoggedInDetails(isLogged: true);
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Home(),
-              ),
+            authService.getCurrentUID().then(
+              (uid) {
+                dataBaseService.getUserData(uid).then(
+                  (userSnapchot) {
+                    userUID = userSnapchot.data['userId'];
+
+                    Future.delayed(Duration(milliseconds: 200), () {
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => Home(
+                            userUID: userUID,
+                          ),
+                        ),
+                      );
+                    });
+                  },
+                );
+              },
             );
           }
           if (value == null) {
@@ -78,6 +93,7 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         hintText: 'Email',
                       ),
+                      initialValue: 'razifertani@gmail.com',
                       onChanged: (value) {
                         email = value;
                       },
@@ -93,6 +109,7 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         hintText: 'Password',
                       ),
+                      initialValue: 'Tunisie1999',
                       onChanged: (value) {
                         password = value;
                       },

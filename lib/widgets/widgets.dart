@@ -1,3 +1,7 @@
+import 'package:QuizzedGame/models/user.dart';
+import 'package:QuizzedGame/views/create.dart';
+import 'package:QuizzedGame/views/profile.dart';
+import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 Widget appBar(BuildContext context) {
@@ -134,4 +138,36 @@ class _OptionTileState extends State<OptionTile> {
       ),
     );
   }
+}
+
+ConvexAppBar buildConvexAppBar(BuildContext context, int index) {
+  return ConvexAppBar(
+    backgroundColor: Colors.blue,
+    items: [
+      TabItem(icon: Icons.people, title: 'Profile'),
+      TabItem(icon: Icons.add, title: 'Add'),
+      TabItem(icon: Icons.history, title: 'History'),
+    ],
+    initialActiveIndex: index, //optional, default as 0
+    onTap: (int i) {
+      i == 0
+          ? Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Profile(),
+              ),
+            )
+          // ignore: unnecessary_statements
+          : null;
+      i == 1
+          ? Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => Create(),
+              ),
+            )
+          // ignore: unnecessary_statements
+          : null;
+    },
+  );
 }

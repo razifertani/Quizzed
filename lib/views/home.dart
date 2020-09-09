@@ -1,12 +1,13 @@
-import 'package:convex_bottom_bar/convex_bottom_bar.dart';
+import 'package:QuizzedGame/models/user.dart';
+import 'package:QuizzedGame/services/authentification.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/database.dart';
-import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
 class Home extends StatefulWidget {
-  Home({Key key}) : super(key: key);
+  String userUID;
+  Home({Key key, this.userUID}) : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -15,6 +16,7 @@ class Home extends StatefulWidget {
 class _HomeState extends State<Home> {
   Stream quizStream;
   DataBaseService dataBaseService = DataBaseService();
+  AuthentificationService authentificationService = AuthentificationService();
 
   Widget quizList() {
     return Container(
@@ -24,9 +26,7 @@ class _HomeState extends State<Home> {
           return snapchot.data == null
               ? Container(
                   child: Center(
-                    child: Text(
-                      'No quizz !',
-                    ),
+                    child: CircularProgressIndicator(),
                   ),
                 )
               : ListView.builder(
@@ -49,6 +49,9 @@ class _HomeState extends State<Home> {
 
   @override
   void initState() {
+    print('****************');
+    print(widget.userUID);
+    print('****************');
     dataBaseService.getQuizData().then((value) {
       setState(() {
         quizStream = value;
@@ -60,32 +63,15 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: appBar(context),
-          backgroundColor: Colors.transparent,
-          elevation: 0.0,
-          brightness: Brightness.light,
-        ),
-        body: quizList(),
-        bottomNavigationBar: ConvexAppBar(
-          backgroundColor: Colors.blue,
-          items: [
-            TabItem(icon: Icons.people, title: 'Profile'),
-            TabItem(icon: Icons.add, title: 'Add'),
-            TabItem(icon: Icons.history, title: 'History'),
-          ],
-          initialActiveIndex: 1, //optional, default as 0
-          onTap: (int i) {
-            i == 2
-                ? Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Create(),
-                    ),
-                  )
-                : null;
-          },
-        ));
+      appBar: AppBar(
+        title: appBar(context),
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        brightness: Brightness.light,
+      ),
+      body: quizList(),
+      bottomNavigationBar: buildConvexAppBar(context, 1),
+    );
   }
 }
 

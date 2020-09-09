@@ -40,7 +40,9 @@ class _LandingState extends State<Landing> {
     Navigator.pushReplacement(
       context,
       MaterialPageRoute(
-        builder: (context) => (isLogged ?? false) ? Home() : SignIn(),
+        //  builder: (context) => (isLogged ?? false) ? Home() : SignIn(),
+        builder: (context) => SignIn(),
+        // builder: (context) => Home(),
       ),
     );
   }
@@ -60,7 +62,9 @@ class _LandingState extends State<Landing> {
             Center(
               child: RichText(
                 text: TextSpan(
-                  style: TextStyle(fontSize: 50),
+                  style: TextStyle(
+                    fontSize: MediaQuery.of(context).size.width * 0.13,
+                  ),
                   children: <TextSpan>[
                     TextSpan(
                       text: 'Quizzed',

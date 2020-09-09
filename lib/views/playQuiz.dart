@@ -85,7 +85,10 @@ class _PlayQuizState extends State<PlayQuiz> {
         elevation: 0.0,
         brightness: Brightness.light,
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: Icon(
+            Icons.arrow_back,
+            color: Colors.black87,
+          ),
           onPressed: () {
             Navigator.pushReplacement(
               context,

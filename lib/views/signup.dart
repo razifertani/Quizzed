@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
@@ -13,7 +14,8 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
-  String username, email, password;
+  String userUID, email, password, age;
+  DataBaseService dataBaseService = DataBaseService();
   AuthentificationService authService = new AuthentificationService();
   bool isLoading = false;
 
@@ -22,18 +24,29 @@ class _SignUpState extends State<SignUp> {
       setState(() {
         isLoading = true;
       });
-      await authService.signUp(email, password).then(
+
+      await authService.signUp(email, password, age).then(
         (value) {
           if (value != null) {
-            setState(() {
-              isLoading = false;
-            });
+            DataBaseService.saveUserLoggedInDetails(isLogged: true);
+            authService.getCurrentUID().then(
+              (uid) {
+                userUID = uid;
 
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Home(),
-              ),
+                Future.delayed(
+                  Duration(milliseconds: 200),
+                  () {
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => Home(
+                          userUID: userUID,
+                        ),
+                      ),
+                    );
+                  },
+                );
+              },
             );
           }
         },
@@ -64,20 +77,6 @@ class _SignUpState extends State<SignUp> {
                   children: <Widget>[
                     TextFormField(
                       validator: (value) {
-                        return value.isEmpty ? "Enter a username !" : null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: 'Username',
-                      ),
-                      onChanged: (value) {
-                        username = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    TextFormField(
-                      validator: (value) {
                         return value.isEmpty ? "Enter a correct email !" : null;
                       },
                       decoration: InputDecoration(
@@ -100,6 +99,20 @@ class _SignUpState extends State<SignUp> {
                       ),
                       onChanged: (value) {
                         password = value;
+                      },
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.02,
+                    ),
+                    TextFormField(
+                      validator: (value) {
+                        return value.isEmpty ? "Enter you age !" : null;
+                      },
+                      decoration: InputDecoration(
+                        hintText: 'Age',
+                      ),
+                      onChanged: (value) {
+                        age = value;
                       },
                     ),
                     SizedBox(

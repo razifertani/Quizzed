@@ -57,4 +57,27 @@ class DataBaseService {
         .collection("Q&A")
         .getDocuments();
   }
+
+  Future getUserData(String userId) async {
+    return await Firestore.instance.collection("Users").document(userId).get();
+  }
+
+  Future updateUserData(
+    String userId,
+    String userEmail,
+    String password,
+    String age,
+  ) async {
+    return await Firestore.instance
+        .collection("Users")
+        .document(userId)
+        .setData(
+      {
+        'userId': userId,
+        'userEmail': userEmail,
+        'password': password,
+        'age': age,
+      },
+    );
+  }
 }
