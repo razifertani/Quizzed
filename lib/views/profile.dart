@@ -3,6 +3,7 @@ import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class Profile extends StatefulWidget {
   final String userUID;
@@ -349,11 +350,14 @@ class _ProfileState extends State<Profile> {
                                 age,
                               );
 
-                              final snackBar = SnackBar(
-                                content: Text('Your data is updated !'),
-                                duration: Duration(seconds: 3),
-                              );
-                              Scaffold.of(context).showSnackBar(snackBar);
+                              Fluttertoast.showToast(
+                                  msg: "Updated successfully !",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.white,
+                                  backgroundColor: Colors.black87,
+                                  fontSize: 16.0);
                             } else {
                               showDialog(
                                 context: context,

@@ -17,7 +17,7 @@ dependencies:
   shared_preferences: ^0.5.6+3
   random_string: ^2.0.1
   convex_bottom_bar: ^2.4.1
-
+  fluttertoast: ^7.0.4
 
   cupertino_icons: ^0.1.3
 
