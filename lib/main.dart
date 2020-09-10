@@ -3,19 +3,13 @@ import 'package:QuizzedGame/views/landing.dart';
 import 'package:flutter/services.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(
+    MyApp(),
+  );
 }
 
-class MyApp extends StatefulWidget {
-  @override
-  _MyAppState createState() => _MyAppState();
-}
-
-class _MyAppState extends State<MyApp> {
-  @override
-  void initState() {
-    super.initState();
-  }
+class MyApp extends StatelessWidget {
+  const MyApp({Key key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,7 +19,7 @@ class _MyAppState extends State<MyApp> {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Quizzed',
+      title: 'Quizzed Game',
       theme: ThemeData(
         fontFamily: 'Airbnb',
       ),

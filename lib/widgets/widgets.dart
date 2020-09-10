@@ -1,4 +1,3 @@
-import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/history.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/profile.dart';

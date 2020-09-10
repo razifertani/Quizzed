@@ -1,6 +1,5 @@
 import 'package:QuizzedGame/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:QuizzedGame/models/user.dart';
 
 class AuthentificationService {
   FirebaseAuth _auth = FirebaseAuth.instance;
@@ -9,10 +8,6 @@ class AuthentificationService {
 
   Future<String> getCurrentUID() async {
     return (await _auth.currentUser()).uid;
-  }
-
-  User _userFromFirebase(FirebaseUser user) {
-    return user != null ? User() : null;
   }
 
   Future signIn(String email, String password) async {
