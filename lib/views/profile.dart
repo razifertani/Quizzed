@@ -46,30 +46,9 @@ class _ProfileState extends State<Profile> {
   Widget build(BuildContext context) {
     return isLoading == true
         ? Scaffold(
-            appBar: AppBar(
-              title: appBar(context),
-              centerTitle: true,
-              backgroundColor: Colors.transparent,
-              elevation: 0.0,
-              brightness: Brightness.light,
-              leading: Icon(
-                Icons.arrow_back,
-                color: Colors.transparent,
-              ),
-              actions: [
-                IconButton(
-                  icon: Icon(
-                    Icons.settings,
-                    color: Colors.black,
-                  ),
-                  onPressed: () {},
-                ),
-              ],
-            ),
             body: Center(
               child: CircularProgressIndicator(),
             ),
-            bottomNavigationBar: buildConvexAppBar(context, 0, widget.userUID),
           )
         : Scaffold(
             appBar: AppBar(

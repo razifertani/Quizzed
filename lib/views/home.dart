@@ -105,14 +105,7 @@ class _HomeState extends State<Home> {
                     FlatButton(
                       child: Text('No'),
                       onPressed: () {
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => Home(
-                              userUID: widget.userUID,
-                            ),
-                          ),
-                        );
+                        Navigator.of(context).pop();
                       },
                     ),
                   ],
@@ -152,6 +145,7 @@ class QuizTile extends StatelessWidget {
           MaterialPageRoute(
             builder: (context) => PlayQuiz(
               quizId: quizId,
+              quizTitle: title,
               userUID: userUID,
             ),
           ),

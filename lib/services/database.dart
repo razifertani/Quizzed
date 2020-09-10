@@ -66,4 +66,25 @@ class DataBaseService {
       },
     );
   }
+
+  getUserHistory(String userID) async {
+    return await Firestore.instance
+        .collection("Users")
+        .document(userID)
+        .collection("History")
+        .getDocuments();
+  }
+
+  setUserHistory(String userID, Map quizResult) async {
+    return await Firestore.instance
+        .collection("Users")
+        .document(userID)
+        .collection("History")
+        .add(quizResult)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
 }

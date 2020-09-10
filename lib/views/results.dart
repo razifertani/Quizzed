@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
@@ -5,11 +6,15 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 class Results extends StatefulWidget {
   final String userUID;
   final int correctAnswers, total;
+  final String quizId, quizTitle, quizResult;
   Results(
       {Key key,
       @required this.correctAnswers,
       @required this.total,
-      this.userUID})
+      @required this.userUID,
+      @required this.quizId,
+      @required this.quizTitle,
+      @required this.quizResult})
       : super(key: key);
 
   @override
@@ -17,6 +22,26 @@ class Results extends StatefulWidget {
 }
 
 class _ResultsState extends State<Results> {
+  DataBaseService databaseService = new DataBaseService();
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    Map<String, String> quizResultMap = {
+      "quizzId": widget.quizId,
+      "quizzTitle": widget.quizTitle,
+      "quizzResult": widget.quizResult,
+    };
+
+    databaseService.setUserHistory(widget.userUID, quizResultMap).then((value) {
+      setState(() {
+        isLoading = false;
+      });
+    });
+
+    super.initState();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,6 +51,9 @@ class _ResultsState extends State<Results> {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.1,
+              ),
               Text(
                 '${widget.correctAnswers * (100) / widget.total} %',
                 style: TextStyle(
@@ -77,6 +105,15 @@ class _ResultsState extends State<Results> {
                 },
                 child: blueButton(context, 'Go to Home',
                     MediaQuery.of(context).size.height * 0.3),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.15,
+              ),
+              Text(
+                (widget.correctAnswers * (100) / widget.total) > 70.0
+                    ? ''
+                    : 'You can retake the quiz at any time\nHope you pass it next time !',
+                textAlign: TextAlign.center,
               ),
             ],
           ),

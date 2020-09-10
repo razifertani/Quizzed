@@ -10,8 +10,10 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 class PlayQuiz extends StatefulWidget {
   final String userUID;
   final String quizId;
+  final String quizTitle;
 
-  const PlayQuiz({Key key, this.quizId, this.userUID}) : super(key: key);
+  const PlayQuiz({Key key, this.quizId, this.userUID, this.quizTitle})
+      : super(key: key);
 
   @override
   _PlayQuizState createState() => _PlayQuizState();
@@ -151,6 +153,9 @@ class _PlayQuizState extends State<PlayQuiz> {
                 correctAnswers: _correct,
                 total: total,
                 userUID: widget.userUID,
+                quizId: widget.quizId,
+                quizTitle: widget.quizTitle,
+                quizResult: '${(_correct * 100) / total}',
               ),
             ),
           );
