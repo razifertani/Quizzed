@@ -33,7 +33,8 @@ class AuthentificationService {
       AuthResult authResult = await _auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
-      dataBaseService.updateUserData(authResult.user.uid, email, password, age);
+      dataBaseService.updateUserData(
+          authResult.user.uid, 'null', email, password, age);
 
       return authResult.user;
     } catch (e) {

@@ -1,33 +1,32 @@
 import 'package:QuizzedGame/views/create.dart';
+import 'package:QuizzedGame/views/history.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/profile.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 Widget appBar(BuildContext context) {
-  return Center(
-    child: RichText(
-      text: TextSpan(
-        style: TextStyle(fontSize: 28),
-        children: <TextSpan>[
-          TextSpan(
-            text: 'Quizzed',
-            style: TextStyle(
-              fontFamily: 'Airbnb',
-              fontWeight: FontWeight.w600,
-              color: Colors.black54,
-            ),
+  return RichText(
+    text: TextSpan(
+      style: TextStyle(fontSize: 28),
+      children: <TextSpan>[
+        TextSpan(
+          text: 'Quizzed',
+          style: TextStyle(
+            fontFamily: 'Airbnb',
+            fontWeight: FontWeight.w600,
+            color: Colors.black54,
           ),
-          TextSpan(
-            text: 'Game',
-            style: TextStyle(
-              fontFamily: 'Airbnb',
-              fontWeight: FontWeight.w600,
-              color: Colors.blue,
-            ),
+        ),
+        TextSpan(
+          text: 'Game',
+          style: TextStyle(
+            fontFamily: 'Airbnb',
+            fontWeight: FontWeight.w600,
+            color: Colors.blue,
           ),
-        ],
-      ),
+        ),
+      ],
     ),
   );
 }
@@ -121,41 +120,47 @@ ConvexAppBar buildConvexAppBar(
     backgroundColor: Colors.blue,
     items: [
       TabItem(icon: Icons.people, title: 'Profile'),
-      index == 1
-          ? TabItem(icon: Icons.add, title: 'Add')
-          : TabItem(icon: Icons.home, title: 'Home'),
+      TabItem(icon: Icons.home, title: 'Home'),
       TabItem(icon: Icons.history, title: 'History'),
     ],
-    initialActiveIndex: index, //optional, default as 0
+    initialActiveIndex: index,
     onTap: (int i) {
       i == 0
-          ? Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Profile(
-                  userUID: userUID,
-                ),
-              ),
-            )
-          : i == 1
-              ? index == 1
-                  ? Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Create(
-                          userUID: userUID,
-                        ),
-                      ),
-                    )
-                  : Navigator.pushReplacement(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => Home(
-                          userUID: userUID,
-                        ),
-                      ),
-                    )
-              : null;
+          ? index == 0
+              ? null
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Profile(
+                      userUID: userUID,
+                    ),
+                  ),
+                )
+          : null;
+      i == 1
+          ? index == 1
+              ? null
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => Home(
+                      userUID: userUID,
+                    ),
+                  ),
+                )
+          : null;
+      i == 2
+          ? index == 2
+              ? null
+              : Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (context) => History(
+                      userUID: userUID,
+                    ),
+                  ),
+                )
+          : null;
     },
   );
 }

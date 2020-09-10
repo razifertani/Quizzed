@@ -46,19 +46,9 @@ class DataBaseService {
     return await Firestore.instance.collection("Users").document(userId).get();
   }
 
-  Future updateUserImage(String userId, String imageURL) async {
-    return await Firestore.instance
-        .collection("Users")
-        .document(userId)
-        .setData(
-      {
-        'image': imageURL,
-      },
-    );
-  }
-
   Future updateUserData(
     String userId,
+    String fullName,
     String userEmail,
     String password,
     String age,
@@ -69,6 +59,7 @@ class DataBaseService {
         .setData(
       {
         'userId': userId,
+        'FullName': fullName,
         'userEmail': userEmail,
         'password': password,
         'age': age,

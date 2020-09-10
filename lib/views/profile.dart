@@ -16,7 +16,8 @@ class _ProfileState extends State<Profile> {
   bool showPassword = false;
   bool isLoading = true;
   DocumentSnapshot user;
-  String uid, email, password, age;
+  String uid, fullName, email, password, age;
+  String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
 
   @override
   void initState() {
@@ -27,6 +28,7 @@ class _ProfileState extends State<Profile> {
           user = value;
           setState(() {
             uid = user.data['userId'];
+            fullName = user.data['FullName'];
             email = user.data['userEmail'];
             password = user.data['password'];
             age = user.data['age'];
@@ -42,11 +44,31 @@ class _ProfileState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return isLoading == true
-        ? Container(
-            color: Colors.white,
-            child: Center(
+        ? Scaffold(
+            appBar: AppBar(
+              title: appBar(context),
+              centerTitle: true,
+              backgroundColor: Colors.transparent,
+              elevation: 0.0,
+              brightness: Brightness.light,
+              leading: Icon(
+                Icons.arrow_back,
+                color: Colors.transparent,
+              ),
+              actions: [
+                IconButton(
+                  icon: Icon(
+                    Icons.settings,
+                    color: Colors.black,
+                  ),
+                  onPressed: () {},
+                ),
+              ],
+            ),
+            body: Center(
               child: CircularProgressIndicator(),
             ),
+            bottomNavigationBar: buildConvexAppBar(context, 0, widget.userUID),
           )
         : Scaffold(
             appBar: AppBar(
@@ -88,9 +110,8 @@ class _ProfileState extends State<Profile> {
                         color: Colors.black87,
                       ),
                     ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.018,
-                    ),
+
+                    /*            
                     Center(
                       child: Stack(
                         children: [
@@ -141,14 +162,141 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                     ),
+        */
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
-                    buildTextField("Full Name", 'Write your full name', false),
-                    buildTextField("E-mail", email, false),
-                    buildTextField(
-                        "Password", "Type your password before saving !", true),
-                    buildTextField("Age", age, false),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      child: TextField(
+                        onChanged: (value) {
+                          fullNameWritten = value;
+                        },
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(),
+                          labelText: 'Full Name',
+                          labelStyle: TextStyle(
+                            color: Colors.blue,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: fullName == null
+                              ? 'Write your full name'
+                              : fullName,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      child: TextField(
+                        onChanged: (value) {
+                          emailWritten = value;
+                        },
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(),
+                          labelText: 'E-mail',
+                          labelStyle: TextStyle(
+                            color: Colors.blue,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: email,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      child: TextField(
+                        onChanged: (value) {
+                          passwordWrittern = value;
+                        },
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                        obscureText: true,
+                        decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            onPressed: () {
+                              setState(() {
+                                showPassword = !showPassword;
+                              });
+                            },
+                            icon: Icon(
+                              Icons.remove_red_eye,
+                              color: Colors.grey,
+                            ),
+                          ),
+                          contentPadding: EdgeInsets.only(),
+                          labelText: 'Password',
+                          labelStyle: TextStyle(
+                            color: Colors.blue,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText:
+                              'Write your password here before updating !',
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsets.only(
+                        bottom: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      child: TextField(
+                        onChanged: (value) {
+                          ageWritten = value;
+                        },
+                        style: TextStyle(
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.black87,
+                        ),
+                        decoration: InputDecoration(
+                          contentPadding: EdgeInsets.only(),
+                          labelText: 'Age',
+                          labelStyle: TextStyle(
+                            color: Colors.blue,
+                          ),
+                          floatingLabelBehavior: FloatingLabelBehavior.always,
+                          hintText: age,
+                          hintStyle: TextStyle(
+                            fontSize: 16,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.black87,
+                          ),
+                        ),
+                      ),
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
@@ -172,14 +320,68 @@ class _ProfileState extends State<Profile> {
                               ),
                             );
                           },
-                          child: Text("CANCEL",
-                              style: TextStyle(
-                                  fontSize: 14,
-                                  letterSpacing: 2.2,
-                                  color: Colors.black)),
+                          child: Text(
+                            "CANCEL",
+                            style: TextStyle(
+                                fontSize: 14,
+                                letterSpacing: 2.2,
+                                color: Colors.black),
+                          ),
                         ),
                         RaisedButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            if (passwordWrittern == password) {
+                              if (fullNameWritten != null) {
+                                fullName = fullNameWritten;
+                              }
+                              if (emailWritten != null) {
+                                email = emailWritten;
+                              }
+                              if (ageWritten != null) {
+                                age = ageWritten;
+                              }
+
+                              dataBaseService.updateUserData(
+                                uid,
+                                fullName,
+                                email,
+                                password,
+                                age,
+                              );
+
+                              final snackBar = SnackBar(
+                                content: Text('Your data is updated !'),
+                                duration: Duration(seconds: 3),
+                              );
+                              Scaffold.of(context).showSnackBar(snackBar);
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (_) => new AlertDialog(
+                                  title: Center(
+                                    child: new Text(
+                                      "Error",
+                                      style: TextStyle(
+                                        color: Colors.red,
+                                        fontSize: 25,
+                                      ),
+                                    ),
+                                  ),
+                                  content: new Text(
+                                    "Incorrect Password !",
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text('Close'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+                          },
                           color: Colors.blue,
                           padding: EdgeInsets.symmetric(
                             horizontal:
@@ -204,44 +406,5 @@ class _ProfileState extends State<Profile> {
             ),
             bottomNavigationBar: buildConvexAppBar(context, 0, widget.userUID),
           );
-  }
-
-  Widget buildTextField(
-      String labelText, String placeholder, bool isPasswordTextField) {
-    return Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.of(context).size.height * 0.04,
-      ),
-      child: TextField(
-        obscureText: isPasswordTextField ? showPassword : false,
-        decoration: InputDecoration(
-          suffixIcon: isPasswordTextField
-              ? IconButton(
-                  onPressed: () {
-                    setState(() {
-                      showPassword = !showPassword;
-                    });
-                  },
-                  icon: Icon(
-                    Icons.remove_red_eye,
-                    color: Colors.grey,
-                  ),
-                )
-              : null,
-          contentPadding: EdgeInsets.only(),
-          labelText: labelText,
-          labelStyle: TextStyle(
-            color: Colors.blue,
-          ),
-          floatingLabelBehavior: FloatingLabelBehavior.always,
-          hintText: placeholder,
-          hintStyle: TextStyle(
-            fontSize: 16,
-            fontWeight: FontWeight.bold,
-            color: Colors.black87,
-          ),
-        ),
-      ),
-    );
   }
 }
