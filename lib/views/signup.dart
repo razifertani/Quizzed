@@ -98,7 +98,9 @@ class _SignUpState extends State<SignUp> {
                     TextFormField(
                       obscureText: true,
                       validator: (value) {
-                        return value.isEmpty ? "Enter a password !" : null;
+                        return value.length < 6
+                            ? "Enter a password of +6 characters !"
+                            : null;
                       },
                       decoration: InputDecoration(
                         hintText: 'Password',

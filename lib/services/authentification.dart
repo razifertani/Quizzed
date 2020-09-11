@@ -2,17 +2,17 @@ import 'package:QuizzedGame/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthentificationService {
-  FirebaseAuth _auth = FirebaseAuth.instance;
+  FirebaseAuth auth = FirebaseAuth.instance;
   DataBaseService dataBaseService = DataBaseService();
   String userUID;
 
   Future<String> getCurrentUID() async {
-    return (await _auth.currentUser()).uid;
+    return (await auth.currentUser()).uid;
   }
 
   Future signIn(String email, String password) async {
     try {
-      AuthResult authResult = await _auth.signInWithEmailAndPassword(
+      AuthResult authResult = await auth.signInWithEmailAndPassword(
           email: email, password: password);
 
       print('Firebase User: ' + authResult.user.uid + '  /////////////////');
@@ -25,7 +25,7 @@ class AuthentificationService {
 
   Future signUp(String email, String password, String age) async {
     try {
-      AuthResult authResult = await _auth.createUserWithEmailAndPassword(
+      AuthResult authResult = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       dataBaseService.updateUserData(
@@ -39,7 +39,16 @@ class AuthentificationService {
 
   Future signOut() async {
     try {
-      return await _auth.signOut();
+      return await auth.signOut();
+    } catch (e) {
+      print(e.toString());
+    }
+  }
+
+  Future updateUserPassword(String password) async {
+    try {
+      var firebaseUser = await auth.currentUser();
+      firebaseUser.updatePassword(password);
     } catch (e) {
       print(e.toString());
     }

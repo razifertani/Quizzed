@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
@@ -15,12 +16,13 @@ class Profile extends StatefulWidget {
 
 class _ProfileState extends State<Profile> {
   DataBaseService dataBaseService = DataBaseService();
+  AuthentificationService authService = AuthentificationService();
   bool showPassword = false;
   bool isLoading = true;
   DocumentSnapshot user;
   String uid, fullName, email, password, age;
   String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
-  String oldPassword, newPassword;
+  String oldPassword, newPassword, newnewPassword;
 
   @override
   void initState() {
@@ -95,12 +97,24 @@ class _ProfileState extends State<Profile> {
                                 newPassword = value;
                               },
                             ),
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.lock),
+                                labelText: 'Repeat New Password',
+                              ),
+                              onChanged: (value) {
+                                newnewPassword = value;
+                              },
+                            ),
                           ],
                         ),
                         buttons: [
                           DialogButton(
                             onPressed: () {
-                              if (oldPassword == password) {
+                              if (oldPassword == password &&
+                                  newPassword == newnewPassword) {
+                                authService.updateUserPassword(newPassword);
                                 dataBaseService.updateUserData(
                                   uid,
                                   fullName,
@@ -133,7 +147,7 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                     content: new Text(
-                                      "Incorrect old password !",
+                                      "An error occured !",
                                     ),
                                     actions: <Widget>[
                                       FlatButton(
@@ -285,12 +299,13 @@ class _ProfileState extends State<Profile> {
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(),
+                          enabled: false,
                           labelText: 'E-mail',
                           labelStyle: TextStyle(
                             color: Colors.blue,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: email,
+                          hintText: '$email (Uneditable)',
                           hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
