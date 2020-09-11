@@ -11,8 +11,10 @@ class PlayQuiz extends StatefulWidget {
   final String userUID;
   final String quizId;
   final String quizTitle;
+  final String imageURL;
 
-  const PlayQuiz({Key key, this.quizId, this.userUID, this.quizTitle})
+  const PlayQuiz(
+      {Key key, this.quizId, this.userUID, this.quizTitle, this.imageURL})
       : super(key: key);
 
   @override
@@ -156,6 +158,7 @@ class _PlayQuizState extends State<PlayQuiz> {
                 quizId: widget.quizId,
                 quizTitle: widget.quizTitle,
                 quizResult: '${(_correct * 100) / total}',
+                imageURL: widget.imageURL,
               ),
             ),
           );

@@ -147,6 +147,7 @@ class QuizTile extends StatelessWidget {
               quizId: quizId,
               quizTitle: title,
               userUID: userUID,
+              imageURL: imageURL,
             ),
           ),
         );

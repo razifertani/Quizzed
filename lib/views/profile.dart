@@ -142,7 +142,11 @@ class _ProfileState extends State<Profile> {
                         ],
                       ),
                     ),
-        */
+                    */
+
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.1,
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
@@ -281,104 +285,82 @@ class _ProfileState extends State<Profile> {
                       height: MediaQuery.of(context).size.height * 0.03,
                     ),
                     Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        OutlineButton(
-                          padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.13,
-                          ),
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          onPressed: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => Home(
-                                  userUID: widget.userUID,
-                                ),
-                              ),
-                            );
-                          },
-                          child: Text(
-                            "CANCEL",
-                            style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 2.2,
-                                color: Colors.black),
-                          ),
-                        ),
-                        RaisedButton(
-                          onPressed: () {
-                            if (passwordWrittern == password) {
-                              if (fullNameWritten != null) {
-                                fullName = fullNameWritten;
-                              }
-                              if (emailWritten != null) {
-                                email = emailWritten;
-                              }
-                              if (ageWritten != null) {
-                                age = ageWritten;
-                              }
+                        Container(
+                          width: MediaQuery.of(context).size.width * 0.5,
+                          child: RaisedButton(
+                            onPressed: () {
+                              if (passwordWrittern == password) {
+                                if (fullNameWritten != null) {
+                                  fullName = fullNameWritten;
+                                }
+                                if (emailWritten != null) {
+                                  email = emailWritten;
+                                }
+                                if (ageWritten != null) {
+                                  age = ageWritten;
+                                }
 
-                              dataBaseService.updateUserData(
-                                uid,
-                                fullName,
-                                email,
-                                password,
-                                age,
-                              );
+                                dataBaseService.updateUserData(
+                                  uid,
+                                  fullName,
+                                  email,
+                                  password,
+                                  age,
+                                );
 
-                              Fluttertoast.showToast(
-                                  msg: "Updated successfully !",
-                                  toastLength: Toast.LENGTH_LONG,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  textColor: Colors.white,
-                                  backgroundColor: Colors.black87,
-                                  fontSize: 16.0);
-                            } else {
-                              showDialog(
-                                context: context,
-                                builder: (_) => new AlertDialog(
-                                  title: Center(
-                                    child: new Text(
-                                      "Error",
-                                      style: TextStyle(
-                                        color: Colors.red,
-                                        fontSize: 25,
+                                Fluttertoast.showToast(
+                                    msg: "Updated successfully !",
+                                    toastLength: Toast.LENGTH_LONG,
+                                    gravity: ToastGravity.BOTTOM,
+                                    timeInSecForIosWeb: 1,
+                                    textColor: Colors.white,
+                                    backgroundColor: Colors.black87,
+                                    fontSize: 16.0);
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => new AlertDialog(
+                                    title: Center(
+                                      child: new Text(
+                                        "Error",
+                                        style: TextStyle(
+                                          color: Colors.red,
+                                          fontSize: 25,
+                                        ),
                                       ),
                                     ),
+                                    content: new Text(
+                                      "Incorrect Password !",
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('Close'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
                                   ),
-                                  content: new Text(
-                                    "Incorrect Password !",
-                                  ),
-                                  actions: <Widget>[
-                                    FlatButton(
-                                      child: Text('Close'),
-                                      onPressed: () {
-                                        Navigator.of(context).pop();
-                                      },
-                                    )
-                                  ],
-                                ),
-                              );
-                            }
-                          },
-                          color: Colors.blue,
-                          padding: EdgeInsets.symmetric(
-                            horizontal:
-                                MediaQuery.of(context).size.width * 0.13,
-                          ),
-                          elevation: 2,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(20)),
-                          child: Text(
-                            "SAVE",
-                            style: TextStyle(
-                                fontSize: 14,
-                                letterSpacing: 2.2,
-                                color: Colors.white),
+                                );
+                              }
+                            },
+                            color: Colors.blue,
+                            padding: EdgeInsets.symmetric(
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.13,
+                            ),
+                            elevation: 2,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(20)),
+                            child: Text(
+                              "SAVE",
+                              style: TextStyle(
+                                  fontSize: 15,
+                                  letterSpacing: 2.2,
+                                  color: Colors.white),
+                            ),
                           ),
                         )
                       ],

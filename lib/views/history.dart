@@ -35,6 +35,8 @@ class _HistoryState extends State<History> {
     resaultModel.quizId = quizSnapshot.data["quizzId"];
     resaultModel.quizTitle = quizSnapshot.data["quizzTitle"];
     resaultModel.quizResult = quizSnapshot.data["quizzResult"];
+    resaultModel.imageURL = quizSnapshot.data["quizzImage"];
+    resaultModel.passed = quizSnapshot.data["quizzPassed"];
 
     return resaultModel;
   }
@@ -107,6 +109,8 @@ class ResultModel {
   String quizId;
   String quizTitle;
   String quizResult;
+  String imageURL;
+  bool passed;
 }
 
 class ResultTile extends StatefulWidget {
@@ -120,32 +124,80 @@ class ResultTile extends StatefulWidget {
 
 class _ResultTileState extends State<ResultTile> {
   @override
+  void initState() {
+    Future.delayed(
+      Duration(milliseconds: 200),
+      () {},
+    );
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Text(widget.resultat.quizId),
-        Text(widget.resultat.quizTitle),
-        Text(widget.resultat.quizResult),
-        Card(
-          color: Colors.grey[800],
-          child: Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Row(
-              children: <Widget>[
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: <Widget>[
-                    Text(
-                      widget.resultat.quizTitle,
-                      style: TextStyle(color: Colors.white, fontSize: 18),
+        // Text(widget.resultat.quizId),
+        // Text(widget.resultat.quizTitle),
+        // Text(widget.resultat.quizResult),
+        // Text(widget.resultat.imageURL),
+        // Text(widget.resultat.passed == true ? 'Njah' : 'Fages'),
+
+        Padding(
+          padding: EdgeInsets.all(10.0),
+          child: Card(
+            color: widget.resultat.passed == true
+                ? Colors.green[600]
+                : Colors.red[700],
+            child: Padding(
+              padding: EdgeInsets.all(8.0),
+              child: Row(
+                children: <Widget>[
+                  Padding(
+                    padding: EdgeInsets.all(8.0),
+                    child: Container(
+                      width: 100.0,
+                      height: 100.0,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        image: DecorationImage(
+                          image: NetworkImage(
+                            widget.resultat.imageURL,
+                          ),
+                          fit: BoxFit.cover,
+                        ),
+                      ),
                     ),
-                    Text(
-                      widget.resultat.quizTitle,
-                      style: TextStyle(color: Colors.white, fontSize: 12),
-                    )
-                  ],
-                )
-              ],
+                  ),
+                  Expanded(
+                    child: Column(
+                      children: <Widget>[
+                        Text(
+                          widget.resultat.quizTitle,
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 19,
+                          ),
+                        ),
+                        SizedBox(
+                          height: MediaQuery.of(context).size.height * 0.015,
+                        ),
+                        Text(
+                          '${widget.resultat.quizResult} %',
+                          style: TextStyle(
+                            fontWeight: FontWeight.w400,
+                            color: Colors.white,
+                            fontSize: 45,
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  SizedBox(
+                    width: MediaQuery.of(context).size.width * 0.01,
+                  ),
+                ],
+              ),
             ),
           ),
         ),

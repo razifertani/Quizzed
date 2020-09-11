@@ -6,16 +6,18 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 class Results extends StatefulWidget {
   final String userUID;
   final int correctAnswers, total;
-  final String quizId, quizTitle, quizResult;
-  Results(
-      {Key key,
-      @required this.correctAnswers,
-      @required this.total,
-      @required this.userUID,
-      @required this.quizId,
-      @required this.quizTitle,
-      @required this.quizResult})
-      : super(key: key);
+  final String quizId, quizTitle, quizResult, imageURL;
+
+  Results({
+    Key key,
+    @required this.correctAnswers,
+    @required this.total,
+    @required this.userUID,
+    @required this.quizId,
+    @required this.quizTitle,
+    @required this.quizResult,
+    @required this.imageURL,
+  }) : super(key: key);
 
   @override
   _ResultsState createState() => _ResultsState();
@@ -27,10 +29,14 @@ class _ResultsState extends State<Results> {
 
   @override
   void initState() {
-    Map<String, String> quizResultMap = {
+    Map<String, dynamic> quizResultMap = {
       "quizzId": widget.quizId,
       "quizzTitle": widget.quizTitle,
       "quizzResult": widget.quizResult,
+      "quizzImage": widget.imageURL,
+      "quizzPassed": ((widget.correctAnswers * (100)) / widget.total) > 70.0
+          ? true
+          : false,
     };
 
     databaseService.setUserHistory(widget.userUID, quizResultMap).then((value) {
