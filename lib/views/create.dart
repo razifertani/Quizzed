@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/addQuestion.dart';
@@ -15,9 +16,9 @@ class Create extends StatefulWidget {
 
 class _CreateState extends State<Create> {
   final _formKey = GlobalKey<FormState>();
+  final dataBaseService = locator.get<DataBaseService>();
   String quizzImageURL, quizzTitle, quizzDescription, quizzId;
   bool _isLoading = false;
-  DataBaseService databaseService = new DataBaseService();
 
   createQuiz() async {
     if (_formKey.currentState.validate()) {
@@ -33,7 +34,7 @@ class _CreateState extends State<Create> {
         "quizzDescription": quizzDescription,
       };
 
-      await databaseService.addQuizData(quizzData, quizzId).then((value) {
+      await dataBaseService.addQuizData(quizzData, quizzId).then((value) {
         setState(() {
           _isLoading = false;
           Navigator.pushReplacement(

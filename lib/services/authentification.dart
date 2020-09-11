@@ -1,9 +1,10 @@
+import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthentificationService {
   FirebaseAuth auth = FirebaseAuth.instance;
-  DataBaseService dataBaseService = DataBaseService();
+  final dataBaseService = locator.get<DataBaseService>();
   String userUID;
 
   Future<String> getCurrentUID() async {

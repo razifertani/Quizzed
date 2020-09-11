@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -14,14 +15,14 @@ class History extends StatefulWidget {
 }
 
 class _HistoryState extends State<History> {
+  final dataBaseService = locator.get<DataBaseService>();
   QuerySnapshot quizSnapshot;
-  DataBaseService databaseService = new DataBaseService();
   String quizId, quizTitle, quizResault;
   bool isLoading = true;
 
   @override
   void initState() {
-    databaseService.getUserHistory(widget.userUID).then((value) {
+    dataBaseService.getUserHistory(widget.userUID).then((value) {
       setState(() {
         quizSnapshot = value;
       });

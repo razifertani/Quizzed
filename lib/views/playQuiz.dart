@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:QuizzedGame/locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/models/question.dart';
@@ -26,14 +27,14 @@ int _correct = 0;
 int _left = 0;
 
 class _PlayQuizState extends State<PlayQuiz> {
-  DataBaseService databaseService = DataBaseService();
   QuerySnapshot questionSnapshot;
+  final dataBaseService = locator.get<DataBaseService>();
 
   bool isLoading = true;
 
   @override
   void initState() {
-    databaseService.getQuizDataQuestions(widget.quizId).then(
+    dataBaseService.getQuizDataQuestions(widget.quizId).then(
       (value) {
         questionSnapshot = value;
         _left = 0;

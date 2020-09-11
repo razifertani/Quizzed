@@ -1,7 +1,8 @@
+import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
+import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/signin.dart';
 import 'package:flutter/material.dart';
-import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
@@ -15,8 +16,8 @@ class Home extends StatefulWidget {
 
 class _HomeState extends State<Home> {
   Stream quizStream;
-  DataBaseService dataBaseService = DataBaseService();
-  AuthentificationService authentificationService = AuthentificationService();
+  final dataBaseService = locator.get<DataBaseService>();
+  final authentificationService = locator.get<AuthentificationService>();
 
   Widget quizList() {
     return Container(

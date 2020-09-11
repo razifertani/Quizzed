@@ -1,4 +1,4 @@
-import 'package:QuizzedGame/services/database.dart';
+import 'package:QuizzedGame/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
@@ -14,9 +14,9 @@ class SignUp extends StatefulWidget {
 
 class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
+  final authentificationService = locator.get<AuthentificationService>();
+
   String userUID, email, password, age;
-  DataBaseService dataBaseService = DataBaseService();
-  AuthentificationService authService = new AuthentificationService();
   bool isLoading = false;
 
   signUp() async {
@@ -25,13 +25,13 @@ class _SignUpState extends State<SignUp> {
         isLoading = true;
       });
 
-      await authService.signUp(email, password, age).then(
+      await authentificationService.signUp(email, password, age).then(
         (value) async {
           if (value != null) {
-            await authService.signIn(email, password).then(
+            await authentificationService.signIn(email, password).then(
               (value) {
                 if (value != null) {
-                  authService.getCurrentUID().then(
+                  authentificationService.getCurrentUID().then(
                     (uid) {
                       print('Sign Up UID: ' + uid + '  /////////////////');
 

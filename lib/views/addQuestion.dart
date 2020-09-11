@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/home.dart';
@@ -14,9 +15,9 @@ class AddQuestion extends StatefulWidget {
 
 class _AddQuestionState extends State<AddQuestion> {
   final _formKey = GlobalKey<FormState>();
+  final dataBaseService = locator.get<DataBaseService>();
   String question, correctanswer, option1, option2, option3;
   bool _isLoading = false;
-  DataBaseService databaseService = new DataBaseService();
 
   uploadQuizData() {
     if (_formKey.currentState.validate()) {
@@ -32,7 +33,7 @@ class _AddQuestionState extends State<AddQuestion> {
         "option3": option3,
       };
 
-      databaseService.addQuestionData(questionMap, widget.quizId).then((value) {
+      dataBaseService.addQuestionData(questionMap, widget.quizId).then((value) {
         question = "";
         correctanswer = "";
         option1 = "";

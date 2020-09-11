@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/home.dart';
@@ -24,7 +25,7 @@ class Results extends StatefulWidget {
 }
 
 class _ResultsState extends State<Results> {
-  DataBaseService databaseService = new DataBaseService();
+  final dataBaseService = locator.get<DataBaseService>();
   bool isLoading = true;
 
   @override
@@ -39,7 +40,7 @@ class _ResultsState extends State<Results> {
           : false,
     };
 
-    databaseService.setUserHistory(widget.userUID, quizResultMap).then((value) {
+    dataBaseService.setUserHistory(widget.userUID, quizResultMap).then((value) {
       setState(() {
         isLoading = false;
       });

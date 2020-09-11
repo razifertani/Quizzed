@@ -1,6 +1,6 @@
+import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
-import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -15,11 +15,11 @@ class Profile extends StatefulWidget {
 }
 
 class _ProfileState extends State<Profile> {
-  DataBaseService dataBaseService = DataBaseService();
-  AuthentificationService authService = AuthentificationService();
   bool showPassword = false;
   bool isLoading = true;
   DocumentSnapshot user;
+  final dataBaseService = locator.get<DataBaseService>();
+  final authentificationService = locator.get<AuthentificationService>();
   String uid, fullName, email, password, age;
   String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
   String oldPassword, newPassword, newnewPassword;
@@ -114,7 +114,8 @@ class _ProfileState extends State<Profile> {
                             onPressed: () {
                               if (oldPassword == password &&
                                   newPassword == newnewPassword) {
-                                authService.updateUserPassword(newPassword);
+                                authentificationService
+                                    .updateUserPassword(newPassword);
                                 dataBaseService.updateUserData(
                                   uid,
                                   fullName,

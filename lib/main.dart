@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/landing.dart';
 import 'package:flutter/services.dart';
+import 'package:QuizzedGame/locator.dart';
 
 void main() {
-  runApp(
-    MyApp(),
-  );
+  setupServices();
+  runApp(MyApp());
 }
 
 class MyApp extends StatelessWidget {
