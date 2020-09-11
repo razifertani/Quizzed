@@ -75,12 +75,12 @@ class DataBaseService {
         .getDocuments();
   }
 
-  setUserHistory(String userID, Map quizResult) async {
+  setUserHistory(String userID, Map quizResault) async {
     return await Firestore.instance
         .collection("Users")
         .document(userID)
         .collection("History")
-        .add(quizResult)
+        .add(quizResault)
         .catchError(
       (e) {
         print(e.toString());

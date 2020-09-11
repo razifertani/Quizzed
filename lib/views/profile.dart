@@ -4,6 +4,7 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class Profile extends StatefulWidget {
   final String userUID;
@@ -19,6 +20,7 @@ class _ProfileState extends State<Profile> {
   DocumentSnapshot user;
   String uid, fullName, email, password, age;
   String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
+  String oldPassword, newPassword;
 
   @override
   void initState() {
@@ -67,7 +69,94 @@ class _ProfileState extends State<Profile> {
                     Icons.settings,
                     color: Colors.black,
                   ),
-                  onPressed: () {},
+                  onPressed: () {
+                    Alert(
+                        context: context,
+                        title: "RESET PASSWORD",
+                        content: Column(
+                          children: <Widget>[
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.lock),
+                                labelText: 'Old Password',
+                              ),
+                              onChanged: (value) {
+                                oldPassword = value;
+                              },
+                            ),
+                            TextField(
+                              obscureText: true,
+                              decoration: InputDecoration(
+                                icon: Icon(Icons.lock),
+                                labelText: 'New Password',
+                              ),
+                              onChanged: (value) {
+                                newPassword = value;
+                              },
+                            ),
+                          ],
+                        ),
+                        buttons: [
+                          DialogButton(
+                            onPressed: () {
+                              if (oldPassword == password) {
+                                dataBaseService.updateUserData(
+                                  uid,
+                                  fullName,
+                                  email,
+                                  newPassword,
+                                  age,
+                                );
+                                setState(() {
+                                  password = newPassword;
+                                });
+                                Fluttertoast.showToast(
+                                  msg: "Password Updated Successfully !",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.white,
+                                  backgroundColor: Colors.black87,
+                                  fontSize: 16.0,
+                                );
+                                Navigator.of(context).pop();
+                              } else {
+                                showDialog(
+                                  context: context,
+                                  builder: (_) => new AlertDialog(
+                                    title: Center(
+                                      child: new Text(
+                                        "Error",
+                                        style: TextStyle(
+                                            color: Colors.red, fontSize: 25),
+                                      ),
+                                    ),
+                                    content: new Text(
+                                      "Incorrect old password !",
+                                    ),
+                                    actions: <Widget>[
+                                      FlatButton(
+                                        child: Text('Close'),
+                                        onPressed: () {
+                                          Navigator.of(context).pop();
+                                        },
+                                      )
+                                    ],
+                                  ),
+                                );
+                              }
+                            },
+                            child: Text(
+                              "RESET",
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 20,
+                              ),
+                            ),
+                          )
+                        ]).show();
+                  },
                 ),
               ],
             ),
@@ -170,7 +259,7 @@ class _ProfileState extends State<Profile> {
                             color: Colors.blue,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: fullName == null
+                          hintText: fullName == "null"
                               ? 'Write your full name'
                               : fullName,
                           hintStyle: TextStyle(
@@ -311,13 +400,14 @@ class _ProfileState extends State<Profile> {
                                 );
 
                                 Fluttertoast.showToast(
-                                    msg: "Updated successfully !",
-                                    toastLength: Toast.LENGTH_LONG,
-                                    gravity: ToastGravity.BOTTOM,
-                                    timeInSecForIosWeb: 1,
-                                    textColor: Colors.white,
-                                    backgroundColor: Colors.black87,
-                                    fontSize: 16.0);
+                                  msg: "Updated successfully !",
+                                  toastLength: Toast.LENGTH_LONG,
+                                  gravity: ToastGravity.BOTTOM,
+                                  timeInSecForIosWeb: 1,
+                                  textColor: Colors.white,
+                                  backgroundColor: Colors.black87,
+                                  fontSize: 16.0,
+                                );
                               } else {
                                 showDialog(
                                   context: context,

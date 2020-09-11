@@ -18,6 +18,7 @@ dependencies:
   random_string: ^2.0.1
   convex_bottom_bar: ^2.4.1
   fluttertoast: ^7.0.4
+  rflutter_alert: ^1.0.2
 
   cupertino_icons: ^0.1.3
 
