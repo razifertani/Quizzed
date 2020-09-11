@@ -20,6 +20,7 @@ dependencies:
   fluttertoast: ^7.0.4
   get_it: ^4.0.1
   rflutter_alert: ^1.0.2
+  data_connection_checker: ^0.3.4
 
 
   cupertino_icons: ^0.1.3
