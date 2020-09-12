@@ -50,6 +50,7 @@ class _PlayQuizState extends State<PlayQuiz> {
     Question questionModel = new Question();
 
     questionModel.question = questionSnapshot.data["question"];
+    questionModel.imageURL = questionSnapshot.data["imageURL"];
 
     List<String> options = [
       questionSnapshot.data["correctanswer"],
@@ -184,118 +185,141 @@ class _QuizzPlayState extends State<QuizzPlay> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: <Widget>[
-          Text(
-            "Q${widget.index + 1}:  ${widget.question.question}",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black87,
-            ),
+      child: Row(
+        children: [
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: <Widget>[
+              Text(
+                "Q${widget.index + 1}:  ${widget.question.question}",
+                style: TextStyle(
+                  fontSize: 18,
+                  color: Colors.black87,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.02,
+              ),
+              GestureDetector(
+                onTap: () {
+                  if (!widget.question.answered) {
+                    if (widget.question.option1 ==
+                        widget.question.correctAnwser) {
+                      optionSelected = widget.question.option1;
+                      widget.question.answered = true;
+                      _correct = _correct + 1;
+                      _left = _left - 1;
+                      setState(() {});
+                    } else {
+                      optionSelected = widget.question.option1;
+                      widget.question.answered = true;
+                      _left = _left - 1;
+                      setState(() {});
+                    }
+                  }
+                },
+                child: OptionTile(
+                  correctAnswer: widget.question.correctAnwser,
+                  description: widget.question.option1,
+                  option: 'A',
+                  optionSelected: optionSelected,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  if (!widget.question.answered) {
+                    if (widget.question.option2 ==
+                        widget.question.correctAnwser) {
+                      optionSelected = widget.question.option2;
+                      widget.question.answered = true;
+                      _correct = _correct + 1;
+                      _left = _left - 1;
+                      setState(() {});
+                    } else {
+                      optionSelected = widget.question.option2;
+                      widget.question.answered = true;
+                      _left = _left - 1;
+                      setState(() {});
+                    }
+                  }
+                },
+                child: OptionTile(
+                  correctAnswer: widget.question.correctAnwser,
+                  description: widget.question.option2,
+                  option: 'B',
+                  optionSelected: optionSelected,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  if (!widget.question.answered) {
+                    if (widget.question.option3 ==
+                        widget.question.correctAnwser) {
+                      optionSelected = widget.question.option3;
+                      widget.question.answered = true;
+                      _correct = _correct + 1;
+                      _left = _left - 1;
+                      setState(() {});
+                    } else {
+                      optionSelected = widget.question.option3;
+                      widget.question.answered = true;
+                      _left = _left - 1;
+                      setState(() {});
+                    }
+                  }
+                },
+                child: OptionTile(
+                  correctAnswer: widget.question.correctAnwser,
+                  description: widget.question.option3,
+                  option: 'C',
+                  optionSelected: optionSelected,
+                ),
+              ),
+              GestureDetector(
+                onTap: () {
+                  if (!widget.question.answered) {
+                    if (widget.question.option4 ==
+                        widget.question.correctAnwser) {
+                      optionSelected = widget.question.option4;
+                      widget.question.answered = true;
+                      _correct = _correct + 1;
+                      _left = _left - 1;
+                      setState(() {});
+                    } else {
+                      optionSelected = widget.question.option4;
+                      widget.question.answered = true;
+                      _left = _left - 1;
+                      setState(() {});
+                    }
+                  }
+                },
+                child: OptionTile(
+                  correctAnswer: widget.question.correctAnwser,
+                  description: widget.question.option4,
+                  option: 'D',
+                  optionSelected: optionSelected,
+                ),
+              ),
+              SizedBox(
+                height: MediaQuery.of(context).size.height * 0.05,
+              ),
+            ],
           ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.02,
-          ),
-          GestureDetector(
-            onTap: () {
-              if (!widget.question.answered) {
-                if (widget.question.option1 == widget.question.correctAnwser) {
-                  optionSelected = widget.question.option1;
-                  widget.question.answered = true;
-                  _correct = _correct + 1;
-                  _left = _left - 1;
-                  setState(() {});
-                } else {
-                  optionSelected = widget.question.option1;
-                  widget.question.answered = true;
-                  _left = _left - 1;
-                  setState(() {});
-                }
-              }
-            },
-            child: OptionTile(
-              correctAnswer: widget.question.correctAnwser,
-              description: widget.question.option1,
-              option: 'A',
-              optionSelected: optionSelected,
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              if (!widget.question.answered) {
-                if (widget.question.option2 == widget.question.correctAnwser) {
-                  optionSelected = widget.question.option2;
-                  widget.question.answered = true;
-                  _correct = _correct + 1;
-                  _left = _left - 1;
-                  setState(() {});
-                } else {
-                  optionSelected = widget.question.option2;
-                  widget.question.answered = true;
-                  _left = _left - 1;
-                  setState(() {});
-                }
-              }
-            },
-            child: OptionTile(
-              correctAnswer: widget.question.correctAnwser,
-              description: widget.question.option2,
-              option: 'B',
-              optionSelected: optionSelected,
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              if (!widget.question.answered) {
-                if (widget.question.option3 == widget.question.correctAnwser) {
-                  optionSelected = widget.question.option3;
-                  widget.question.answered = true;
-                  _correct = _correct + 1;
-                  _left = _left - 1;
-                  setState(() {});
-                } else {
-                  optionSelected = widget.question.option3;
-                  widget.question.answered = true;
-                  _left = _left - 1;
-                  setState(() {});
-                }
-              }
-            },
-            child: OptionTile(
-              correctAnswer: widget.question.correctAnwser,
-              description: widget.question.option3,
-              option: 'C',
-              optionSelected: optionSelected,
-            ),
-          ),
-          GestureDetector(
-            onTap: () {
-              if (!widget.question.answered) {
-                if (widget.question.option4 == widget.question.correctAnwser) {
-                  optionSelected = widget.question.option4;
-                  widget.question.answered = true;
-                  _correct = _correct + 1;
-                  _left = _left - 1;
-                  setState(() {});
-                } else {
-                  optionSelected = widget.question.option4;
-                  widget.question.answered = true;
-                  _left = _left - 1;
-                  setState(() {});
-                }
-              }
-            },
-            child: OptionTile(
-              correctAnswer: widget.question.correctAnwser,
-              description: widget.question.option4,
-              option: 'D',
-              optionSelected: optionSelected,
-            ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height * 0.05,
-          )
+          Spacer(),
+          widget.question.imageURL == null
+              ? Container()
+              : Container(
+                  width: MediaQuery.of(context).size.width * 0.35,
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: NetworkImage(
+                        widget.question.imageURL,
+                      ),
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ),
         ],
       ),
     );

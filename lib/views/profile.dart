@@ -330,17 +330,6 @@ class _ProfileState extends State<Profile> {
                         ),
                         obscureText: true,
                         decoration: InputDecoration(
-                          suffixIcon: IconButton(
-                            onPressed: () {
-                              setState(() {
-                                showPassword = !showPassword;
-                              });
-                            },
-                            icon: Icon(
-                              Icons.remove_red_eye,
-                              color: Colors.grey,
-                            ),
-                          ),
                           contentPadding: EdgeInsets.only(),
                           labelText: 'Password',
                           labelStyle: TextStyle(

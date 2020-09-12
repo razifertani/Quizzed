@@ -183,14 +183,30 @@ class _ResultTileState extends State<ResultTile> {
                         SizedBox(
                           height: MediaQuery.of(context).size.height * 0.015,
                         ),
-                        Text(
-                          '${widget.resultat.quizResult} %',
-                          style: TextStyle(
-                            fontWeight: FontWeight.w400,
-                            color: Colors.white,
-                            fontSize: 45,
-                          ),
-                        )
+                        Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Container(
+                              width: MediaQuery.of(context).size.width * 0.3,
+                              child: Text(
+                                widget.resultat.quizResult,
+                                textAlign: TextAlign.end,
+                                maxLines: 1,
+                                style: TextStyle(
+                                  fontSize: 40,
+                                  color: Colors.white,
+                                ),
+                              ),
+                            ),
+                            Text(
+                              '  %',
+                              style: TextStyle(
+                                fontSize: 40,
+                                color: Colors.white,
+                              ),
+                            )
+                          ],
+                        ),
                       ],
                     ),
                   ),

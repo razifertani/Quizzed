@@ -61,14 +61,33 @@ class _ResultsState extends State<Results> {
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
-              Text(
-                '${widget.correctAnswers * (100) / widget.total} %',
-                style: TextStyle(
-                  fontSize: 40,
-                  color: widget.correctAnswers * (100) / widget.total > 70.0
-                      ? Colors.green
-                      : Colors.red,
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.3,
+                    child: Text(
+                      '${widget.correctAnswers * (100) / widget.total}',
+                      maxLines: 1,
+                      style: TextStyle(
+                        fontSize: 40,
+                        color:
+                            widget.correctAnswers * (100) / widget.total > 70.0
+                                ? Colors.green
+                                : Colors.red,
+                      ),
+                    ),
+                  ),
+                  Text(
+                    '%',
+                    style: TextStyle(
+                      fontSize: 40,
+                      color: widget.correctAnswers * (100) / widget.total > 70.0
+                          ? Colors.green
+                          : Colors.red,
+                    ),
+                  )
+                ],
               ),
               SizedBox(
                 height: MediaQuery.of(context).size.height * 0.05,

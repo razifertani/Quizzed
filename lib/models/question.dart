@@ -1,4 +1,5 @@
 class Question {
+  String imageURL;
   String question;
   String correctAnwser;
   String option1;

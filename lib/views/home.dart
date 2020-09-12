@@ -118,19 +118,19 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: quizList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => Create(
-                userUID: widget.userUID,
-              ),
-            ),
-          );
-        },
-      ),
+      // floatingActionButton: FloatingActionButton(
+      //   child: Icon(Icons.add),
+      //   onPressed: () {
+      //     Navigator.pushReplacement(
+      //       context,
+      //       MaterialPageRoute(
+      //         builder: (context) => Create(
+      //           userUID: widget.userUID,
+      //         ),
+      //       ),
+      //     );
+      //   },
+      // ),
       bottomNavigationBar: buildConvexAppBar(context, 1, widget.userUID),
     );
   }

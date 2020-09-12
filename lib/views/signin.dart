@@ -106,7 +106,6 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         hintText: 'Email',
                       ),
-                      initialValue: 'neymar@gmail.com',
                       onChanged: (value) {
                         email = value;
                       },
@@ -122,7 +121,6 @@ class _SignInState extends State<SignIn> {
                       decoration: InputDecoration(
                         hintText: 'Password',
                       ),
-                      initialValue: 'neymar',
                       onChanged: (value) {
                         password = value;
                       },

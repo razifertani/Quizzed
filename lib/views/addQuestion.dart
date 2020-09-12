@@ -16,7 +16,7 @@ class AddQuestion extends StatefulWidget {
 class _AddQuestionState extends State<AddQuestion> {
   final _formKey = GlobalKey<FormState>();
   final dataBaseService = locator.get<DataBaseService>();
-  String question, correctanswer, option1, option2, option3;
+  String imageURL, question, correctanswer, option1, option2, option3;
   bool _isLoading = false;
 
   uploadQuizData() {
@@ -26,6 +26,7 @@ class _AddQuestionState extends State<AddQuestion> {
       });
 
       Map<String, String> questionMap = {
+        "imageURL": imageURL,
         "question": question,
         "correctanswer": correctanswer,
         "option1": option1,
@@ -34,6 +35,7 @@ class _AddQuestionState extends State<AddQuestion> {
       };
 
       dataBaseService.addQuestionData(questionMap, widget.quizId).then((value) {
+        imageURL = "";
         question = "";
         correctanswer = "";
         option1 = "";
@@ -70,6 +72,20 @@ class _AddQuestionState extends State<AddQuestion> {
                   margin: EdgeInsets.symmetric(horizontal: 24.0),
                   child: Column(
                     children: <Widget>[
+                      TextFormField(
+                        validator: (value) {
+                          return value.isEmpty ? "Enter an image URL !" : null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: 'Image URL',
+                        ),
+                        onChanged: (value) {
+                          imageURL = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
                       TextFormField(
                         validator: (value) {
                           return value.isEmpty ? "Enter a question !" : null;
