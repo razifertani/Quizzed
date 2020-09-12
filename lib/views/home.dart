@@ -1,6 +1,7 @@
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
+import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
@@ -117,6 +118,19 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: quizList(),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.pushReplacement(
+            context,
+            MaterialPageRoute(
+              builder: (context) => Create(
+                userUID: widget.userUID,
+              ),
+            ),
+          );
+        },
+      ),
       bottomNavigationBar: buildConvexAppBar(context, 1, widget.userUID),
     );
   }

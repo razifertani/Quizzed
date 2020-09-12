@@ -8,7 +8,7 @@ import 'package:random_string/random_string.dart';
 
 class Create extends StatefulWidget {
   final String userUID;
-  Create({Key key, this.userUID}) : super(key: key);
+  Create({Key key, @required this.userUID}) : super(key: key);
 
   @override
   _CreateState createState() => _CreateState();
