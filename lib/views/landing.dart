@@ -33,10 +33,14 @@ class _LandingState extends State<Landing> {
   }
 
   route() {
-    Navigator.pushReplacement(
-      context,
-      MaterialPageRoute(
-        builder: (context) => SignIn(),
+    Navigator.of(context).push(
+      new PageRouteBuilder(
+        pageBuilder: (BuildContext context, _, __) {
+          return SignIn();
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new FadeTransition(opacity: animation, child: child);
+        },
       ),
     );
   }

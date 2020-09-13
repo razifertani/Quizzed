@@ -53,6 +53,7 @@ class _ProfileState extends State<Profile> {
             body: Center(
               child: CircularProgressIndicator(),
             ),
+            bottomNavigationBar: buildConvexAppBar(context, 0, widget.userUID),
           )
         : Scaffold(
             appBar: AppBar(
@@ -453,7 +454,7 @@ class _ProfileState extends State<Profile> {
                             child: Text(
                               "SAVE",
                               style: TextStyle(
-                                  fontSize: 15,
+                                  fontSize: 18,
                                   letterSpacing: 2.2,
                                   color: Colors.white),
                             ),

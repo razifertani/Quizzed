@@ -92,7 +92,7 @@ class _CreateState extends State<Create> {
                     children: <Widget>[
                       TextFormField(
                         validator: (value) {
-                          return value.isEmpty
+                          return value.length == 1
                               ? "Enter a quizz image URL !"
                               : null;
                         },

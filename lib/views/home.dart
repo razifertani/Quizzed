@@ -111,10 +111,16 @@ class _HomeState extends State<Home> {
                       child: Text('Yes'),
                       onPressed: () {
                         authentificationService.signOut();
-                        Navigator.pushReplacement(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => SignIn(),
+                        Navigator.of(context).push(
+                          new PageRouteBuilder(
+                            pageBuilder: (BuildContext context, _, __) {
+                              return SignIn();
+                            },
+                            transitionsBuilder: (_, Animation<double> animation,
+                                __, Widget child) {
+                              return new FadeTransition(
+                                  opacity: animation, child: child);
+                            },
                           ),
                         );
                       },
@@ -133,19 +139,24 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: isLoading ? waiting() : quizList(),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(Icons.add),
-      //   onPressed: () {
-      //     Navigator.pushReplacement(
-      //       context,
-      //       MaterialPageRoute(
-      //         builder: (context) => Create(
-      //           userUID: widget.userUID,
-      //         ),
-      //       ),
-      //     );
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {
+          Navigator.of(context).push(
+            new PageRouteBuilder(
+              pageBuilder: (BuildContext context, _, __) {
+                return Create(
+                  userUID: widget.userUID,
+                );
+              },
+              transitionsBuilder:
+                  (_, Animation<double> animation, __, Widget child) {
+                return new FadeTransition(opacity: animation, child: child);
+              },
+            ),
+          );
+        },
+      ),
       bottomNavigationBar: buildConvexAppBar(context, 1, widget.userUID),
     );
   }
@@ -170,15 +181,20 @@ class QuizTile extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(
-            builder: (context) => PlayQuiz(
-              quizId: quizId,
-              quizTitle: title,
-              userUID: userUID,
-              imageURL: imageURL,
-            ),
+        Navigator.of(context).push(
+          new PageRouteBuilder(
+            pageBuilder: (BuildContext context, _, __) {
+              return PlayQuiz(
+                quizId: quizId,
+                quizTitle: title,
+                userUID: userUID,
+                imageURL: imageURL,
+              );
+            },
+            transitionsBuilder:
+                (_, Animation<double> animation, __, Widget child) {
+              return new FadeTransition(opacity: animation, child: child);
+            },
           ),
         );
       },

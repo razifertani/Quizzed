@@ -6,6 +6,9 @@ final locator = GetIt.instance;
 
 void setupServices() {
   locator.registerLazySingleton<AuthentificationService>(
-      () => AuthentificationService());
-  locator.registerLazySingleton<DataBaseService>(() => DataBaseService());
+    () => AuthentificationService(),
+  );
+  locator.registerLazySingleton<DataBaseService>(
+    () => DataBaseService(),
+  );
 }

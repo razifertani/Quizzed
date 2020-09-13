@@ -32,17 +32,23 @@ Widget appBar(BuildContext context) {
 
 Widget blueButton(BuildContext context, String label, double width) {
   return Container(
-    padding: EdgeInsets.symmetric(vertical: 16),
+    padding: EdgeInsets.symmetric(
+      vertical: 18,
+    ),
     height: MediaQuery.of(context).size.height * 0.08,
     width: width,
     alignment: Alignment.center,
     decoration: BoxDecoration(
-        color: Colors.blue, borderRadius: BorderRadius.circular(30)),
+      color: Colors.blue,
+      borderRadius: BorderRadius.circular(
+        30,
+      ),
+    ),
     child: Text(
       label,
       style: TextStyle(
         color: Colors.white,
-        fontSize: 16,
+        fontSize: 20,
       ),
     ),
   );
@@ -127,36 +133,54 @@ ConvexAppBar buildConvexAppBar(
       i == 0
           ? index == 0
               ? null
-              : Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Profile(
-                      userUID: userUID,
-                    ),
+              : Navigator.of(context).push(
+                  new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new Profile(
+                        userUID: userUID,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return new FadeTransition(
+                          opacity: animation, child: child);
+                    },
                   ),
                 )
           : null;
       i == 1
           ? index == 1
               ? null
-              : Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Home(
-                      userUID: userUID,
-                    ),
+              : Navigator.of(context).push(
+                  new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return new Home(
+                        userUID: userUID,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return new FadeTransition(
+                          opacity: animation, child: child);
+                    },
                   ),
                 )
           : null;
       i == 2
           ? index == 2
               ? null
-              : Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => History(
-                      userUID: userUID,
-                    ),
+              : Navigator.of(context).push(
+                  new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return History(
+                        userUID: userUID,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return new FadeTransition(
+                          opacity: animation, child: child);
+                    },
                   ),
                 )
           : null;

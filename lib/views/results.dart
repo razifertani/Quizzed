@@ -120,12 +120,18 @@ class _ResultsState extends State<Results> {
               ),
               GestureDetector(
                 onTap: () {
-                  Navigator.pushReplacement(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => Home(
-                        userUID: widget.userUID,
-                      ),
+                  Navigator.of(context).push(
+                    new PageRouteBuilder(
+                      pageBuilder: (BuildContext context, _, __) {
+                        return Home(
+                          userUID: widget.userUID,
+                        );
+                      },
+                      transitionsBuilder:
+                          (_, Animation<double> animation, __, Widget child) {
+                        return new FadeTransition(
+                            opacity: animation, child: child);
+                      },
                     ),
                   );
                 },

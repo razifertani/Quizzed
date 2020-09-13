@@ -34,12 +34,18 @@ class _SignInState extends State<SignIn> {
             Future.delayed(
               Duration(milliseconds: 200),
               () {
-                Navigator.pushReplacement(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => Home(
-                      userUID: value.uid,
-                    ),
+                Navigator.of(context).push(
+                  new PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return Home(
+                        userUID: value.uid,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return new FadeTransition(
+                          opacity: animation, child: child);
+                    },
                   ),
                 );
               },
@@ -152,10 +158,18 @@ class _SignInState extends State<SignIn> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignUp(),
+                            Navigator.of(context).push(
+                              new PageRouteBuilder(
+                                pageBuilder: (BuildContext context, _, __) {
+                                  return SignUp();
+                                },
+                                transitionsBuilder: (_,
+                                    Animation<double> animation,
+                                    __,
+                                    Widget child) {
+                                  return new FadeTransition(
+                                      opacity: animation, child: child);
+                                },
                               ),
                             );
                           },

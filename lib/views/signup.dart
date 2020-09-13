@@ -38,12 +38,20 @@ class _SignUpState extends State<SignUp> {
                       Future.delayed(
                         Duration(milliseconds: 200),
                         () {
-                          Navigator.pushReplacement(
-                            context,
-                            MaterialPageRoute(
-                              builder: (context) => Home(
-                                userUID: uid,
-                              ),
+                          Navigator.of(context).push(
+                            new PageRouteBuilder(
+                              pageBuilder: (BuildContext context, _, __) {
+                                return Home(
+                                  userUID: uid,
+                                );
+                              },
+                              transitionsBuilder: (_,
+                                  Animation<double> animation,
+                                  __,
+                                  Widget child) {
+                                return new FadeTransition(
+                                    opacity: animation, child: child);
+                              },
                             ),
                           );
                         },
@@ -150,10 +158,18 @@ class _SignUpState extends State<SignUp> {
                         ),
                         GestureDetector(
                           onTap: () {
-                            Navigator.pushReplacement(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => SignIn(),
+                            Navigator.of(context).push(
+                              new PageRouteBuilder(
+                                pageBuilder: (BuildContext context, _, __) {
+                                  return SignIn();
+                                },
+                                transitionsBuilder: (_,
+                                    Animation<double> animation,
+                                    __,
+                                    Widget child) {
+                                  return new FadeTransition(
+                                      opacity: animation, child: child);
+                                },
                               ),
                             );
                           },

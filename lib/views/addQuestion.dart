@@ -74,7 +74,9 @@ class _AddQuestionState extends State<AddQuestion> {
                     children: <Widget>[
                       TextFormField(
                         validator: (value) {
-                          return value.isEmpty ? "Enter an image URL !" : null;
+                          return value.length == 1
+                              ? "Enter an image URL !"
+                              : null;
                         },
                         decoration: InputDecoration(
                           hintText: 'Image URL',
@@ -193,12 +195,22 @@ class _AddQuestionState extends State<AddQuestion> {
                                     FlatButton(
                                       child: Text('Close'),
                                       onPressed: () {
-                                        Navigator.pushReplacement(
-                                          context,
-                                          MaterialPageRoute(
-                                            builder: (context) => Home(
-                                              userUID: widget.userUID,
-                                            ),
+                                        Navigator.of(context).push(
+                                          new PageRouteBuilder(
+                                            pageBuilder:
+                                                (BuildContext context, _, __) {
+                                              return Home(
+                                                userUID: widget.userUID,
+                                              );
+                                            },
+                                            transitionsBuilder: (_,
+                                                Animation<double> animation,
+                                                __,
+                                                Widget child) {
+                                              return new FadeTransition(
+                                                  opacity: animation,
+                                                  child: child);
+                                            },
                                           ),
                                         );
                                       },
