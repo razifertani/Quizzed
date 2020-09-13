@@ -30,7 +30,7 @@ class AuthentificationService {
           email: email, password: password);
 
       dataBaseService.updateUserData(
-          authResult.user.uid, 'null', email, password, age);
+          authResult.user.uid, 'null', 'null', email, password, age);
 
       return authResult.user;
     } catch (e) {
