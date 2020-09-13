@@ -16,7 +16,7 @@ class AuthentificationService {
       AuthResult authResult = await auth.signInWithEmailAndPassword(
           email: email, password: password);
 
-      print('Firebase User: ' + authResult.user.uid + '  /////////////////');
+      print('Firebase UID: ' + authResult.user.uid + '  /////////////////');
 
       return authResult.user;
     } catch (e) {

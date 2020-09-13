@@ -4,7 +4,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/models/question.dart';
 import 'package:QuizzedGame/services/database.dart';
-import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/results.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
@@ -26,10 +25,10 @@ int total = 0;
 int _correct = 0;
 int _left = 0;
 
-class _PlayQuizState extends State<PlayQuiz> {
+class _PlayQuizState extends State<PlayQuiz>
+    with SingleTickerProviderStateMixin {
   QuerySnapshot questionSnapshot;
   final dataBaseService = locator.get<DataBaseService>();
-
   bool isLoading = true;
 
   @override
@@ -42,7 +41,6 @@ class _PlayQuizState extends State<PlayQuiz> {
         total = questionSnapshot.documents.length;
       },
     );
-
     super.initState();
   }
 
@@ -92,22 +90,22 @@ class _PlayQuizState extends State<PlayQuiz> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black87,
-          ),
-          onPressed: () {
-            Navigator.pushReplacement(
-              context,
-              MaterialPageRoute(
-                builder: (context) => Home(
-                  userUID: widget.userUID,
-                ),
-              ),
-            );
-          },
-        ),
+        // leading: IconButton(
+        //   icon: Icon(
+        //     Icons.arrow_back,
+        //     color: Colors.black87,
+        //   ),
+        //   onPressed: () {
+        //     Navigator.pushReplacement(
+        //       context,
+        //       MaterialPageRoute(
+        //         builder: (context) => Home(
+        //           userUID: widget.userUID,
+        //         ),
+        //       ),
+        //     );
+        //   },
+        // ),
       ),
       body: isLoading
           ? waiting()
@@ -127,8 +125,11 @@ class _PlayQuizState extends State<PlayQuiz> {
                           )
                         : ListView.builder(
                             padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    MediaQuery.of(context).size.width * 0.05),
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.05,
+                              vertical:
+                                  MediaQuery.of(context).size.height * 0.02,
+                            ),
                             shrinkWrap: true,
                             physics: ClampingScrollPhysics(),
                             itemCount: questionSnapshot.documents.length,

@@ -73,104 +73,105 @@ class _ProfileState extends State<Profile> {
                   ),
                   onPressed: () {
                     Alert(
-                        context: context,
-                        title: "RESET PASSWORD",
-                        content: Column(
-                          children: <Widget>[
-                            TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.lock),
-                                labelText: 'Old Password',
-                              ),
-                              onChanged: (value) {
-                                oldPassword = value;
-                              },
+                      context: context,
+                      title: "RESET PASSWORD",
+                      content: Column(
+                        children: <Widget>[
+                          TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.lock),
+                              labelText: 'Old Password',
                             ),
-                            TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.lock),
-                                labelText: 'New Password',
-                              ),
-                              onChanged: (value) {
-                                newPassword = value;
-                              },
-                            ),
-                            TextField(
-                              obscureText: true,
-                              decoration: InputDecoration(
-                                icon: Icon(Icons.lock),
-                                labelText: 'Repeat New Password',
-                              ),
-                              onChanged: (value) {
-                                newnewPassword = value;
-                              },
-                            ),
-                          ],
-                        ),
-                        buttons: [
-                          DialogButton(
-                            onPressed: () {
-                              if (oldPassword == password &&
-                                  newPassword == newnewPassword) {
-                                authentificationService
-                                    .updateUserPassword(newPassword);
-                                dataBaseService.updateUserData(
-                                  uid,
-                                  fullName,
-                                  email,
-                                  newPassword,
-                                  age,
-                                );
-                                setState(() {
-                                  password = newPassword;
-                                });
-                                Fluttertoast.showToast(
-                                  msg: "Password Updated Successfully !",
-                                  toastLength: Toast.LENGTH_LONG,
-                                  gravity: ToastGravity.BOTTOM,
-                                  timeInSecForIosWeb: 1,
-                                  textColor: Colors.white,
-                                  backgroundColor: Colors.black87,
-                                  fontSize: 16.0,
-                                );
-                                Navigator.of(context).pop();
-                              } else {
-                                showDialog(
-                                  context: context,
-                                  builder: (_) => new AlertDialog(
-                                    title: Center(
-                                      child: new Text(
-                                        "Error",
-                                        style: TextStyle(
-                                            color: Colors.red, fontSize: 25),
-                                      ),
-                                    ),
-                                    content: new Text(
-                                      "An error occured !",
-                                    ),
-                                    actions: <Widget>[
-                                      FlatButton(
-                                        child: Text('Close'),
-                                        onPressed: () {
-                                          Navigator.of(context).pop();
-                                        },
-                                      )
-                                    ],
-                                  ),
-                                );
-                              }
+                            onChanged: (value) {
+                              oldPassword = value;
                             },
-                            child: Text(
-                              "RESET",
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 20,
-                              ),
+                          ),
+                          TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.lock),
+                              labelText: 'New Password',
                             ),
-                          )
-                        ]).show();
+                            onChanged: (value) {
+                              newPassword = value;
+                            },
+                          ),
+                          TextField(
+                            obscureText: true,
+                            decoration: InputDecoration(
+                              icon: Icon(Icons.lock),
+                              labelText: 'Repeat New Password',
+                            ),
+                            onChanged: (value) {
+                              newnewPassword = value;
+                            },
+                          ),
+                        ],
+                      ),
+                      buttons: [
+                        DialogButton(
+                          onPressed: () {
+                            if (oldPassword == password &&
+                                newPassword == newnewPassword) {
+                              authentificationService
+                                  .updateUserPassword(newPassword);
+                              dataBaseService.updateUserData(
+                                uid,
+                                fullName,
+                                email,
+                                newPassword,
+                                age,
+                              );
+                              setState(() {
+                                password = newPassword;
+                              });
+                              Fluttertoast.showToast(
+                                msg: "Password Updated Successfully !",
+                                toastLength: Toast.LENGTH_LONG,
+                                gravity: ToastGravity.BOTTOM,
+                                timeInSecForIosWeb: 1,
+                                textColor: Colors.white,
+                                backgroundColor: Colors.black87,
+                                fontSize: 16.0,
+                              );
+                              Navigator.of(context).pop();
+                            } else {
+                              showDialog(
+                                context: context,
+                                builder: (_) => new AlertDialog(
+                                  title: Center(
+                                    child: new Text(
+                                      "Error",
+                                      style: TextStyle(
+                                          color: Colors.red, fontSize: 25),
+                                    ),
+                                  ),
+                                  content: new Text(
+                                    "An error occured !",
+                                  ),
+                                  actions: <Widget>[
+                                    FlatButton(
+                                      child: Text('Close'),
+                                      onPressed: () {
+                                        Navigator.of(context).pop();
+                                      },
+                                    )
+                                  ],
+                                ),
+                              );
+                            }
+                          },
+                          child: Text(
+                            "RESET",
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 20,
+                            ),
+                          ),
+                        )
+                      ],
+                    ).show();
                   },
                 ),
               ],

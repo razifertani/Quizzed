@@ -1,11 +1,12 @@
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
-import 'package:QuizzedGame/views/create.dart';
 import 'package:QuizzedGame/views/signin.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/playQuiz.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
+import 'package:QuizzedGame/views/create.dart';
+import 'dart:async';
 
 class Home extends StatefulWidget {
   final String userUID;
@@ -19,6 +20,7 @@ class _HomeState extends State<Home> {
   Stream quizStream;
   final dataBaseService = locator.get<DataBaseService>();
   final authentificationService = locator.get<AuthentificationService>();
+  bool isLoading = true;
 
   Widget quizList() {
     return Container(
@@ -60,6 +62,19 @@ class _HomeState extends State<Home> {
       });
     });
     super.initState();
+  }
+
+  waiting() {
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    return Container(
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 
   @override
@@ -117,7 +132,7 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      body: quizList(),
+      body: isLoading ? waiting() : quizList(),
       // floatingActionButton: FloatingActionButton(
       //   child: Icon(Icons.add),
       //   onPressed: () {
