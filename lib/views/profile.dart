@@ -1,5 +1,3 @@
-import 'dart:io';
-
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -10,7 +8,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:path/path.dart' as Path;
+import 'dart:io';
 
 class Profile extends StatefulWidget {
   final String userUID;
@@ -26,7 +24,7 @@ class _ProfileState extends State<Profile> {
   DocumentSnapshot user;
   final dataBaseService = locator.get<DataBaseService>();
   final authentificationService = locator.get<AuthentificationService>();
-  String uid, fullName, email, password, age;
+  String uid, uploadedFileURL, fullName, email, password, age;
   String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
   String oldPassword, newPassword, newnewPassword;
 
@@ -39,6 +37,7 @@ class _ProfileState extends State<Profile> {
           user = value;
           setState(() {
             uid = user.data['userId'];
+            uploadedFileURL = user.data['uploadedFileURL'];
             fullName = user.data['FullName'];
             email = user.data['userEmail'];
             password = user.data['password'];
@@ -52,7 +51,6 @@ class _ProfileState extends State<Profile> {
   }
 
   File image;
-  String uploadedFileURL;
   Future chooseFile() async {
     // ignore: deprecated_member_use
     await ImagePicker.pickImage(source: ImageSource.gallery)
@@ -150,6 +148,7 @@ class _ProfileState extends State<Profile> {
                                   .updateUserPassword(newPassword);
                               dataBaseService.updateUserData(
                                 uid,
+                                uploadedFileURL,
                                 fullName,
                                 email,
                                 newPassword,
@@ -227,8 +226,9 @@ class _ProfileState extends State<Profile> {
                         color: Colors.black87,
                       ),
                     ),
-
-                    /*            
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.03,
+                    ),
                     Center(
                       child: Stack(
                         children: [
@@ -248,7 +248,8 @@ class _ProfileState extends State<Profile> {
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                    'https://cdn.iconscout.com/icon/free/png-512/avatar-370-456322.png'),
+                                  uploadedFileURL,
+                                ),
                               ),
                             ),
                           ),
@@ -272,31 +273,17 @@ class _ProfileState extends State<Profile> {
                                   Icons.edit,
                                   color: Colors.white,
                                 ),
-                                onPressed: () {},
+                                onPressed: () {
+                                  chooseFile();
+                                },
                               ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                    */
-
-                    uploadedFileURL != null
-                        ? Image.network(
-                            uploadedFileURL,
-                            height: 150,
-                          )
-                        : Container(),
-                    RaisedButton(
-                      child: Text('Choose File'),
-                      onPressed: chooseFile,
-                      color: Colors.cyan,
-                    ),
                     SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.1,
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.03,
+                      height: MediaQuery.of(context).size.height * 0.05,
                     ),
                     Padding(
                       padding: EdgeInsets.only(
@@ -442,6 +429,7 @@ class _ProfileState extends State<Profile> {
 
                                 dataBaseService.updateUserData(
                                   uid,
+                                  uploadedFileURL,
                                   fullName,
                                   email,
                                   password,
@@ -496,14 +484,18 @@ class _ProfileState extends State<Profile> {
                             child: Text(
                               "SAVE",
                               style: TextStyle(
-                                  fontSize: 18,
-                                  letterSpacing: 2.2,
-                                  color: Colors.white),
+                                fontSize: 18,
+                                letterSpacing: 2.2,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
-                        )
+                        ),
                       ],
-                    )
+                    ),
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.05,
+                    ),
                   ],
                 ),
               ),

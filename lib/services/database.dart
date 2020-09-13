@@ -48,6 +48,7 @@ class DataBaseService {
 
   Future updateUserData(
     String userId,
+    String uploadedFileURL,
     String fullName,
     String userEmail,
     String password,
@@ -59,6 +60,7 @@ class DataBaseService {
         .setData(
       {
         'userId': userId,
+        'uploadedFileURL': uploadedFileURL,
         'FullName': fullName,
         'userEmail': userEmail,
         'password': password,
