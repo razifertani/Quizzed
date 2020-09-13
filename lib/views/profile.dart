@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -6,10 +8,14 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:firebase_storage/firebase_storage.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path/path.dart' as Path;
 
 class Profile extends StatefulWidget {
   final String userUID;
   Profile({Key key, this.userUID}) : super(key: key);
+
   @override
   _ProfileState createState() => _ProfileState();
 }
@@ -42,8 +48,33 @@ class _ProfileState extends State<Profile> {
         },
       );
     });
-
     super.initState();
+  }
+
+  File image;
+  String uploadedFileURL;
+  Future chooseFile() async {
+    // ignore: deprecated_member_use
+    await ImagePicker.pickImage(source: ImageSource.gallery)
+        .then((imagePicked) {
+      setState(() {
+        image = imagePicked;
+      });
+    });
+
+    setState(() {
+      isLoading = true;
+    });
+    StorageReference storageReference =
+        FirebaseStorage.instance.ref().child('profile/$uid');
+    StorageUploadTask uploadTask = storageReference.putFile(image);
+    await uploadTask.onComplete;
+    storageReference.getDownloadURL().then((fileURL) {
+      setState(() {
+        uploadedFileURL = fileURL;
+        isLoading = false;
+      });
+    });
   }
 
   @override
@@ -250,6 +281,17 @@ class _ProfileState extends State<Profile> {
                     ),
                     */
 
+                    uploadedFileURL != null
+                        ? Image.network(
+                            uploadedFileURL,
+                            height: 150,
+                          )
+                        : Container(),
+                    RaisedButton(
+                      child: Text('Choose File'),
+                      onPressed: chooseFile,
+                      color: Colors.cyan,
+                    ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.1,
                     ),

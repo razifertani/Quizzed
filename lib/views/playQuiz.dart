@@ -1,6 +1,5 @@
 import 'dart:async';
 import 'package:QuizzedGame/locator.dart';
-import 'package:QuizzedGame/views/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/models/question.dart';
@@ -91,27 +90,6 @@ class _PlayQuizState extends State<PlayQuiz>
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
-        leading: IconButton(
-          icon: Icon(
-            Icons.arrow_back,
-            color: Colors.black87,
-          ),
-          onPressed: () {
-            Navigator.of(context).push(
-              new PageRouteBuilder(
-                pageBuilder: (BuildContext context, _, __) {
-                  return Home(
-                    userUID: widget.userUID,
-                  );
-                },
-                transitionsBuilder:
-                    (_, Animation<double> animation, __, Widget child) {
-                  return new FadeTransition(opacity: animation, child: child);
-                },
-              ),
-            );
-          },
-        ),
       ),
       body: isLoading
           ? waiting()
@@ -152,32 +130,32 @@ class _PlayQuizState extends State<PlayQuiz>
                 ),
               ),
             ),
-      // floatingActionButton: FloatingActionButton(
-      //   child: Icon(
-      //     Icons.check,
-      //   ),
-      //   onPressed: () {
-      //     Navigator.of(context).push(
-      //       new PageRouteBuilder(
-      //         pageBuilder: (BuildContext context, _, __) {
-      //           return Results(
-      //             correctAnswers: _correct,
-      //             total: total,
-      //             userUID: widget.userUID,
-      //             quizId: widget.quizId,
-      //             quizTitle: widget.quizTitle,
-      //             quizResult: '${(_correct * 100) / total}',
-      //             imageURL: widget.imageURL,
-      //           );
-      //         },
-      //         transitionsBuilder:
-      //             (_, Animation<double> animation, __, Widget child) {
-      //           return new FadeTransition(opacity: animation, child: child);
-      //         },
-      //       ),
-      //     );
-      //   },
-      // ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(
+          Icons.check,
+        ),
+        onPressed: () {
+          Navigator.of(context).push(
+            new PageRouteBuilder(
+              pageBuilder: (BuildContext context, _, __) {
+                return Results(
+                  correctAnswers: _correct,
+                  total: total,
+                  userUID: widget.userUID,
+                  quizId: widget.quizId,
+                  quizTitle: widget.quizTitle,
+                  quizResult: '${(_correct * 100) / total}',
+                  imageURL: widget.imageURL,
+                );
+              },
+              transitionsBuilder:
+                  (_, Animation<double> animation, __, Widget child) {
+                return new FadeTransition(opacity: animation, child: child);
+              },
+            ),
+          );
+        },
+      ),
     );
   }
 }
