@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
@@ -57,19 +58,21 @@ class _SignInState extends State<SignIn> {
             });
             showDialog(
               context: context,
-              builder: (_) => new AlertDialog(
+              builder: (_) => AlertDialog(
                 title: Center(
-                  child: new Text(
-                    "Error",
+                  child: Text(
+                    AppLocalizations.of(context).translate('Signin/first'),
                     style: TextStyle(color: Colors.red, fontSize: 25),
                   ),
                 ),
-                content: new Text(
-                  "Incorrect Email/Password !",
+                content: Text(
+                  AppLocalizations.of(context).translate('Signin/second'),
                 ),
                 actions: <Widget>[
                   FlatButton(
-                    child: Text('Close'),
+                    child: Text(
+                      AppLocalizations.of(context).translate('Signin/third'),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pop();
                     },
@@ -107,10 +110,14 @@ class _SignInState extends State<SignIn> {
                   children: <Widget>[
                     TextFormField(
                       validator: (value) {
-                        return value.isEmpty ? "Enter a correct email !" : null;
+                        return value.isEmpty
+                            ? AppLocalizations.of(context)
+                                .translate('Signin/fourth')
+                            : null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Email',
+                        hintText: AppLocalizations.of(context)
+                            .translate('Signin/fifth'),
                       ),
                       onChanged: (value) {
                         email = value;
@@ -122,10 +129,14 @@ class _SignInState extends State<SignIn> {
                     TextFormField(
                       obscureText: true,
                       validator: (value) {
-                        return value.isEmpty ? "Enter a password !" : null;
+                        return value.isEmpty
+                            ? AppLocalizations.of(context)
+                                .translate('Signin/sixth')
+                            : null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Password',
+                        hintText: AppLocalizations.of(context)
+                            .translate('Signin/seventh'),
                       ),
                       onChanged: (value) {
                         password = value;
@@ -140,7 +151,7 @@ class _SignInState extends State<SignIn> {
                       },
                       child: blueButton(
                         context,
-                        'Sign In',
+                        AppLocalizations.of(context).translate('Signin/eighth'),
                         MediaQuery.of(context).size.width * 0.9,
                       ),
                     ),
@@ -151,7 +162,8 @@ class _SignInState extends State<SignIn> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Don't have an account ? ",
+                          AppLocalizations.of(context)
+                              .translate('Signin/ninth'),
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -174,7 +186,8 @@ class _SignInState extends State<SignIn> {
                             );
                           },
                           child: Text(
-                            "Sign Up",
+                            AppLocalizations.of(context)
+                                .translate('Signin/tenth'),
                             style: TextStyle(
                               fontSize: 16,
                               decoration: TextDecoration.underline,

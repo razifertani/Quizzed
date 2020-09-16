@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:flutter/material.dart';
@@ -86,7 +87,7 @@ class _ResultsState extends State<Results> {
                           ? Colors.green
                           : Colors.red,
                     ),
-                  )
+                  ),
                 ],
               ),
               SizedBox(
@@ -94,8 +95,8 @@ class _ResultsState extends State<Results> {
               ),
               Text(
                 (widget.correctAnswers * (100) / widget.total) > 70.0
-                    ? 'Congratulations ! \nYou passed the quiz'
-                    : 'Unfortunately ! \nYou failed the exam',
+                    ? AppLocalizations.of(context).translate('results/first')
+                    : AppLocalizations.of(context).translate('results/second'),
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 35,
@@ -108,7 +109,11 @@ class _ResultsState extends State<Results> {
                 height: MediaQuery.of(context).size.height * 0.1,
               ),
               Text(
-                'You answered ${widget.correctAnswers} answers from ${widget.total} correctly !',
+                AppLocalizations.of(context).translate('results/third') +
+                    '${widget.correctAnswers}' +
+                    AppLocalizations.of(context).translate('results/fourth') +
+                    '${widget.total}' +
+                    AppLocalizations.of(context).translate('results/fifth'),
                 style: TextStyle(
                   fontSize: 15,
                   color: Colors.black87,
@@ -121,7 +126,7 @@ class _ResultsState extends State<Results> {
               GestureDetector(
                 onTap: () {
                   Navigator.of(context).push(
-                    new PageRouteBuilder(
+                    PageRouteBuilder(
                       pageBuilder: (BuildContext context, _, __) {
                         return Home(
                           userUID: widget.userUID,
@@ -135,7 +140,9 @@ class _ResultsState extends State<Results> {
                     ),
                   );
                 },
-                child: blueButton(context, 'Go to Home',
+                child: blueButton(
+                    context,
+                    AppLocalizations.of(context).translate('results/sixth'),
                     MediaQuery.of(context).size.height * 0.3),
               ),
               SizedBox(
@@ -144,7 +151,7 @@ class _ResultsState extends State<Results> {
               Text(
                 (widget.correctAnswers * (100) / widget.total) > 70.0
                     ? ''
-                    : 'You can retake the quiz at any time\nHope you pass it next time !',
+                    : AppLocalizations.of(context).translate('results/seventh'),
                 textAlign: TextAlign.center,
               ),
             ],

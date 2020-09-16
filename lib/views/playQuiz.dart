@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
@@ -103,7 +104,8 @@ class _PlayQuizState extends State<PlayQuiz>
                             width: MediaQuery.of(context).size.width,
                             child: Center(
                               child: Text(
-                                'No questions !',
+                                AppLocalizations.of(context)
+                                    .translate('playQuiz/first'),
                               ),
                             ),
                           )

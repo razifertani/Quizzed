@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
@@ -77,7 +78,8 @@ class _HistoryState extends State<History> {
                             width: MediaQuery.of(context).size.width,
                             child: Center(
                               child: Text(
-                                'No historic !',
+                                AppLocalizations.of(context)
+                                    .translate('History/first'),
                               ),
                             ),
                           )
@@ -137,12 +139,6 @@ class _ResultTileState extends State<ResultTile> {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Text(widget.resultat.quizId),
-        // Text(widget.resultat.quizTitle),
-        // Text(widget.resultat.quizResult),
-        // Text(widget.resultat.imageURL),
-        // Text(widget.resultat.passed == true ? 'Njah' : 'Fages'),
-
         Padding(
           padding: EdgeInsets.all(10.0),
           child: Card(

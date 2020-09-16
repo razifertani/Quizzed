@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/views/history.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/profile.dart';
@@ -48,7 +49,7 @@ Widget blueButton(BuildContext context, String label, double width) {
       label,
       style: TextStyle(
         color: Colors.white,
-        fontSize: 20,
+        fontSize: 19,
       ),
     ),
   );
@@ -123,10 +124,20 @@ ConvexAppBar buildConvexAppBar(
     BuildContext context, int index, String userUID) {
   return ConvexAppBar(
     backgroundColor: Colors.blue,
+    height: MediaQuery.of(context).size.height * 0.07,
     items: [
-      TabItem(icon: Icons.people, title: 'Profile'),
-      TabItem(icon: Icons.home, title: 'Home'),
-      TabItem(icon: Icons.history, title: 'History'),
+      TabItem(
+        icon: Icons.people,
+        title: AppLocalizations.of(context).translate('Widgets/first'),
+      ),
+      TabItem(
+        icon: Icons.home,
+        title: AppLocalizations.of(context).translate('Widgets/second'),
+      ),
+      TabItem(
+        icon: Icons.history,
+        title: AppLocalizations.of(context).translate('Widgets/third'),
+      ),
     ],
     initialActiveIndex: index,
     onTap: (int i) {

@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
@@ -87,7 +88,7 @@ class _LandingState extends State<Landing> {
                   ),
                   Spacer(),
                   Text(
-                    'Best quiz game ever',
+                    AppLocalizations.of(context).translate('Landing/first'),
                     style: TextStyle(
                       fontSize: 15,
                       fontFamily: 'Airbnb',
@@ -146,7 +147,8 @@ class _LandingState extends State<Landing> {
                     child: Column(
                       children: [
                         Text(
-                          'No internet connection !',
+                          AppLocalizations.of(context)
+                              .translate('Landing/second'),
                           textAlign: TextAlign.center,
                           style: TextStyle(
                             color: Colors.black,
@@ -161,7 +163,8 @@ class _LandingState extends State<Landing> {
                             checkConnectivity();
                           },
                           child: Text(
-                            'TRY AGAIN',
+                            AppLocalizations.of(context)
+                                .translate('Landing/third'),
                             style: TextStyle(
                               fontSize: 20,
                             ),
@@ -172,7 +175,7 @@ class _LandingState extends State<Landing> {
                   ),
                   Spacer(),
                   Text(
-                    'Best quiz game ever',
+                    AppLocalizations.of(context).translate('Landing/first'),
                     style: TextStyle(
                       fontSize: 15,
                       fontFamily: 'Airbnb',

@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
@@ -91,10 +92,14 @@ class _SignUpState extends State<SignUp> {
                   children: <Widget>[
                     TextFormField(
                       validator: (value) {
-                        return value.isEmpty ? "Enter a correct email !" : null;
+                        return value.isEmpty
+                            ? AppLocalizations.of(context)
+                                .translate('Signup/first')
+                            : null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Email',
+                        hintText: AppLocalizations.of(context)
+                            .translate('Signup/second'),
                       ),
                       onChanged: (value) {
                         email = value;
@@ -107,11 +112,13 @@ class _SignUpState extends State<SignUp> {
                       obscureText: true,
                       validator: (value) {
                         return value.length < 6
-                            ? "Enter a password of +6 characters !"
+                            ? AppLocalizations.of(context)
+                                .translate('Signup/third')
                             : null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Password',
+                        hintText: AppLocalizations.of(context)
+                            .translate('Signup/fourth'),
                       ),
                       onChanged: (value) {
                         password = value;
@@ -122,10 +129,14 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        return value.isEmpty ? "Enter you age !" : null;
+                        return value.isEmpty
+                            ? AppLocalizations.of(context)
+                                .translate('Signup/sixth')
+                            : null;
                       },
                       decoration: InputDecoration(
-                        hintText: 'Age',
+                        hintText: AppLocalizations.of(context)
+                            .translate('Signup/seventh'),
                       ),
                       onChanged: (value) {
                         age = value;
@@ -140,7 +151,7 @@ class _SignUpState extends State<SignUp> {
                       },
                       child: blueButton(
                         context,
-                        'Sign Up',
+                        AppLocalizations.of(context).translate('Signup/eighth'),
                         MediaQuery.of(context).size.width * 0.9,
                       ),
                     ),
@@ -151,7 +162,8 @@ class _SignUpState extends State<SignUp> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
                         Text(
-                          "Already have an account ? ",
+                          AppLocalizations.of(context)
+                              .translate('Signup/ninth'),
                           style: TextStyle(
                             fontSize: 16,
                           ),
@@ -174,7 +186,8 @@ class _SignUpState extends State<SignUp> {
                             );
                           },
                           child: Text(
-                            "Sign in",
+                            AppLocalizations.of(context)
+                                .translate('Signup/tenth'),
                             style: TextStyle(
                               fontSize: 16,
                               decoration: TextDecoration.underline,

@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -104,14 +105,16 @@ class _ProfileState extends State<Profile> {
                   onPressed: () {
                     Alert(
                       context: context,
-                      title: "RESET PASSWORD",
+                      title: AppLocalizations.of(context)
+                          .translate('Profile/first'),
                       content: Column(
                         children: <Widget>[
                           TextField(
                             obscureText: true,
                             decoration: InputDecoration(
                               icon: Icon(Icons.lock),
-                              labelText: 'Old Password',
+                              labelText: AppLocalizations.of(context)
+                                  .translate('Profile/third'),
                             ),
                             onChanged: (value) {
                               oldPassword = value;
@@ -121,7 +124,8 @@ class _ProfileState extends State<Profile> {
                             obscureText: true,
                             decoration: InputDecoration(
                               icon: Icon(Icons.lock),
-                              labelText: 'New Password',
+                              labelText: AppLocalizations.of(context)
+                                  .translate('Profile/fourth'),
                             ),
                             onChanged: (value) {
                               newPassword = value;
@@ -131,7 +135,8 @@ class _ProfileState extends State<Profile> {
                             obscureText: true,
                             decoration: InputDecoration(
                               icon: Icon(Icons.lock),
-                              labelText: 'Repeat New Password',
+                              labelText: AppLocalizations.of(context)
+                                  .translate('Profile/fifth'),
                             ),
                             onChanged: (value) {
                               newnewPassword = value;
@@ -158,7 +163,8 @@ class _ProfileState extends State<Profile> {
                                 password = newPassword;
                               });
                               Fluttertoast.showToast(
-                                msg: "Password Updated Successfully !",
+                                msg: AppLocalizations.of(context)
+                                    .translate('Profile/sixth'),
                                 toastLength: Toast.LENGTH_LONG,
                                 gravity: ToastGravity.BOTTOM,
                                 timeInSecForIosWeb: 1,
@@ -173,17 +179,22 @@ class _ProfileState extends State<Profile> {
                                 builder: (_) => new AlertDialog(
                                   title: Center(
                                     child: new Text(
-                                      "Error",
+                                      AppLocalizations.of(context)
+                                          .translate('Profile/seventh'),
                                       style: TextStyle(
                                           color: Colors.red, fontSize: 25),
                                     ),
                                   ),
                                   content: new Text(
-                                    "An error occured !",
+                                    AppLocalizations.of(context)
+                                        .translate('Profile/eighth'),
                                   ),
                                   actions: <Widget>[
                                     FlatButton(
-                                      child: Text('Close'),
+                                      child: Text(
+                                        AppLocalizations.of(context)
+                                            .translate('Profile/ninth'),
+                                      ),
                                       onPressed: () {
                                         Navigator.of(context).pop();
                                       },
@@ -194,7 +205,8 @@ class _ProfileState extends State<Profile> {
                             }
                           },
                           child: Text(
-                            "RESET",
+                            AppLocalizations.of(context)
+                                .translate('Profile/tenth'),
                             style: TextStyle(
                               color: Colors.white,
                               fontSize: 20,
@@ -219,7 +231,8 @@ class _ProfileState extends State<Profile> {
                 child: ListView(
                   children: [
                     Text(
-                      "Profile",
+                      AppLocalizations.of(context)
+                          .translate('Profile/eleventh'),
                       style: TextStyle(
                         fontSize: 25,
                         fontWeight: FontWeight.w500,
@@ -300,13 +313,15 @@ class _ProfileState extends State<Profile> {
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(),
-                          labelText: 'Full Name',
+                          labelText: AppLocalizations.of(context)
+                              .translate('Profile/twelfth'),
                           labelStyle: TextStyle(
                             color: Colors.blue,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: fullName == "null"
-                              ? 'Write your full name'
+                              ? AppLocalizations.of(context)
+                                  .translate('Profile/thirteenth')
                               : fullName,
                           hintStyle: TextStyle(
                             fontSize: 16,
@@ -332,12 +347,15 @@ class _ProfileState extends State<Profile> {
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(),
                           enabled: false,
-                          labelText: 'E-mail',
+                          labelText: AppLocalizations.of(context)
+                              .translate('Profile/fourteenth'),
                           labelStyle: TextStyle(
                             color: Colors.blue,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText: '$email (Uneditable)',
+                          hintText: '$email ' +
+                              AppLocalizations.of(context)
+                                  .translate('Profile/fifteenth'),
                           hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -362,13 +380,14 @@ class _ProfileState extends State<Profile> {
                         obscureText: true,
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(),
-                          labelText: 'Password',
+                          labelText: AppLocalizations.of(context)
+                              .translate('Profile/sixteenth'),
                           labelStyle: TextStyle(
                             color: Colors.blue,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
-                          hintText:
-                              'Write your password here before updating !',
+                          hintText: AppLocalizations.of(context)
+                              .translate('Profile/seventeenth'),
                           hintStyle: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -392,7 +411,8 @@ class _ProfileState extends State<Profile> {
                         ),
                         decoration: InputDecoration(
                           contentPadding: EdgeInsets.only(),
-                          labelText: 'Age',
+                          labelText: AppLocalizations.of(context)
+                              .translate('Profile/eighteenth'),
                           labelStyle: TextStyle(
                             color: Colors.blue,
                           ),
@@ -413,7 +433,8 @@ class _ProfileState extends State<Profile> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Container(
-                          width: MediaQuery.of(context).size.width * 0.5,
+                          width: MediaQuery.of(context).size.width * 0.6,
+                          height: MediaQuery.of(context).size.height * 0.06,
                           child: RaisedButton(
                             onPressed: () {
                               if (passwordWrittern == password) {
@@ -437,7 +458,8 @@ class _ProfileState extends State<Profile> {
                                 );
 
                                 Fluttertoast.showToast(
-                                  msg: "Updated successfully !",
+                                  msg: AppLocalizations.of(context)
+                                      .translate('Profile/nineteenth'),
                                   toastLength: Toast.LENGTH_LONG,
                                   gravity: ToastGravity.BOTTOM,
                                   timeInSecForIosWeb: 1,
@@ -451,7 +473,8 @@ class _ProfileState extends State<Profile> {
                                   builder: (_) => new AlertDialog(
                                     title: Center(
                                       child: new Text(
-                                        "Error",
+                                        AppLocalizations.of(context)
+                                            .translate('Profile/seventh'),
                                         style: TextStyle(
                                           color: Colors.red,
                                           fontSize: 25,
@@ -459,11 +482,15 @@ class _ProfileState extends State<Profile> {
                                       ),
                                     ),
                                     content: new Text(
-                                      "Incorrect Password !",
+                                      AppLocalizations.of(context)
+                                          .translate('Profile/twentieth'),
                                     ),
                                     actions: <Widget>[
                                       FlatButton(
-                                        child: Text('Close'),
+                                        child: Text(
+                                          AppLocalizations.of(context)
+                                              .translate('Profile/ninth'),
+                                        ),
                                         onPressed: () {
                                           Navigator.of(context).pop();
                                         },
@@ -482,7 +509,8 @@ class _ProfileState extends State<Profile> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(20)),
                             child: Text(
-                              "SAVE",
+                              AppLocalizations.of(context)
+                                  .translate('Profile/twenty-first'),
                               style: TextStyle(
                                 fontSize: 18,
                                 letterSpacing: 2.2,

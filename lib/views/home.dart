@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -99,16 +100,18 @@ class _HomeState extends State<Home> {
                 builder: (_) => new AlertDialog(
                   title: Center(
                     child: new Text(
-                      "Logout",
+                      AppLocalizations.of(context).translate('Home/first'),
                       style: TextStyle(fontSize: 25),
                     ),
                   ),
                   content: new Text(
-                    "Are you sure you want to log out ?",
+                    AppLocalizations.of(context).translate('Home/second'),
                   ),
                   actions: <Widget>[
                     FlatButton(
-                      child: Text('Yes'),
+                      child: Text(
+                        AppLocalizations.of(context).translate('Home/third'),
+                      ),
                       onPressed: () {
                         authentificationService.signOut();
                         Navigator.of(context).push(
@@ -126,7 +129,9 @@ class _HomeState extends State<Home> {
                       },
                     ),
                     FlatButton(
-                      child: Text('No'),
+                      child: Text(
+                        AppLocalizations.of(context).translate('Home/fourth'),
+                      ),
                       onPressed: () {
                         Navigator.of(context).pop();
                       },
