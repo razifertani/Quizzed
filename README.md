@@ -1,1 +1,1 @@
-Quizzed
+Quiz Game

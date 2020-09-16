@@ -11,7 +11,7 @@ Widget appBar(BuildContext context) {
       style: TextStyle(fontSize: 28),
       children: <TextSpan>[
         TextSpan(
-          text: 'Quizzed',
+          text: 'Quiz',
           style: TextStyle(
             fontFamily: 'Airbnb',
             fontWeight: FontWeight.w600,

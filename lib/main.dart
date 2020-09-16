@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
     ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Quizzed Game',
+      title: 'Quiz Game',
       theme: ThemeData(
         fontFamily: 'Airbnb',
       ),

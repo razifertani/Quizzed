@@ -67,7 +67,7 @@ class _LandingState extends State<Landing> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Quizzed',
+                            text: 'Quiz',
                             style: TextStyle(
                               fontFamily: 'Airbnb',
                               fontWeight: FontWeight.w600,
@@ -119,7 +119,7 @@ class _LandingState extends State<Landing> {
                         ),
                         children: <TextSpan>[
                           TextSpan(
-                            text: 'Quizzed',
+                            text: 'Quiz',
                             style: TextStyle(
                               fontFamily: 'Airbnb',
                               fontWeight: FontWeight.w600,
