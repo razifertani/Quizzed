@@ -61,7 +61,7 @@ class _LandingState extends State<Landing> {
                   width: MediaQuery.of(context).size.width,
                   height: MediaQuery.of(context).size.height,
                   child: Image.asset(
-                    'Assets/logoo.jpg',
+                    'Assets/logo.jpg',
                     fit: BoxFit.fitWidth,
                   ),
                 ),
@@ -90,7 +90,7 @@ class _LandingState extends State<Landing> {
                     width: MediaQuery.of(context).size.width,
                     height: MediaQuery.of(context).size.height,
                     child: Image.asset(
-                      'Assets/logoo.jpg',
+                      'Assets/logo.jpg',
                       fit: BoxFit.fitWidth,
                     ),
                   ),

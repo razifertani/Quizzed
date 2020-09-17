@@ -169,25 +169,6 @@ class _HomeState extends State<Home> {
         ],
       ),
       body: isLoading ? waiting() : quizList(),
-      floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
-        onPressed: () {
-          Navigator.of(context).push(
-            new PageRouteBuilder(
-              pageBuilder: (BuildContext context, _, __) {
-                return Create(
-                  userUID: widget.userUID,
-                  lang: widget.lang,
-                );
-              },
-              transitionsBuilder:
-                  (_, Animation<double> animation, __, Widget child) {
-                return new FadeTransition(opacity: animation, child: child);
-              },
-            ),
-          );
-        },
-      ),
       bottomNavigationBar: buildConvexAppBar(
         context,
         1,
