@@ -54,7 +54,7 @@ class _PlayQuizState extends State<PlayQuiz>
         _correct = 0;
         total = questionSnapshot.documents.length;
       });
-    } else if (widget.lang == 'en') {
+    } else if (widget.lang == 'ar') {
       dataBaseService.getQuizDataQuestionsAR(widget.quizId).then((value) {
         questionSnapshot = value;
         _left = 0;
