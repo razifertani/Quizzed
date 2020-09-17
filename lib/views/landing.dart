@@ -55,137 +55,84 @@ class _LandingState extends State<Landing> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: isConnected == true
-          ? Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  Container(
-                    margin: EdgeInsets.symmetric(
-                      vertical: MediaQuery.of(context).size.height * 0.2,
-                    ),
-                    child: Column(
-                      children: [
-                        Text(
-                          'Quiz',
-                          style: TextStyle(
-                            fontFamily: 'Airbnb',
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black54,
-                            fontSize: 120,
-                          ),
-                        ),
-                        Text(
-                          'Game',
-                          style: TextStyle(
-                            fontFamily: 'Airbnb',
-                            fontWeight: FontWeight.w600,
-                            color: Colors.blue,
-                            fontSize: 120,
-                          ),
-                        ),
-                      ],
-                    ),
+          ? Stack(
+              children: [
+                Container(
+                  width: MediaQuery.of(context).size.width,
+                  height: MediaQuery.of(context).size.height,
+                  child: Image.asset(
+                    'Assets/logoo.jpg',
+                    fit: BoxFit.fitWidth,
                   ),
-                  Text(
+                ),
+                Positioned(
+                  bottom: MediaQuery.of(context).size.height * 0.1,
+                  left: MediaQuery.of(context).size.width * 0.24,
+                  right: MediaQuery.of(context).size.width * 0.24,
+                  child: Text(
                     AppLocalizations.of(context).translate('Landing/first'),
                     style: TextStyle(
-                      fontSize: 15,
+                      fontSize: 20,
                       fontFamily: 'Airbnb',
                       fontWeight: FontWeight.w600,
-                      color: Colors.black54,
+                      color: Colors.white,
                     ),
                   ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
-                  ),
-                ],
-              ),
+                ),
+              ],
             )
           : Container(
               width: MediaQuery.of(context).size.width,
               height: MediaQuery.of(context).size.height,
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
+              child: Stack(
                 children: <Widget>[
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.4,
+                  Container(
+                    width: MediaQuery.of(context).size.width,
+                    height: MediaQuery.of(context).size.height,
+                    child: Image.asset(
+                      'Assets/logoo.jpg',
+                      fit: BoxFit.fitWidth,
+                    ),
                   ),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.13,
-                        ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Quiz',
+                  Positioned(
+                    bottom: MediaQuery.of(context).size.height * 0.05,
+                    left: MediaQuery.of(context).size.width * 0.05,
+                    right: MediaQuery.of(context).size.width * 0.05,
+                    child: Container(
+                      height: MediaQuery.of(context).size.height * 0.2,
+                      width: MediaQuery.of(context).size.width * 0.8,
+                      child: Column(
+                        children: [
+                          Text(
+                            AppLocalizations.of(context)
+                                .translate('Landing/second'),
+                            textAlign: TextAlign.center,
                             style: TextStyle(
-                              fontFamily: 'Airbnb',
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black54,
+                              color: Colors.white,
+                              fontSize: 25,
                             ),
                           ),
-                          TextSpan(
-                            text: 'Game',
-                            style: TextStyle(
-                              fontFamily: 'Airbnb',
-                              fontWeight: FontWeight.w600,
-                              color: Colors.blue,
+                          SizedBox(
+                            height: MediaQuery.of(context).size.height * 0.02,
+                          ),
+                          RaisedButton(
+                            onPressed: () {
+                              checkConnectivity();
+                            },
+                            elevation: 15,
+                            color: Colors.blue,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('Landing/third'),
+                              style: TextStyle(
+                                fontSize: 20,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ],
                       ),
                     ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.12,
-                  ),
-                  Container(
-                    height: MediaQuery.of(context).size.height * 0.2,
-                    width: MediaQuery.of(context).size.width * 0.8,
-                    child: Column(
-                      children: [
-                        Text(
-                          AppLocalizations.of(context)
-                              .translate('Landing/second'),
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            color: Colors.black,
-                            fontSize: 25,
-                          ),
-                        ),
-                        SizedBox(
-                          height: MediaQuery.of(context).size.height * 0.02,
-                        ),
-                        RaisedButton(
-                          onPressed: () {
-                            checkConnectivity();
-                          },
-                          child: Text(
-                            AppLocalizations.of(context)
-                                .translate('Landing/third'),
-                            style: TextStyle(
-                              fontSize: 20,
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  Spacer(),
-                  Text(
-                    AppLocalizations.of(context).translate('Landing/first'),
-                    style: TextStyle(
-                      fontSize: 15,
-                      fontFamily: 'Airbnb',
-                      fontWeight: FontWeight.w600,
-                      color: Colors.black54,
-                    ),
-                  ),
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.1,
                   ),
                 ],
               ),
