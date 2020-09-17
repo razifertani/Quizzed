@@ -54,89 +54,72 @@ class _LandingState extends State<Landing> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: isConnected == true
-          ? Stack(
-              children: [
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  child: Image.asset(
-                    'Assets/logo.jpg',
-                    fit: BoxFit.fitWidth,
+        body: Stack(
+      children: [
+        Container(
+          width: MediaQuery.of(context).size.width,
+          height: MediaQuery.of(context).size.height,
+          child: Image.asset(
+            'Assets/logo.jpg',
+            fit: BoxFit.fitWidth,
+          ),
+        ),
+        isConnected == true
+            ? Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.1,
+                left: MediaQuery.of(context).size.width * 0.24,
+                right: MediaQuery.of(context).size.width * 0.24,
+                child: Text(
+                  AppLocalizations.of(context).translate('Landing/first'),
+                  style: TextStyle(
+                    fontSize: 20,
+                    fontFamily: 'Airbnb',
+                    fontWeight: FontWeight.w600,
+                    color: Colors.white,
                   ),
                 ),
-                Positioned(
-                  bottom: MediaQuery.of(context).size.height * 0.1,
-                  left: MediaQuery.of(context).size.width * 0.24,
-                  right: MediaQuery.of(context).size.width * 0.24,
-                  child: Text(
-                    AppLocalizations.of(context).translate('Landing/first'),
-                    style: TextStyle(
-                      fontSize: 20,
-                      fontFamily: 'Airbnb',
-                      fontWeight: FontWeight.w600,
-                      color: Colors.white,
-                    ),
-                  ),
-                ),
-              ],
-            )
-          : Container(
-              width: MediaQuery.of(context).size.width,
-              height: MediaQuery.of(context).size.height,
-              child: Stack(
-                children: <Widget>[
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height,
-                    child: Image.asset(
-                      'Assets/logo.jpg',
-                      fit: BoxFit.fitWidth,
-                    ),
-                  ),
-                  Positioned(
-                    bottom: MediaQuery.of(context).size.height * 0.05,
-                    left: MediaQuery.of(context).size.width * 0.05,
-                    right: MediaQuery.of(context).size.width * 0.05,
-                    child: Container(
-                      height: MediaQuery.of(context).size.height * 0.2,
-                      width: MediaQuery.of(context).size.width * 0.8,
-                      child: Column(
-                        children: [
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('Landing/second'),
-                            textAlign: TextAlign.center,
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 25,
-                            ),
-                          ),
-                          SizedBox(
-                            height: MediaQuery.of(context).size.height * 0.02,
-                          ),
-                          RaisedButton(
-                            onPressed: () {
-                              checkConnectivity();
-                            },
-                            elevation: 15,
-                            color: Colors.blue,
-                            child: Text(
-                              AppLocalizations.of(context)
-                                  .translate('Landing/third'),
-                              style: TextStyle(
-                                fontSize: 20,
-                                color: Colors.white,
-                              ),
-                            ),
-                          ),
-                        ],
+              )
+            : Positioned(
+                bottom: MediaQuery.of(context).size.height * 0.05,
+                left: MediaQuery.of(context).size.width * 0.05,
+                right: MediaQuery.of(context).size.width * 0.05,
+                child: Container(
+                  height: MediaQuery.of(context).size.height * 0.2,
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Column(
+                    children: [
+                      Text(
+                        AppLocalizations.of(context)
+                            .translate('Landing/second'),
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 25,
+                        ),
                       ),
-                    ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      RaisedButton(
+                        onPressed: () {
+                          checkConnectivity();
+                        },
+                        elevation: 15,
+                        color: Colors.blue,
+                        child: Text(
+                          AppLocalizations.of(context)
+                              .translate('Landing/third'),
+                          style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
-                ],
+                ),
               ),
-            ),
-    );
+      ],
+    ));
   }
 }
