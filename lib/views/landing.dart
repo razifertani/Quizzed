@@ -37,18 +37,18 @@ class _LandingState extends State<Landing> {
   }
 
   route() {
-    // Navigator.of(context).push(
-    //   new PageRouteBuilder(
-    //     pageBuilder: (BuildContext context, _, __) {
-    //       return SignIn(
-    //         lang: lang,
-    //       );
-    //     },
-    //     transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-    //       return new FadeTransition(opacity: animation, child: child);
-    //     },
-    //   ),
-    // );
+    Navigator.of(context).push(
+      new PageRouteBuilder(
+        pageBuilder: (BuildContext context, _, __) {
+          return SignIn(
+            lang: lang,
+          );
+        },
+        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+          return new FadeTransition(opacity: animation, child: child);
+        },
+      ),
+    );
   }
 
   @override
