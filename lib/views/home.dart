@@ -11,7 +11,9 @@ import 'dart:async';
 
 class Home extends StatefulWidget {
   final String userUID;
-  Home({Key key, this.userUID}) : super(key: key);
+  final String lang;
+  Home({Key key, @required this.userUID, @required this.lang})
+      : super(key: key);
 
   @override
   _HomeState createState() => _HomeState();
@@ -22,6 +24,51 @@ class _HomeState extends State<Home> {
   final dataBaseService = locator.get<DataBaseService>();
   final authentificationService = locator.get<AuthentificationService>();
   bool isLoading = true;
+
+  @override
+  void initState() {
+    print('Home UID: ' + widget.userUID + '  ******************');
+
+    if (widget.lang == 'en') {
+      dataBaseService.getQuizDataEN().then((value) {
+        setState(() {
+          quizStream = value;
+        });
+      });
+    } else if (widget.lang == 'fr') {
+      dataBaseService.getQuizDataFR().then((value) {
+        setState(() {
+          quizStream = value;
+        });
+      });
+    } else if (widget.lang == 'ar') {
+      dataBaseService.getQuizDataAR().then((value) {
+        setState(() {
+          quizStream = value;
+        });
+      });
+    } else {
+      dataBaseService.getQuizDataEN().then((value) {
+        setState(() {
+          quizStream = value;
+        });
+      });
+    }
+    super.initState();
+  }
+
+  waiting() {
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    return Container(
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
+  }
 
   Widget quizList() {
     return Container(
@@ -45,35 +92,11 @@ class _HomeState extends State<Home> {
                       description: snapchot
                           .data.documents[index].data['quizzDescription'],
                       userUID: widget.userUID,
+                      lang: widget.lang,
                     );
                   },
                 );
         },
-      ),
-    );
-  }
-
-  @override
-  void initState() {
-    print('Home UID: ' + widget.userUID + '  ******************');
-
-    dataBaseService.getQuizData().then((value) {
-      setState(() {
-        quizStream = value;
-      });
-    });
-    super.initState();
-  }
-
-  waiting() {
-    Timer(Duration(seconds: 1), () {
-      setState(() {
-        isLoading = false;
-      });
-    });
-    return Container(
-      child: Center(
-        child: CircularProgressIndicator(),
       ),
     );
   }
@@ -117,7 +140,9 @@ class _HomeState extends State<Home> {
                         Navigator.of(context).push(
                           new PageRouteBuilder(
                             pageBuilder: (BuildContext context, _, __) {
-                              return SignIn();
+                              return SignIn(
+                                lang: widget.lang,
+                              );
                             },
                             transitionsBuilder: (_, Animation<double> animation,
                                 __, Widget child) {
@@ -152,6 +177,7 @@ class _HomeState extends State<Home> {
               pageBuilder: (BuildContext context, _, __) {
                 return Create(
                   userUID: widget.userUID,
+                  lang: widget.lang,
                 );
               },
               transitionsBuilder:
@@ -162,13 +188,19 @@ class _HomeState extends State<Home> {
           );
         },
       ),
-      bottomNavigationBar: buildConvexAppBar(context, 1, widget.userUID),
+      bottomNavigationBar: buildConvexAppBar(
+        context,
+        1,
+        widget.userUID,
+        widget.lang,
+      ),
     );
   }
 }
 
 class QuizTile extends StatelessWidget {
   final String userUID;
+  final String lang;
   final String imageURL;
   final String title;
   final String description;
@@ -180,6 +212,7 @@ class QuizTile extends StatelessWidget {
     @required this.title,
     @required this.description,
     @required this.quizId,
+    @required this.lang,
   });
 
   @override
@@ -194,6 +227,7 @@ class QuizTile extends StatelessWidget {
                 quizTitle: title,
                 userUID: userUID,
                 imageURL: imageURL,
+                lang: lang,
               );
             },
             transitionsBuilder:

@@ -7,7 +7,13 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 class AddQuestion extends StatefulWidget {
   final String userUID;
   final String quizId;
-  AddQuestion({Key key, this.quizId, this.userUID}) : super(key: key);
+  final String lang;
+  AddQuestion({
+    Key key,
+    @required this.quizId,
+    @required this.userUID,
+    @required this.lang,
+  }) : super(key: key);
 
   @override
   _AddQuestionState createState() => _AddQuestionState();
@@ -34,18 +40,67 @@ class _AddQuestionState extends State<AddQuestion> {
         "option3": option3,
       };
 
-      dataBaseService.addQuestionData(questionMap, widget.quizId).then((value) {
-        imageURL = "";
-        question = "";
-        correctanswer = "";
-        option1 = "";
-        option2 = "";
-        option3 = "";
+      if (widget.lang == 'en') {
+        dataBaseService
+            .addQuestionDataEN(questionMap, widget.quizId)
+            .then((value) {
+          imageURL = "";
+          question = "";
+          correctanswer = "";
+          option1 = "";
+          option2 = "";
+          option3 = "";
 
-        setState(() {
-          _isLoading = false;
+          setState(() {
+            _isLoading = false;
+          });
         });
-      });
+      } else if (widget.lang == 'fr') {
+        dataBaseService
+            .addQuestionDataFR(questionMap, widget.quizId)
+            .then((value) {
+          imageURL = "";
+          question = "";
+          correctanswer = "";
+          option1 = "";
+          option2 = "";
+          option3 = "";
+
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      } else if (widget.lang == 'ar') {
+        dataBaseService
+            .addQuestionDataAR(questionMap, widget.quizId)
+            .then((value) {
+          imageURL = "";
+          question = "";
+          correctanswer = "";
+          option1 = "";
+          option2 = "";
+          option3 = "";
+
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      } else {
+        dataBaseService
+            .addQuestionDataEN(questionMap, widget.quizId)
+            .then((value) {
+          imageURL = "";
+          question = "";
+          correctanswer = "";
+          option1 = "";
+          option2 = "";
+          option3 = "";
+
+          setState(() {
+            _isLoading = false;
+          });
+        });
+      }
     }
   }
 
@@ -79,7 +134,7 @@ class _AddQuestionState extends State<AddQuestion> {
                               : null;
                         },
                         decoration: InputDecoration(
-                          hintText: 'Image URL',
+                          hintText: 'Image URL (facultatif)',
                         ),
                         onChanged: (value) {
                           imageURL = value;
@@ -201,6 +256,7 @@ class _AddQuestionState extends State<AddQuestion> {
                                                 (BuildContext context, _, __) {
                                               return Home(
                                                 userUID: widget.userUID,
+                                                lang: widget.lang,
                                               );
                                             },
                                             transitionsBuilder: (_,

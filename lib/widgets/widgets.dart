@@ -121,7 +121,7 @@ class _OptionTileState extends State<OptionTile> {
 }
 
 ConvexAppBar buildConvexAppBar(
-    BuildContext context, int index, String userUID) {
+    BuildContext context, int index, String userUID, String lang) {
   return ConvexAppBar(
     backgroundColor: Colors.blue,
     height: MediaQuery.of(context).size.height * 0.07,
@@ -149,6 +149,7 @@ ConvexAppBar buildConvexAppBar(
                     pageBuilder: (BuildContext context, _, __) {
                       return new Profile(
                         userUID: userUID,
+                        lang: lang,
                       );
                     },
                     transitionsBuilder:
@@ -167,6 +168,7 @@ ConvexAppBar buildConvexAppBar(
                     pageBuilder: (BuildContext context, _, __) {
                       return new Home(
                         userUID: userUID,
+                        lang: lang,
                       );
                     },
                     transitionsBuilder:
@@ -185,6 +187,7 @@ ConvexAppBar buildConvexAppBar(
                     pageBuilder: (BuildContext context, _, __) {
                       return History(
                         userUID: userUID,
+                        lang: lang,
                       );
                     },
                     transitionsBuilder:

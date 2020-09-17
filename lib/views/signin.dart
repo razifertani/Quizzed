@@ -8,7 +8,8 @@ import 'package:QuizzedGame/views/signup.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
 class SignIn extends StatefulWidget {
-  SignIn({Key key}) : super(key: key);
+  final String lang;
+  SignIn({Key key, @required this.lang}) : super(key: key);
 
   @override
   _SignInState createState() => _SignInState();
@@ -40,6 +41,7 @@ class _SignInState extends State<SignIn> {
                     pageBuilder: (BuildContext context, _, __) {
                       return Home(
                         userUID: value.uid,
+                        lang: widget.lang,
                       );
                     },
                     transitionsBuilder:
@@ -173,7 +175,9 @@ class _SignInState extends State<SignIn> {
                             Navigator.of(context).push(
                               new PageRouteBuilder(
                                 pageBuilder: (BuildContext context, _, __) {
-                                  return SignUp();
+                                  return SignUp(
+                                    lang: widget.lang,
+                                  );
                                 },
                                 transitionsBuilder: (_,
                                     Animation<double> animation,

@@ -10,12 +10,18 @@ import 'package:QuizzedGame/widgets/widgets.dart';
 
 class PlayQuiz extends StatefulWidget {
   final String userUID;
+  final String lang;
   final String quizId;
   final String quizTitle;
   final String imageURL;
 
   const PlayQuiz(
-      {Key key, this.quizId, this.userUID, this.quizTitle, this.imageURL})
+      {Key key,
+      @required this.quizId,
+      @required this.userUID,
+      @required this.quizTitle,
+      @required this.imageURL,
+      @required this.lang})
       : super(key: key);
 
   @override
@@ -34,14 +40,35 @@ class _PlayQuizState extends State<PlayQuiz>
 
   @override
   void initState() {
-    dataBaseService.getQuizDataQuestions(widget.quizId).then(
-      (value) {
+    if (widget.lang == 'en') {
+      dataBaseService.getQuizDataQuestionsEN(widget.quizId).then((value) {
         questionSnapshot = value;
         _left = 0;
         _correct = 0;
         total = questionSnapshot.documents.length;
-      },
-    );
+      });
+    } else if (widget.lang == 'fr') {
+      dataBaseService.getQuizDataQuestionsFR(widget.quizId).then((value) {
+        questionSnapshot = value;
+        _left = 0;
+        _correct = 0;
+        total = questionSnapshot.documents.length;
+      });
+    } else if (widget.lang == 'en') {
+      dataBaseService.getQuizDataQuestionsAR(widget.quizId).then((value) {
+        questionSnapshot = value;
+        _left = 0;
+        _correct = 0;
+        total = questionSnapshot.documents.length;
+      });
+    } else {
+      dataBaseService.getQuizDataQuestionsEN(widget.quizId).then((value) {
+        questionSnapshot = value;
+        _left = 0;
+        _correct = 0;
+        total = questionSnapshot.documents.length;
+      });
+    }
     super.initState();
   }
 
@@ -148,6 +175,7 @@ class _PlayQuizState extends State<PlayQuiz>
                   quizTitle: widget.quizTitle,
                   quizResult: '${(_correct * 100) / total}',
                   imageURL: widget.imageURL,
+                  lang: widget.lang,
                 );
               },
               transitionsBuilder:
@@ -312,7 +340,9 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            widget.question.imageURL,
+                            widget.question.imageURL == null
+                                ? null
+                                : widget.question.imageURL,
                           ),
                           fit: BoxFit.fitWidth,
                         ),

@@ -13,6 +13,8 @@ class Landing extends StatefulWidget {
 
 class _LandingState extends State<Landing> {
   bool isConnected = false;
+  String lang;
+
   @override
   void initState() {
     checkConnectivity();
@@ -29,6 +31,7 @@ class _LandingState extends State<Landing> {
   }
 
   startTime() async {
+    lang = AppLocalizations.of(context).translate('lang');
     var duration = new Duration(seconds: 3);
     return new Timer(duration, route);
   }
@@ -37,7 +40,9 @@ class _LandingState extends State<Landing> {
     Navigator.of(context).push(
       new PageRouteBuilder(
         pageBuilder: (BuildContext context, _, __) {
-          return SignIn();
+          return SignIn(
+            lang: lang,
+          );
         },
         transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
           return new FadeTransition(opacity: animation, child: child);

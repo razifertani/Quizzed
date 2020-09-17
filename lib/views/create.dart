@@ -8,7 +8,9 @@ import 'package:random_string/random_string.dart';
 
 class Create extends StatefulWidget {
   final String userUID;
-  Create({Key key, @required this.userUID}) : super(key: key);
+  final String lang;
+  Create({Key key, @required this.userUID, @required this.lang})
+      : super(key: key);
 
   @override
   _CreateState createState() => _CreateState();
@@ -34,20 +36,71 @@ class _CreateState extends State<Create> {
         "quizzDescription": quizzDescription,
       };
 
-      await dataBaseService.addQuizData(quizzData, quizzId).then((value) {
-        setState(() {
-          _isLoading = false;
-          Navigator.pushReplacement(
-            context,
-            MaterialPageRoute(
-              builder: (context) => AddQuestion(
-                quizId: quizzId,
-                userUID: widget.userUID,
+      if (widget.lang == 'en') {
+        await dataBaseService.addQuizDataEN(quizzData, quizzId).then((value) {
+          setState(() {
+            _isLoading = false;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddQuestion(
+                  quizId: quizzId,
+                  userUID: widget.userUID,
+                  lang: widget.lang,
+                ),
               ),
-            ),
-          );
+            );
+          });
         });
-      });
+      } else if (widget.lang == 'fr') {
+        await dataBaseService.addQuizDataFR(quizzData, quizzId).then((value) {
+          setState(() {
+            _isLoading = false;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddQuestion(
+                  quizId: quizzId,
+                  userUID: widget.userUID,
+                  lang: widget.lang,
+                ),
+              ),
+            );
+          });
+        });
+      } else if (widget.lang == 'ar') {
+        await dataBaseService.addQuizDataAR(quizzData, quizzId).then((value) {
+          setState(() {
+            _isLoading = false;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddQuestion(
+                  quizId: quizzId,
+                  userUID: widget.userUID,
+                  lang: widget.lang,
+                ),
+              ),
+            );
+          });
+        });
+      } else {
+        await dataBaseService.addQuizDataAR(quizzData, quizzId).then((value) {
+          setState(() {
+            _isLoading = false;
+            Navigator.pushReplacement(
+              context,
+              MaterialPageRoute(
+                builder: (context) => AddQuestion(
+                  quizId: quizzId,
+                  userUID: widget.userUID,
+                  lang: widget.lang,
+                ),
+              ),
+            );
+          });
+        });
+      }
     }
   }
 
@@ -71,6 +124,7 @@ class _CreateState extends State<Create> {
               MaterialPageRoute(
                 builder: (context) => Home(
                   userUID: widget.userUID,
+                  lang: widget.lang,
                 ),
               ),
             );

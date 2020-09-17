@@ -1,15 +1,16 @@
-import 'dart:async';
-
 import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'dart:async';
 
 class History extends StatefulWidget {
   final String userUID;
-  History({Key key, this.userUID}) : super(key: key);
+  final String lang;
+  History({Key key, @required this.userUID, @required this.lang})
+      : super(key: key);
 
   @override
   _HistoryState createState() => _HistoryState();
@@ -103,7 +104,12 @@ class _HistoryState extends State<History> {
                 ),
               ),
             ),
-      bottomNavigationBar: buildConvexAppBar(context, 2, widget.userUID),
+      bottomNavigationBar: buildConvexAppBar(
+        context,
+        2,
+        widget.userUID,
+        widget.lang,
+      ),
     );
   }
 }

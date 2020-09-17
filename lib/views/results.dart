@@ -9,6 +9,7 @@ class Results extends StatefulWidget {
   final String userUID;
   final int correctAnswers, total;
   final String quizId, quizTitle, quizResult, imageURL;
+  final String lang;
 
   Results({
     Key key,
@@ -19,6 +20,7 @@ class Results extends StatefulWidget {
     @required this.quizTitle,
     @required this.quizResult,
     @required this.imageURL,
+    @required this.lang,
   }) : super(key: key);
 
   @override
@@ -130,6 +132,7 @@ class _ResultsState extends State<Results> {
                       pageBuilder: (BuildContext context, _, __) {
                         return Home(
                           userUID: widget.userUID,
+                          lang: widget.lang,
                         );
                       },
                       transitionsBuilder:

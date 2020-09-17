@@ -13,7 +13,9 @@ import 'dart:io';
 
 class Profile extends StatefulWidget {
   final String userUID;
-  Profile({Key key, this.userUID}) : super(key: key);
+  final String lang;
+  Profile({Key key, @required this.userUID, @required this.lang})
+      : super(key: key);
 
   @override
   _ProfileState createState() => _ProfileState();
@@ -83,7 +85,12 @@ class _ProfileState extends State<Profile> {
             body: Center(
               child: CircularProgressIndicator(),
             ),
-            bottomNavigationBar: buildConvexAppBar(context, 0, widget.userUID),
+            bottomNavigationBar: buildConvexAppBar(
+              context,
+              0,
+              widget.userUID,
+              widget.lang,
+            ),
           )
         : Scaffold(
             appBar: AppBar(
@@ -528,7 +535,12 @@ class _ProfileState extends State<Profile> {
                 ),
               ),
             ),
-            bottomNavigationBar: buildConvexAppBar(context, 0, widget.userUID),
+            bottomNavigationBar: buildConvexAppBar(
+              context,
+              0,
+              widget.userUID,
+              widget.lang,
+            ),
           );
   }
 }

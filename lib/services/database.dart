@@ -5,7 +5,7 @@ class DataBaseService {
 
   DataBaseService({this.uid});
 
-  Future<void> addQuizData(Map quizData, String quizId) async {
+  Future<void> addQuizDataEN(Map quizData, String quizId) async {
     await Firestore.instance
         .collection("Quizz")
         .document(quizId)
@@ -17,7 +17,31 @@ class DataBaseService {
     );
   }
 
-  Future<void> addQuestionData(Map questionData, String quizId) async {
+  Future<void> addQuizDataFR(Map quizData, String quizId) async {
+    await Firestore.instance
+        .collection("QuizzFR")
+        .document(quizId)
+        .setData(quizData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
+
+  Future<void> addQuizDataAR(Map quizData, String quizId) async {
+    await Firestore.instance
+        .collection("QuizzAR")
+        .document(quizId)
+        .setData(quizData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
+
+  Future<void> addQuestionDataEN(Map questionData, String quizId) async {
     await Firestore.instance
         .collection("Quizz")
         .document(quizId)
@@ -30,13 +54,63 @@ class DataBaseService {
     );
   }
 
-  getQuizData() async {
+  Future<void> addQuestionDataFR(Map questionData, String quizId) async {
+    await Firestore.instance
+        .collection("QuizzFR")
+        .document(quizId)
+        .collection('Q&A')
+        .add(questionData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
+
+  Future<void> addQuestionDataAR(Map questionData, String quizId) async {
+    await Firestore.instance
+        .collection("QuizzAR")
+        .document(quizId)
+        .collection('Q&A')
+        .add(questionData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
+
+  getQuizDataEN() async {
     return Firestore.instance.collection("Quizz").snapshots();
   }
 
-  getQuizDataQuestions(String quizId) async {
+  getQuizDataFR() async {
+    return Firestore.instance.collection("QuizzFR").snapshots();
+  }
+
+  getQuizDataAR() async {
+    return Firestore.instance.collection("QuizzAR").snapshots();
+  }
+
+  getQuizDataQuestionsEN(String quizId) async {
     return await Firestore.instance
         .collection("Quizz")
+        .document(quizId)
+        .collection("Q&A")
+        .getDocuments();
+  }
+
+  getQuizDataQuestionsFR(String quizId) async {
+    return await Firestore.instance
+        .collection("QuizzFR")
+        .document(quizId)
+        .collection("Q&A")
+        .getDocuments();
+  }
+
+  getQuizDataQuestionsAR(String quizId) async {
+    return await Firestore.instance
+        .collection("QuizzAR")
         .document(quizId)
         .collection("Q&A")
         .getDocuments();
