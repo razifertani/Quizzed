@@ -95,8 +95,9 @@ class _SignInState extends State<SignIn> {
         title: appBar(context),
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        elevation: 0.0,
+        elevation: 0,
         brightness: Brightness.light,
+        automaticallyImplyLeading: false,
       ),
       body: isLoading
           ? Container(

@@ -332,7 +332,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                   ],
                 ),
               ),
-              widget.question.imageURL == null
+              widget.question.imageURL == ''
                   ? Container()
                   : Container(
                       width: MediaQuery.of(context).size.width * 0.3,
@@ -340,8 +340,9 @@ class _QuizzPlayState extends State<QuizzPlay> {
                       decoration: BoxDecoration(
                         image: DecorationImage(
                           image: NetworkImage(
-                            widget.question.imageURL == null
-                                ? null
+                            widget.question.imageURL == '' ||
+                                    widget.question.imageURL == null
+                                ? 'https://images-na.ssl-images-amazon.com/images/I/51UW1849rJL._AC_SX679_.jpg'
                                 : widget.question.imageURL,
                           ),
                           fit: BoxFit.fitWidth,

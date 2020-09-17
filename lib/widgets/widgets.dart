@@ -6,28 +6,31 @@ import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 Widget appBar(BuildContext context) {
-  return RichText(
-    text: TextSpan(
-      style: TextStyle(fontSize: 28),
-      children: <TextSpan>[
-        TextSpan(
-          text: 'Quiz',
-          style: TextStyle(
-            fontFamily: 'Airbnb',
-            fontWeight: FontWeight.w600,
-            color: Colors.black54,
-          ),
-        ),
-        TextSpan(
-          text: 'Game',
-          style: TextStyle(
-            fontFamily: 'Airbnb',
-            fontWeight: FontWeight.w600,
-            color: Colors.blue,
-          ),
-        ),
-      ],
-    ),
+  // return RichText(
+  //   text: TextSpan(
+  //     style: TextStyle(fontSize: 28),
+  //     children: <TextSpan>[
+  //       TextSpan(
+  //         text: 'Quiz',
+  //         style: TextStyle(
+  //           fontFamily: 'Airbnb',
+  //           fontWeight: FontWeight.w600,
+  //           color: Colors.black54,
+  //         ),
+  //       ),
+  //       TextSpan(
+  //         text: 'Game',
+  //         style: TextStyle(
+  //           fontFamily: 'Airbnb',
+  //           fontWeight: FontWeight.w600,
+  //           color: Colors.blue,
+  //         ),
+  //       ),
+  //     ],
+  //   ),
+  // );
+  return Image.asset(
+    'Assets/appBar.png',
   );
 }
 

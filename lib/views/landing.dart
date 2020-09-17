@@ -12,7 +12,7 @@ class Landing extends StatefulWidget {
 }
 
 class _LandingState extends State<Landing> {
-  bool isConnected = false;
+  bool isConnected = true;
   String lang;
 
   @override
@@ -32,23 +32,23 @@ class _LandingState extends State<Landing> {
 
   startTime() async {
     lang = AppLocalizations.of(context).translate('lang');
-    var duration = new Duration(seconds: 3);
+    var duration = new Duration(seconds: 4);
     return new Timer(duration, route);
   }
 
   route() {
-    Navigator.of(context).push(
-      new PageRouteBuilder(
-        pageBuilder: (BuildContext context, _, __) {
-          return SignIn(
-            lang: lang,
-          );
-        },
-        transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
-          return new FadeTransition(opacity: animation, child: child);
-        },
-      ),
-    );
+    // Navigator.of(context).push(
+    //   new PageRouteBuilder(
+    //     pageBuilder: (BuildContext context, _, __) {
+    //       return SignIn(
+    //         lang: lang,
+    //       );
+    //     },
+    //     transitionsBuilder: (_, Animation<double> animation, __, Widget child) {
+    //       return new FadeTransition(opacity: animation, child: child);
+    //     },
+    //   ),
+    // );
   }
 
   @override
@@ -59,6 +59,7 @@ class _LandingState extends State<Landing> {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
+          color: Colors.blue,
           child: Image.asset(
             'Assets/logo.jpg',
             fit: BoxFit.fitWidth,
@@ -69,13 +70,16 @@ class _LandingState extends State<Landing> {
                 bottom: MediaQuery.of(context).size.height * 0.1,
                 left: MediaQuery.of(context).size.width * 0.24,
                 right: MediaQuery.of(context).size.width * 0.24,
-                child: Text(
-                  AppLocalizations.of(context).translate('Landing/first'),
-                  style: TextStyle(
-                    fontSize: 20,
-                    fontFamily: 'Airbnb',
-                    fontWeight: FontWeight.w600,
-                    color: Colors.white,
+                child: Center(
+                  child: Text(
+                    AppLocalizations.of(context).translate('Landing/first'),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 20,
+                      fontFamily: 'Airbnb',
+                      fontWeight: FontWeight.w600,
+                      color: Colors.white,
+                    ),
                   ),
                 ),
               )
