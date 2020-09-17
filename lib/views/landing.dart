@@ -56,37 +56,33 @@ class _LandingState extends State<Landing> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
-                  SizedBox(
-                    height: MediaQuery.of(context).size.height * 0.4,
-                  ),
-                  Center(
-                    child: RichText(
-                      text: TextSpan(
-                        style: TextStyle(
-                          fontSize: MediaQuery.of(context).size.width * 0.13,
+                  Container(
+                    margin: EdgeInsets.symmetric(
+                      vertical: MediaQuery.of(context).size.height * 0.2,
+                    ),
+                    child: Column(
+                      children: [
+                        Text(
+                          'Quiz',
+                          style: TextStyle(
+                            fontFamily: 'Airbnb',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.black54,
+                            fontSize: 120,
+                          ),
                         ),
-                        children: <TextSpan>[
-                          TextSpan(
-                            text: 'Quiz',
-                            style: TextStyle(
-                              fontFamily: 'Airbnb',
-                              fontWeight: FontWeight.w600,
-                              color: Colors.black54,
-                            ),
+                        Text(
+                          'Game',
+                          style: TextStyle(
+                            fontFamily: 'Airbnb',
+                            fontWeight: FontWeight.w600,
+                            color: Colors.blue,
+                            fontSize: 120,
                           ),
-                          TextSpan(
-                            text: 'Game',
-                            style: TextStyle(
-                              fontFamily: 'Airbnb',
-                              fontWeight: FontWeight.w600,
-                              color: Colors.blue,
-                            ),
-                          ),
-                        ],
-                      ),
+                        ),
+                      ],
                     ),
                   ),
-                  Spacer(),
                   Text(
                     AppLocalizations.of(context).translate('Landing/first'),
                     style: TextStyle(
