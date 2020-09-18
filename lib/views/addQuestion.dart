@@ -237,13 +237,13 @@ class _AddQuestionState extends State<AddQuestion> {
                                 context: context,
                                 builder: (_) => new AlertDialog(
                                   title: Center(
-                                    child: new Text(
+                                    child: Text(
                                       "Success",
                                       style: TextStyle(
                                           color: Colors.green, fontSize: 25),
                                     ),
                                   ),
-                                  content: new Text(
+                                  content: Text(
                                     "Quiz added successfully !",
                                   ),
                                   actions: <Widget>[
@@ -251,7 +251,7 @@ class _AddQuestionState extends State<AddQuestion> {
                                       child: Text('Close'),
                                       onPressed: () {
                                         Navigator.of(context).push(
-                                          new PageRouteBuilder(
+                                          PageRouteBuilder(
                                             pageBuilder:
                                                 (BuildContext context, _, __) {
                                               return Home(
@@ -263,7 +263,7 @@ class _AddQuestionState extends State<AddQuestion> {
                                                 Animation<double> animation,
                                                 __,
                                                 Widget child) {
-                                              return new FadeTransition(
+                                              return FadeTransition(
                                                   opacity: animation,
                                                   child: child);
                                             },

@@ -110,6 +110,7 @@ class _HomeState extends State<Home> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
+        automaticallyImplyLeading: false,
         actions: <Widget>[
           IconButton(
             icon: Icon(

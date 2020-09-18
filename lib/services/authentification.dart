@@ -32,6 +32,8 @@ class AuthentificationService {
       dataBaseService.updateUserData(
           authResult.user.uid, 'null', 'null', email, password, age);
 
+      print("Authhhhh");
+      print(authResult.user);
       return authResult.user;
     } catch (e) {
       print(e.toString());

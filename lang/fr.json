@@ -26,6 +26,7 @@
     "Signup/eighth" : "Créer un compte",
     "Signup/ninth" : "Vous avez déjà un compte ? ",
     "Signup/tenth" : "Se connecter",
+    "Signup/eleventh" : "Email déjà utilisé / Email n'est pas valide",
     
     "Home/first" : "Se déconnecter",
     "Home/second" : "Vous êtes sur de vouloir se Se déconnecter ?",

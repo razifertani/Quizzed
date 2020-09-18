@@ -118,6 +118,7 @@ class _PlayQuizState extends State<PlayQuiz>
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
+        automaticallyImplyLeading: false,
       ),
       body: isLoading
           ? waiting()

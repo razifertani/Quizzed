@@ -5,6 +5,8 @@ import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/signin.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class SignUp extends StatefulWidget {
   final String lang;
@@ -64,6 +66,28 @@ class _SignUpState extends State<SignUp> {
                 }
               },
             );
+          } else {
+            setState(() {
+              isLoading = false;
+              Alert(
+                context: context,
+                title:
+                    AppLocalizations.of(context).translate('Signup/eleventh'),
+                buttons: [
+                  DialogButton(
+                    onPressed: () {
+                      Navigator.of(context).pop();
+                    },
+                    child: Text(
+                      AppLocalizations.of(context).translate('Signin/third'),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ],
+              ).show();
+            });
           }
         },
       );
@@ -79,6 +103,7 @@ class _SignUpState extends State<SignUp> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
+        automaticallyImplyLeading: false,
       ),
       body: isLoading
           ? Container(
@@ -94,10 +119,13 @@ class _SignUpState extends State<SignUp> {
                   children: <Widget>[
                     TextFormField(
                       validator: (value) {
-                        return value.isEmpty
-                            ? AppLocalizations.of(context)
-                                .translate('Signup/first')
-                            : null;
+                        bool emailValid = RegExp(
+                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                            .hasMatch(email);
+                        return emailValid
+                            ? null
+                            : AppLocalizations.of(context)
+                                .translate('Signup/first');
                       },
                       decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)

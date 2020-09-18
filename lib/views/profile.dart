@@ -99,10 +99,7 @@ class _ProfileState extends State<Profile> {
               backgroundColor: Colors.transparent,
               elevation: 0.0,
               brightness: Brightness.light,
-              leading: Icon(
-                Icons.arrow_back,
-                color: Colors.transparent,
-              ),
+              automaticallyImplyLeading: false,
               actions: [
                 IconButton(
                   icon: Icon(

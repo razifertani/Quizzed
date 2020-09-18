@@ -15,10 +15,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
-      statusBarColor: Colors.white,
-      statusBarBrightness: Brightness.dark,
-    ));
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Quiz Game',
@@ -26,8 +22,8 @@ class MyApp extends StatelessWidget {
         fontFamily: 'Airbnb',
       ),
       supportedLocales: [
-        Locale('en', 'US'),
         Locale('fr', 'FR'),
+        Locale('en', 'US'),
         Locale('ar', 'TN'),
       ],
       localizationsDelegates: [

@@ -66,6 +66,7 @@ class _HistoryState extends State<History> {
         backgroundColor: Colors.transparent,
         elevation: 0.0,
         brightness: Brightness.light,
+        automaticallyImplyLeading: false,
       ),
       body: isLoading
           ? waiting()

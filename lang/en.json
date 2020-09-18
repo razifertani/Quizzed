@@ -26,6 +26,7 @@
     "Signup/eighth" : "Sign Up",
     "Signup/ninth" : "Already have an account ? ",
     "Signup/tenth" : "Sign in",
+    "Signup/eleventh" : "Email already in use / Email is not valid",
     
     "Home/first" : "Logout",
     "Home/second" : "Are you sure you want to log out ?",

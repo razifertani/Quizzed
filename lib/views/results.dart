@@ -55,23 +55,40 @@ class _ResultsState extends State<Results> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: MediaQuery.of(context).size.height,
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    child: Text(
-                      '${widget.correctAnswers * (100) / widget.total}',
-                      maxLines: 1,
+      appBar: AppBar(
+        title: appBar(context),
+        centerTitle: true,
+        backgroundColor: Colors.transparent,
+        elevation: 0.0,
+        brightness: Brightness.light,
+        automaticallyImplyLeading: false,
+      ),
+      body: SingleChildScrollView(
+        child: Container(
+          height: MediaQuery.of(context).size.height * 0.9,
+          child: Center(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Container(
+                      width: MediaQuery.of(context).size.width * 0.3,
+                      child: Text(
+                        '${widget.correctAnswers * (100) / widget.total}',
+                        maxLines: 1,
+                        style: TextStyle(
+                          fontSize: 40,
+                          color: widget.correctAnswers * (100) / widget.total >
+                                  70.0
+                              ? Colors.green
+                              : Colors.red,
+                        ),
+                      ),
+                    ),
+                    Text(
+                      '%',
                       style: TextStyle(
                         fontSize: 40,
                         color:
@@ -80,84 +97,77 @@ class _ResultsState extends State<Results> {
                                 : Colors.red,
                       ),
                     ),
-                  ),
-                  Text(
-                    '%',
-                    style: TextStyle(
-                      fontSize: 40,
-                      color: widget.correctAnswers * (100) / widget.total > 70.0
-                          ? Colors.green
-                          : Colors.red,
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.05,
-              ),
-              Text(
-                (widget.correctAnswers * (100) / widget.total) > 70.0
-                    ? AppLocalizations.of(context).translate('results/first')
-                    : AppLocalizations.of(context).translate('results/second'),
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 35,
-                  color: (widget.correctAnswers * (100) / widget.total) > 70.0
-                      ? Colors.green
-                      : Colors.red,
+                  ],
                 ),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              Text(
-                AppLocalizations.of(context).translate('results/third') +
-                    '${widget.correctAnswers}' +
-                    AppLocalizations.of(context).translate('results/fourth') +
-                    '${widget.total}' +
-                    AppLocalizations.of(context).translate('results/fifth'),
-                style: TextStyle(
-                  fontSize: 15,
-                  color: Colors.black87,
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.05,
                 ),
-                textAlign: TextAlign.center,
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.1,
-              ),
-              GestureDetector(
-                onTap: () {
-                  Navigator.of(context).push(
-                    PageRouteBuilder(
-                      pageBuilder: (BuildContext context, _, __) {
-                        return Home(
-                          userUID: widget.userUID,
-                          lang: widget.lang,
-                        );
-                      },
-                      transitionsBuilder:
-                          (_, Animation<double> animation, __, Widget child) {
-                        return new FadeTransition(
-                            opacity: animation, child: child);
-                      },
-                    ),
-                  );
-                },
-                child: blueButton(
-                    context,
-                    AppLocalizations.of(context).translate('results/sixth'),
-                    MediaQuery.of(context).size.height * 0.3),
-              ),
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.15,
-              ),
-              Text(
-                (widget.correctAnswers * (100) / widget.total) > 70.0
-                    ? ''
-                    : AppLocalizations.of(context).translate('results/seventh'),
-                textAlign: TextAlign.center,
-              ),
-            ],
+                Text(
+                  (widget.correctAnswers * (100) / widget.total) > 70.0
+                      ? AppLocalizations.of(context).translate('results/first')
+                      : AppLocalizations.of(context)
+                          .translate('results/second'),
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 35,
+                    color: (widget.correctAnswers * (100) / widget.total) > 70.0
+                        ? Colors.green
+                        : Colors.red,
+                  ),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                Text(
+                  AppLocalizations.of(context).translate('results/third') +
+                      '${widget.correctAnswers}' +
+                      AppLocalizations.of(context).translate('results/fourth') +
+                      '${widget.total}' +
+                      AppLocalizations.of(context).translate('results/fifth'),
+                  style: TextStyle(
+                    fontSize: 15,
+                    color: Colors.black87,
+                  ),
+                  textAlign: TextAlign.center,
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.of(context).push(
+                      PageRouteBuilder(
+                        pageBuilder: (BuildContext context, _, __) {
+                          return Home(
+                            userUID: widget.userUID,
+                            lang: widget.lang,
+                          );
+                        },
+                        transitionsBuilder:
+                            (_, Animation<double> animation, __, Widget child) {
+                          return new FadeTransition(
+                              opacity: animation, child: child);
+                        },
+                      ),
+                    );
+                  },
+                  child: blueButton(
+                      context,
+                      AppLocalizations.of(context).translate('results/sixth'),
+                      MediaQuery.of(context).size.height * 0.3),
+                ),
+                SizedBox(
+                  height: MediaQuery.of(context).size.height * 0.1,
+                ),
+                Text(
+                  (widget.correctAnswers * (100) / widget.total) > 70.0
+                      ? ''
+                      : AppLocalizations.of(context)
+                          .translate('results/seventh'),
+                  textAlign: TextAlign.center,
+                ),
+              ],
+            ),
           ),
         ),
       ),
