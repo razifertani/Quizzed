@@ -1,34 +1,13 @@
 import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/views/history.dart';
 import 'package:QuizzedGame/views/home.dart';
+import 'package:QuizzedGame/views/leaderboards.dart';
 import 'package:QuizzedGame/views/profile.dart';
+import 'package:QuizzedGame/views/settings.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
 Widget appBar(BuildContext context) {
-  // return RichText(
-  //   text: TextSpan(
-  //     style: TextStyle(fontSize: 28),
-  //     children: <TextSpan>[
-  //       TextSpan(
-  //         text: 'Quiz',
-  //         style: TextStyle(
-  //           fontFamily: 'Airbnb',
-  //           fontWeight: FontWeight.w600,
-  //           color: Colors.black54,
-  //         ),
-  //       ),
-  //       TextSpan(
-  //         text: 'Game',
-  //         style: TextStyle(
-  //           fontFamily: 'Airbnb',
-  //           fontWeight: FontWeight.w600,
-  //           color: Colors.blue,
-  //         ),
-  //       ),
-  //     ],
-  //   ),
-  // );
   return Image.asset(
     'Assets/appBar.png',
   );
@@ -127,19 +106,27 @@ ConvexAppBar buildConvexAppBar(
     BuildContext context, int index, String userUID, String lang) {
   return ConvexAppBar(
     backgroundColor: Colors.blue,
-    height: MediaQuery.of(context).size.height * 0.07,
+    height: MediaQuery.of(context).size.height * 0.08,
     items: [
       TabItem(
         icon: Icons.people,
         title: AppLocalizations.of(context).translate('Widgets/first'),
       ),
       TabItem(
-        icon: Icons.home,
+        icon: Icons.list,
         title: AppLocalizations.of(context).translate('Widgets/second'),
       ),
       TabItem(
-        icon: Icons.history,
+        icon: Icons.home,
         title: AppLocalizations.of(context).translate('Widgets/third'),
+      ),
+      TabItem(
+        icon: Icons.history,
+        title: AppLocalizations.of(context).translate('Widgets/fourth'),
+      ),
+      TabItem(
+        icon: Icons.settings,
+        title: AppLocalizations.of(context).translate('Widgets/fifth'),
       ),
     ],
     initialActiveIndex: index,
@@ -148,17 +135,16 @@ ConvexAppBar buildConvexAppBar(
           ? index == 0
               ? null
               : Navigator.of(context).push(
-                  new PageRouteBuilder(
+                  PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
-                      return new Profile(
+                      return Profile(
                         userUID: userUID,
                         lang: lang,
                       );
                     },
                     transitionsBuilder:
                         (_, Animation<double> animation, __, Widget child) {
-                      return new FadeTransition(
-                          opacity: animation, child: child);
+                      return FadeTransition(opacity: animation, child: child);
                     },
                   ),
                 )
@@ -167,17 +153,16 @@ ConvexAppBar buildConvexAppBar(
           ? index == 1
               ? null
               : Navigator.of(context).push(
-                  new PageRouteBuilder(
+                  PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
-                      return new Home(
+                      return Leaderboards(
                         userUID: userUID,
                         lang: lang,
                       );
                     },
                     transitionsBuilder:
                         (_, Animation<double> animation, __, Widget child) {
-                      return new FadeTransition(
-                          opacity: animation, child: child);
+                      return FadeTransition(opacity: animation, child: child);
                     },
                   ),
                 )
@@ -186,7 +171,25 @@ ConvexAppBar buildConvexAppBar(
           ? index == 2
               ? null
               : Navigator.of(context).push(
-                  new PageRouteBuilder(
+                  PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return Home(
+                        userUID: userUID,
+                        lang: lang,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                  ),
+                )
+          : null;
+      i == 3
+          ? index == 3
+              ? null
+              : Navigator.of(context).push(
+                  PageRouteBuilder(
                     pageBuilder: (BuildContext context, _, __) {
                       return History(
                         userUID: userUID,
@@ -195,8 +198,25 @@ ConvexAppBar buildConvexAppBar(
                     },
                     transitionsBuilder:
                         (_, Animation<double> animation, __, Widget child) {
-                      return new FadeTransition(
-                          opacity: animation, child: child);
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                  ),
+                )
+          : null;
+      i == 4
+          ? index == 4
+              ? null
+              : Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return Settings(
+                        userUID: userUID,
+                        lang: lang,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return FadeTransition(opacity: animation, child: child);
                     },
                   ),
                 )

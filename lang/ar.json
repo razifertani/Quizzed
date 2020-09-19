@@ -32,10 +32,12 @@
     "Home/second" : "هل أنت متأكد أنك تريد الخروج ؟",
     "Home/third" : "نعم",
     "Home/fourth" : "لا",
-
+ 
     "Widgets/first" : "الصفحة الشخصية",
-    "Widgets/second" : "الصفحة الرئيسية",
-    "Widgets/third" : "المحاولات السابقة",
+    "Widgets/second" : "الترتيب",
+    "Widgets/third" : "الصفحة الرئيسية",
+    "Widgets/fourth" : "المحاولات السابقة",
+    "Widgets/fifth" : "الإعدادات",
 
     "History/first" : "ليس هناك محاولات سابقة !",
 

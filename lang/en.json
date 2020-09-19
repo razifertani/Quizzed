@@ -34,8 +34,10 @@
     "Home/fourth" : "No",
 
     "Widgets/first" : "Profile",
-    "Widgets/second" : "Home",
-    "Widgets/third" : "History",
+    "Widgets/second" : "Leaderboards",
+    "Widgets/third" : "Home",
+    "Widgets/fourth" : "History",
+    "Widgets/fifth" : "Settings",
 
     "History/first" : "No historic !",
 

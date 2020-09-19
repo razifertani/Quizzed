@@ -43,12 +43,21 @@ class _ResultsState extends State<Results> {
           : false,
     };
 
-    dataBaseService.setUserHistory(widget.userUID, quizResultMap).then((value) {
-      setState(() {
-        isLoading = false;
-      });
-    });
+    dataBaseService.setUserHistory(widget.userUID, quizResultMap);
 
+//(widget.correctAnswers * (100) / widget.total)
+    if (100 > 70.0) {
+      Map<String, String> questionMap = {
+        "userId": widget.userUID,
+        "result": widget.quizResult,
+      };
+
+      dataBaseService.addLeaderboardsData(questionMap, widget.quizTitle);
+    }
+
+    setState(() {
+      isLoading = false;
+    });
     super.initState();
   }
 

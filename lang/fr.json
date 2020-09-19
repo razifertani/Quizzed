@@ -34,8 +34,10 @@
     "Home/fourth" : "Non",
 
     "Widgets/first" : "Profile",
-    "Widgets/second" : "Acceuil",
-    "Widgets/third" : "Historique",
+    "Widgets/second" : "Classement",
+    "Widgets/third" : "Acceuil",
+    "Widgets/fourth" : "Historique",
+    "Widgets/fifth" : "Paramètres",
 
     "History/first" : "Pas de historique !",
 

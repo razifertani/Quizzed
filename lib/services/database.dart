@@ -163,4 +163,29 @@ class DataBaseService {
       },
     );
   }
+
+  Future<void> addLeaderboardsData(Map leaderboardsData, String quizId) async {
+    await Firestore.instance
+        .collection("Leaderboards")
+        .document(quizId)
+        .collection('HighScore')
+        .add(leaderboardsData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
+
+  getLeaderboards() async {
+    return Firestore.instance.collection("Leaderboards").snapshots();
+  }
+
+  getLeaderboardsDataData(String quizId) async {
+    return await Firestore.instance
+        .collection("Leaderboards")
+        .document(quizId)
+        .collection("HighScore")
+        .getDocuments();
+  }
 }

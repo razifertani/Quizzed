@@ -107,7 +107,7 @@ class _HistoryState extends State<History> {
             ),
       bottomNavigationBar: buildConvexAppBar(
         context,
-        2,
+        3,
         widget.userUID,
         widget.lang,
       ),

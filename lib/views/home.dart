@@ -191,7 +191,7 @@ class _HomeState extends State<Home> {
       ),
       bottomNavigationBar: buildConvexAppBar(
         context,
-        1,
+        2,
         widget.userUID,
         widget.lang,
       ),
