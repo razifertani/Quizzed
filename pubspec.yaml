@@ -24,6 +24,7 @@ dependencies:
   data_connection_checker: ^0.3.4
   image_picker: ^0.6.0+17    
   firebase_storage: ^3.0.3
+  string_validator: ^0.1.4
   
   cupertino_icons: ^0.1.3
 

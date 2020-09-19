@@ -27,7 +27,7 @@ class _ProfileState extends State<Profile> {
   DocumentSnapshot user;
   final dataBaseService = locator.get<DataBaseService>();
   final authentificationService = locator.get<AuthentificationService>();
-  String uid, uploadedFileURL, fullName, email, password, age;
+  String uid, fullName, email, password, age, uploadedFileURL;
   String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
   String oldPassword, newPassword, newnewPassword;
 
@@ -265,7 +265,9 @@ class _ProfileState extends State<Profile> {
                               image: DecorationImage(
                                 fit: BoxFit.cover,
                                 image: NetworkImage(
-                                  uploadedFileURL,
+                                  uploadedFileURL == "null"
+                                      ? 'https://cdn.onlinewebfonts.com/svg/img_212915.png'
+                                      : uploadedFileURL,
                                 ),
                               ),
                             ),
@@ -275,7 +277,7 @@ class _ProfileState extends State<Profile> {
                             right: 0,
                             child: Container(
                               height: MediaQuery.of(context).size.height * 0.06,
-                              width: MediaQuery.of(context).size.width * 0.1,
+                              width: MediaQuery.of(context).size.width * 0.12,
                               decoration: BoxDecoration(
                                 shape: BoxShape.circle,
                                 border: Border.all(
@@ -286,6 +288,10 @@ class _ProfileState extends State<Profile> {
                                 color: Colors.blue,
                               ),
                               child: IconButton(
+                                padding: EdgeInsets.only(
+                                  right: MediaQuery.of(context).size.width *
+                                      0.0001,
+                                ),
                                 icon: Icon(
                                   Icons.edit,
                                   color: Colors.white,

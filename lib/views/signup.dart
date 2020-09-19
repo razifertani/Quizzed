@@ -5,8 +5,8 @@ import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/signin.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
-import 'package:fluttertoast/fluttertoast.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
+import 'package:string_validator/string_validator.dart';
 
 class SignUp extends StatefulWidget {
   final String lang;
@@ -20,7 +20,7 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final authentificationService = locator.get<AuthentificationService>();
 
-  String userUID, email, password, age;
+  String userUID, email = '', password, age;
   bool isLoading = false;
 
   signUp() async {
@@ -119,10 +119,7 @@ class _SignUpState extends State<SignUp> {
                   children: <Widget>[
                     TextFormField(
                       validator: (value) {
-                        bool emailValid = RegExp(
-                                r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
-                            .hasMatch(email);
-                        return emailValid
+                        return isEmail(email)
                             ? null
                             : AppLocalizations.of(context)
                                 .translate('Signup/first');
@@ -159,10 +156,10 @@ class _SignUpState extends State<SignUp> {
                     ),
                     TextFormField(
                       validator: (value) {
-                        return value.isEmpty
-                            ? AppLocalizations.of(context)
-                                .translate('Signup/sixth')
-                            : null;
+                        return isNumeric(value)
+                            ? null
+                            : AppLocalizations.of(context)
+                                .translate('Signup/sixth');
                       },
                       decoration: InputDecoration(
                         hintText: AppLocalizations.of(context)
