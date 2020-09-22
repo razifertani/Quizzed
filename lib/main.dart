@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/landing.dart';
-import 'package:flutter/services.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:QuizzedGame/appLocalizations.dart';

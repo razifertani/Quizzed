@@ -75,7 +75,7 @@ class _LandingState extends State<Landing> {
                     AppLocalizations.of(context).translate('Landing/first'),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 20,
+                      fontSize: 19,
                       fontFamily: 'Airbnb',
                       fontWeight: FontWeight.w600,
                       color: Colors.white,

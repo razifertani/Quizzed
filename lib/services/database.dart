@@ -164,10 +164,11 @@ class DataBaseService {
     );
   }
 
-  Future<void> addLeaderboardsData(Map leaderboardsData, String quizId) async {
+  Future<void> addLeaderboardsData(
+      Map leaderboardsData, String quizTitle) async {
     await Firestore.instance
-        .collection("Leaderboards")
-        .document(quizId)
+        .collection('Leaderboards')
+        .document(quizTitle)
         .collection('HighScore')
         .add(leaderboardsData)
         .catchError(
@@ -177,15 +178,15 @@ class DataBaseService {
     );
   }
 
-  getLeaderboards() async {
-    return Firestore.instance.collection("Leaderboards").snapshots();
+  getLeaderboardsDocuments() async {
+    return await Firestore.instance.collection("Leaderboards").snapshots();
   }
 
-  getLeaderboardsDataData(String quizId) async {
+  getLeaderboardsData(String quizTitle) async {
     return await Firestore.instance
-        .collection("Leaderboards")
-        .document(quizId)
-        .collection("HighScore")
+        .collection('Leaderboards')
+        .document(quizTitle)
+        .collection('HighScore')
         .getDocuments();
   }
 }

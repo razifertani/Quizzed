@@ -108,7 +108,10 @@ class _SignInState extends State<SignIn> {
           : Form(
               key: _formKey,
               child: Container(
-                margin: EdgeInsets.symmetric(horizontal: 24.0),
+                margin: EdgeInsets.symmetric(
+                  horizontal: 24.0,
+                  vertical: 20,
+                ),
                 child: Column(
                   children: <Widget>[
                     TextFormField(

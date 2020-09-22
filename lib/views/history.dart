@@ -87,8 +87,9 @@ class _HistoryState extends State<History> {
                           )
                         : ListView.builder(
                             padding: EdgeInsets.symmetric(
-                                horizontal:
-                                    MediaQuery.of(context).size.width * 0.05),
+                              horizontal:
+                                  MediaQuery.of(context).size.width * 0.05,
+                            ),
                             shrinkWrap: true,
                             physics: ClampingScrollPhysics(),
                             itemCount: quizSnapshot.documents.length,
@@ -133,15 +134,6 @@ class ResultTile extends StatefulWidget {
 }
 
 class _ResultTileState extends State<ResultTile> {
-  @override
-  void initState() {
-    Future.delayed(
-      Duration(milliseconds: 200),
-      () {},
-    );
-    super.initState();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Column(

@@ -1,5 +1,6 @@
 class User {
   String uid;
+  String result;
   String uploadedFileURL;
   String userEmail;
   String password;

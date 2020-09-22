@@ -47,8 +47,9 @@ class _ResultsState extends State<Results> {
 
 //(widget.correctAnswers * (100) / widget.total)
     if (100 > 70.0) {
-      Map<String, String> questionMap = {
+      Map<String, dynamic> questionMap = {
         "userId": widget.userUID,
+        "quizTitle": widget.quizTitle,
         "result": widget.quizResult,
       };
 
