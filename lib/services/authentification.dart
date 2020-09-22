@@ -24,13 +24,14 @@ class AuthentificationService {
     }
   }
 
-  Future signUp(String email, String password, String age) async {
+  Future signUp(
+      String email, String fullName, String password, String age) async {
     try {
       AuthResult authResult = await auth.createUserWithEmailAndPassword(
           email: email, password: password);
 
       dataBaseService.updateUserData(
-          authResult.user.uid, 'null', 'null', email, password, age);
+          authResult.user.uid, 'null', fullName, email, password, age);
 
       return authResult.user;
     } catch (e) {

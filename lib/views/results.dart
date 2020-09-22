@@ -1,6 +1,7 @@
 import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
@@ -30,9 +31,30 @@ class Results extends StatefulWidget {
 class _ResultsState extends State<Results> {
   final dataBaseService = locator.get<DataBaseService>();
   bool isLoading = true;
+  DocumentSnapshot user;
+  String fullName, uploadedFileURL;
 
   @override
   void initState() {
+    dataBaseService.getUserData(widget.userUID).then((value) {
+      user = value;
+      uploadedFileURL = user.data['uploadedFileURL'];
+      fullName = user.data['FullName'];
+
+      //(widget.correctAnswers * (100) / widget.total)
+      if (100 > 70.0) {
+        Map<String, dynamic> questionMap = {
+          "userId": widget.userUID,
+          "userFullName": fullName,
+          "userImage": uploadedFileURL,
+          "quizTitle": widget.quizTitle,
+          "quizImage": widget.imageURL,
+          "result": widget.quizResult,
+        };
+        dataBaseService.addLeaderboardsData(questionMap, widget.quizTitle);
+      }
+    });
+
     Map<String, dynamic> quizResultMap = {
       "quizzId": widget.quizId,
       "quizzTitle": widget.quizTitle,
@@ -44,17 +66,6 @@ class _ResultsState extends State<Results> {
     };
 
     dataBaseService.setUserHistory(widget.userUID, quizResultMap);
-
-//(widget.correctAnswers * (100) / widget.total)
-    if (100 > 70.0) {
-      Map<String, dynamic> questionMap = {
-        "userId": widget.userUID,
-        "quizTitle": widget.quizTitle,
-        "result": widget.quizResult,
-      };
-
-      dataBaseService.addLeaderboardsData(questionMap, widget.quizTitle);
-    }
 
     setState(() {
       isLoading = false;

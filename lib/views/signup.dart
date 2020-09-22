@@ -20,7 +20,7 @@ class _SignUpState extends State<SignUp> {
   final _formKey = GlobalKey<FormState>();
   final authentificationService = locator.get<AuthentificationService>();
 
-  String userUID, email = '', password, age;
+  String userUID, email = '', fullName, password, age;
   bool isLoading = false;
 
   signUp() async {
@@ -29,7 +29,7 @@ class _SignUpState extends State<SignUp> {
         isLoading = true;
       });
 
-      await authentificationService.signUp(email, password, age).then(
+      await authentificationService.signUp(email, fullName, password, age).then(
         (value) async {
           if (value != null) {
             await authentificationService.signIn(email, password).then(
@@ -111,124 +111,148 @@ class _SignUpState extends State<SignUp> {
                 child: CircularProgressIndicator(),
               ),
             )
-          : Form(
-              key: _formKey,
-              child: Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.0,
-                  vertical: 20,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      validator: (value) {
-                        return isEmail(email)
-                            ? null
-                            : AppLocalizations.of(context)
-                                .translate('Signup/first');
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)
-                            .translate('Signup/second'),
-                      ),
-                      onChanged: (value) {
-                        email = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      validator: (value) {
-                        return value.length < 6
-                            ? AppLocalizations.of(context)
-                                .translate('Signup/third')
-                            : null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)
-                            .translate('Signup/fourth'),
-                      ),
-                      onChanged: (value) {
-                        password = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    TextFormField(
-                      validator: (value) {
-                        return isNumeric(value)
-                            ? null
-                            : AppLocalizations.of(context)
-                                .translate('Signup/sixth');
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)
-                            .translate('Signup/seventh'),
-                      ),
-                      onChanged: (value) {
-                        age = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        signUp();
-                      },
-                      child: blueButton(
-                        context,
-                        AppLocalizations.of(context).translate('Signup/eighth'),
-                        MediaQuery.of(context).size.width * 0.9,
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          AppLocalizations.of(context)
-                              .translate('Signup/ninth'),
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+          : SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        validator: (value) {
+                          return isEmail(email)
+                              ? null
+                              : AppLocalizations.of(context)
+                                  .translate('Signup/first');
+                        },
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                                  .translate('Signup/second') +
+                              '  ' +
+                              AppLocalizations.of(context)
+                                  .translate('Profile/fifteenth'),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              new PageRouteBuilder(
-                                pageBuilder: (BuildContext context, _, __) {
-                                  return SignIn(
-                                    lang: widget.lang,
-                                  );
-                                },
-                                transitionsBuilder: (_,
-                                    Animation<double> animation,
-                                    __,
-                                    Widget child) {
-                                  return new FadeTransition(
-                                      opacity: animation, child: child);
-                                },
-                              ),
-                            );
-                          },
-                          child: Text(
+                        onChanged: (value) {
+                          email = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      TextFormField(
+                        validator: (value) {
+                          return value.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .translate('Signup/thirteenth')
+                              : null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                              .translate('Signup/twelfth'),
+                        ),
+                        onChanged: (value) {
+                          fullName = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        validator: (value) {
+                          return value.length < 6
+                              ? AppLocalizations.of(context)
+                                  .translate('Signup/third')
+                              : null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                              .translate('Signup/fourth'),
+                        ),
+                        onChanged: (value) {
+                          password = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      TextFormField(
+                        validator: (value) {
+                          return isNumeric(value)
+                              ? null
+                              : AppLocalizations.of(context)
+                                  .translate('Signup/sixth');
+                        },
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                              .translate('Signup/seventh'),
+                        ),
+                        onChanged: (value) {
+                          age = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          signUp();
+                        },
+                        child: blueButton(
+                          context,
+                          AppLocalizations.of(context)
+                              .translate('Signup/eighth'),
+                          MediaQuery.of(context).size.width * 0.9,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
                             AppLocalizations.of(context)
-                                .translate('Signup/tenth'),
+                                .translate('Signup/ninth'),
                             style: TextStyle(
                               fontSize: 16,
-                              decoration: TextDecoration.underline,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                new PageRouteBuilder(
+                                  pageBuilder: (BuildContext context, _, __) {
+                                    return SignIn(
+                                      lang: widget.lang,
+                                    );
+                                  },
+                                  transitionsBuilder: (_,
+                                      Animation<double> animation,
+                                      __,
+                                      Widget child) {
+                                    return new FadeTransition(
+                                        opacity: animation, child: child);
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('Signup/tenth'),
+                              style: TextStyle(
+                                fontSize: 16,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

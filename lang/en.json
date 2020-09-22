@@ -1,7 +1,7 @@
 {
     "lang": "en",
 
-    "Landing/first": "All Rights Are Reserved ®",
+    "Landing/first": "All Rights Are Reserved®",
     "Landing/second": "No internet connection !",
     "Landing/third": "TRY AGAIN",
     
@@ -27,6 +27,8 @@
     "Signup/ninth" : "Already have an account ? ",
     "Signup/tenth" : "Sign in",
     "Signup/eleventh" : "Email already in use / Email is not valid",
+    "Signup/twelfth" : "Full Name",
+    "Signup/thirteenth" : "Enter your full name !",
     
     "Home/first" : "Logout",
     "Home/second" : "Are you sure you want to log out ?",
@@ -34,7 +36,7 @@
     "Home/fourth" : "No",
 
     "Widgets/first" : "Profile",
-    "Widgets/second" : "Leaderboards",
+    "Widgets/second" : "Rankings",
     "Widgets/third" : "Home",
     "Widgets/fourth" : "History",
     "Widgets/fifth" : "Settings",

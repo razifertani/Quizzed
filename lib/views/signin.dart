@@ -105,106 +105,109 @@ class _SignInState extends State<SignIn> {
                 child: CircularProgressIndicator(),
               ),
             )
-          : Form(
-              key: _formKey,
-              child: Container(
-                margin: EdgeInsets.symmetric(
-                  horizontal: 24.0,
-                  vertical: 20,
-                ),
-                child: Column(
-                  children: <Widget>[
-                    TextFormField(
-                      validator: (value) {
-                        return value.isEmpty
-                            ? AppLocalizations.of(context)
-                                .translate('Signin/fourth')
-                            : null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)
-                            .translate('Signin/fifth'),
-                      ),
-                      onChanged: (value) {
-                        email = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.02,
-                    ),
-                    TextFormField(
-                      obscureText: true,
-                      validator: (value) {
-                        return value.isEmpty
-                            ? AppLocalizations.of(context)
-                                .translate('Signin/sixth')
-                            : null;
-                      },
-                      decoration: InputDecoration(
-                        hintText: AppLocalizations.of(context)
-                            .translate('Signin/seventh'),
-                      ),
-                      onChanged: (value) {
-                        password = value;
-                      },
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                    ),
-                    GestureDetector(
-                      onTap: () {
-                        signIn();
-                      },
-                      child: blueButton(
-                        context,
-                        AppLocalizations.of(context).translate('Signin/eighth'),
-                        MediaQuery.of(context).size.width * 0.9,
-                      ),
-                    ),
-                    SizedBox(
-                      height: MediaQuery.of(context).size.height * 0.04,
-                    ),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: <Widget>[
-                        Text(
-                          AppLocalizations.of(context)
-                              .translate('Signin/ninth'),
-                          style: TextStyle(
-                            fontSize: 16,
-                          ),
+          : SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Container(
+                  margin: EdgeInsets.symmetric(
+                    horizontal: 24.0,
+                    vertical: 20,
+                  ),
+                  child: Column(
+                    children: <Widget>[
+                      TextFormField(
+                        validator: (value) {
+                          return value.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .translate('Signin/fourth')
+                              : null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                              .translate('Signin/fifth'),
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            Navigator.of(context).push(
-                              new PageRouteBuilder(
-                                pageBuilder: (BuildContext context, _, __) {
-                                  return SignUp(
-                                    lang: widget.lang,
-                                  );
-                                },
-                                transitionsBuilder: (_,
-                                    Animation<double> animation,
-                                    __,
-                                    Widget child) {
-                                  return new FadeTransition(
-                                      opacity: animation, child: child);
-                                },
-                              ),
-                            );
-                          },
-                          child: Text(
+                        onChanged: (value) {
+                          email = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.02,
+                      ),
+                      TextFormField(
+                        obscureText: true,
+                        validator: (value) {
+                          return value.isEmpty
+                              ? AppLocalizations.of(context)
+                                  .translate('Signin/sixth')
+                              : null;
+                        },
+                        decoration: InputDecoration(
+                          hintText: AppLocalizations.of(context)
+                              .translate('Signin/seventh'),
+                        ),
+                        onChanged: (value) {
+                          password = value;
+                        },
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      GestureDetector(
+                        onTap: () {
+                          signIn();
+                        },
+                        child: blueButton(
+                          context,
+                          AppLocalizations.of(context)
+                              .translate('Signin/eighth'),
+                          MediaQuery.of(context).size.width * 0.9,
+                        ),
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.04,
+                      ),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: <Widget>[
+                          Text(
                             AppLocalizations.of(context)
-                                .translate('Signin/tenth'),
+                                .translate('Signin/ninth'),
                             style: TextStyle(
                               fontSize: 16,
-                              decoration: TextDecoration.underline,
                             ),
                           ),
-                        ),
-                      ],
-                    ),
-                  ],
+                          GestureDetector(
+                            onTap: () {
+                              Navigator.of(context).push(
+                                new PageRouteBuilder(
+                                  pageBuilder: (BuildContext context, _, __) {
+                                    return SignUp(
+                                      lang: widget.lang,
+                                    );
+                                  },
+                                  transitionsBuilder: (_,
+                                      Animation<double> animation,
+                                      __,
+                                      Widget child) {
+                                    return new FadeTransition(
+                                        opacity: animation, child: child);
+                                  },
+                                ),
+                              );
+                            },
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('Signin/tenth'),
+                              style: TextStyle(
+                                fontSize: 16,
+                                decoration: TextDecoration.underline,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ],
+                  ),
                 ),
               ),
             ),

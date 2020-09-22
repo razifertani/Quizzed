@@ -179,7 +179,7 @@ class DataBaseService {
   }
 
   getLeaderboardsDocuments() async {
-    return await Firestore.instance.collection("Leaderboards").snapshots();
+    return Firestore.instance.collection("Leaderboards").snapshots();
   }
 
   getLeaderboardsData(String quizTitle) async {

@@ -1,7 +1,7 @@
 {
     "lang": "ar",
 
-    "Landing/first": "جميع الحقوق محفوظة ®",
+    "Landing/first": "جميع الحقوق محفوظة®",
     "Landing/second": "لا يوجد اتصال بالإنترنت !",
     "Landing/third": "حاول مجددا",
  
@@ -15,7 +15,6 @@
     "Signin/eighth" : "تسجيل الدخول",
     "Signin/ninth" : " ليس لديك حساب ؟",
     "Signin/tenth" : "سجل",
-    "Signup/eleventh" : "البريد الإلكتروني قيد الاستخدام / البريد الإلكتروني غير صالح",
 
     "Signup/first" : "أدخل البريد الإلكتروني الصحيح !",
     "Signup/second" : "البريد الإلكتروني",
@@ -27,7 +26,10 @@
     "Signup/eighth" : "سجل",
     "Signup/ninth" : " هل لديك حساب ؟",
     "Signup/tenth" : "تسجيل الدخول",
-    
+    "Signup/eleventh" : "البريد الإلكتروني قيد الاستخدام / البريد الإلكتروني غير صالح",
+    "Signup/twelfth" : "الاسم الكامل",
+    "Signup/thirteenth" : "أدخل اسمك الكامل !",
+
     "Home/first" : "خروج",
     "Home/second" : "هل أنت متأكد أنك تريد الخروج ؟",
     "Home/third" : "نعم",

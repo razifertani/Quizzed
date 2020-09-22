@@ -1,7 +1,7 @@
 {
     "lang": "fr",
 
-    "Landing/first": "Tous droits réservés ®",
+    "Landing/first": "Tous droits réservés®",
     "Landing/second": "Pas de connection internet !",
     "Landing/third": "REESSAYER",
 
@@ -27,7 +27,9 @@
     "Signup/ninth" : "Vous avez déjà un compte ? ",
     "Signup/tenth" : "Se connecter",
     "Signup/eleventh" : "Email déjà utilisé / Email n'est pas valide",
-    
+    "Signup/twelfth" : "Nom Complet",
+    "Signup/thirteenth" : "Entrer votre nom complet !",
+
     "Home/first" : "Se déconnecter",
     "Home/second" : "Vous êtes sur de vouloir se Se déconnecter ?",
     "Home/third" : "Oui",
