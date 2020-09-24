@@ -19,6 +19,7 @@ class Leaderboards extends StatefulWidget {
 
 class _LeaderboardsState extends State<Leaderboards> {
   final dataBaseService = locator.get<DataBaseService>();
+  bool isLoading = true;
   List<String> quizTitles = [
     'Countries Flags',
     'UEFA Champions League',
@@ -43,6 +44,19 @@ class _LeaderboardsState extends State<Leaderboards> {
       });
     }
     super.initState();
+  }
+
+  waiting() {
+    Timer(Duration(seconds: 1), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+    return Container(
+      child: Center(
+        child: CircularProgressIndicator(),
+      ),
+    );
   }
 
   leaderboardsList(int index) {
@@ -70,24 +84,28 @@ class _LeaderboardsState extends State<Leaderboards> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: appBar(context),
+        title: Image.asset('Assets/appBar.png'),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,
         brightness: Brightness.light,
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        height: MediaQuery.of(context).size.height * 0.7,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          shrinkWrap: true,
-          padding: EdgeInsets.all(20.0),
-          children: List.generate(quizTitles.length, (index) {
-            return leaderboardsList(index);
-          }),
-        ),
-      ),
+      body: isLoading
+          ? waiting()
+          : SingleChildScrollView(
+              child: Container(
+                height: MediaQuery.of(context).size.height * 0.7,
+                child: ListView(
+                  scrollDirection: Axis.horizontal,
+                  shrinkWrap: true,
+                  padding: EdgeInsets.all(20.0),
+                  children: List.generate(quizTitles.length, (index) {
+                    return leaderboardsList(index);
+                  }),
+                ),
+              ),
+            ),
       bottomNavigationBar: buildConvexAppBar(
         context,
         1,
@@ -119,6 +137,7 @@ class _QuizCardState extends State<QuizCard> {
   DocumentSnapshot user;
   String uploadedFileURL, fullName;
   List<Widget> widgets = [];
+  bool isLoading = true;
 
   @override
   void initState() {
@@ -267,6 +286,9 @@ class _QuizCardState extends State<QuizCard> {
                     ],
                   ),
                 );
+                setState(() {
+                  isLoading = false;
+                });
               },
             );
           },
@@ -279,34 +301,36 @@ class _QuizCardState extends State<QuizCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 18,
-      color: Colors.white,
-      child: Column(
-        children: [
-          Container(
-            padding: EdgeInsets.all(8.0),
-            child: Container(
-              width: MediaQuery.of(context).size.width * 0.7,
-              height: MediaQuery.of(context).size.height * 0.2,
-              child: Image.network(
-                widget.image,
-                fit: BoxFit.fitWidth,
-              ),
+    return isLoading
+        ? Container()
+        : Card(
+            elevation: 18,
+            color: Colors.white,
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.all(8.0),
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    height: MediaQuery.of(context).size.height * 0.2,
+                    child: Image.network(
+                      widget.image,
+                      fit: BoxFit.fitWidth,
+                    ),
+                  ),
+                ),
+                Text(widget.title),
+                Column(
+                  children: <Widget>[
+                    SizedBox(
+                      height: MediaQuery.of(context).size.height * 0.01,
+                    ),
+                    for (int j = 0; j < widgets.length; j++)
+                      widgets[j] == null ? Container() : widgets[j],
+                  ],
+                ),
+              ],
             ),
-          ),
-          Text(widget.title),
-          Column(
-            children: <Widget>[
-              SizedBox(
-                height: MediaQuery.of(context).size.height * 0.01,
-              ),
-              for (int j = 0; j < widgets.length; j++)
-                widgets[j] == null ? Container() : widgets[j],
-            ],
-          ),
-        ],
-      ),
-    );
+          );
   }
 }

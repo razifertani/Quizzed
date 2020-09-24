@@ -7,12 +7,6 @@ import 'package:QuizzedGame/views/settings.dart';
 import 'package:convex_bottom_bar/convex_bottom_bar.dart';
 import 'package:flutter/material.dart';
 
-Widget appBar(BuildContext context) {
-  return Image.asset(
-    'Assets/appBar.png',
-  );
-}
-
 Widget blueButton(BuildContext context, String label, double width) {
   return Container(
     padding: EdgeInsets.symmetric(

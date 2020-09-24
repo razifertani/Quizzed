@@ -105,7 +105,7 @@ class _HomeState extends State<Home> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: appBar(context),
+        title: Image.asset('Assets/appBar.png'),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0.0,

@@ -92,7 +92,7 @@ class _SignInState extends State<SignIn> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: appBar(context),
+        title: Image.asset('Assets/appBar.png'),
         centerTitle: true,
         backgroundColor: Colors.transparent,
         elevation: 0,

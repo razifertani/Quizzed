@@ -94,7 +94,7 @@ class _ProfileState extends State<Profile> {
           )
         : Scaffold(
             appBar: AppBar(
-              title: appBar(context),
+              title: Image.asset('Assets/appBar.png'),
               centerTitle: true,
               backgroundColor: Colors.transparent,
               elevation: 0.0,
