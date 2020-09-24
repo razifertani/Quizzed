@@ -66,16 +66,16 @@ class _LandingState extends State<Landing> {
           ),
         ),
         isConnected == true
-            ? Positioned(
-                bottom: MediaQuery.of(context).size.height * 0.1,
-                left: MediaQuery.of(context).size.width * 0.24,
-                right: MediaQuery.of(context).size.width * 0.24,
+            ? Padding(
+                padding: EdgeInsets.only(
+                  top: MediaQuery.of(context).size.height * 0.75,
+                ),
                 child: Center(
                   child: Text(
                     AppLocalizations.of(context).translate('Landing/first'),
                     textAlign: TextAlign.center,
                     style: TextStyle(
-                      fontSize: 19,
+                      fontSize: 24,
                       fontFamily: 'Airbnb',
                       fontWeight: FontWeight.w600,
                       color: Colors.white,
