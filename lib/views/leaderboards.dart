@@ -19,18 +19,17 @@ class Leaderboards extends StatefulWidget {
 
 class _LeaderboardsState extends State<Leaderboards> {
   final dataBaseService = locator.get<DataBaseService>();
-  bool isLoading = true;
   List<String> quizTitles = [
     'Countries Flags',
-    'Countries & Capitals',
     'UEFA Champions League',
+    'Countries & Capitals',
     'Africa',
     'Tunisia',
   ];
   List<String> quizImages = [
     'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
-    'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
     'https://i.eurosport.com/2020/03/16/2794949-57682990-2560-1440.jpg',
+    'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
     'https://greateyecare.com/images/blog/africa-2.jpg',
     'https://i.pinimg.com/originals/99/6e/80/996e8096e984f051f6da569e154c8c41.jpg',
   ];
@@ -40,25 +39,10 @@ class _LeaderboardsState extends State<Leaderboards> {
   void initState() {
     for (var i = 0; i < quizTitles.length; i++) {
       dataBaseService.getLeaderboardsData(quizTitles[i]).then((value) {
-        setState(() {
-          quizSnapshots.add(value);
-        });
+        quizSnapshots.add(value);
       });
     }
     super.initState();
-  }
-
-  waiting() {
-    Timer(Duration(seconds: 1), () {
-      setState(() {
-        isLoading = false;
-      });
-    });
-    return Container(
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
-    );
   }
 
   leaderboardsList(int index) {
@@ -75,14 +59,10 @@ class _LeaderboardsState extends State<Leaderboards> {
       return toDouble(a.result).compareTo(toDouble(b.result));
     });
 
-    return Row(
-      children: [
-        QuizCard(
-          title: quizTitles[index],
-          image: quizImages[index],
-          topUsers: topUsers,
-        ),
-      ],
+    return QuizCard(
+      title: quizTitles[index],
+      image: quizImages[index],
+      topUsers: topUsers,
     );
   }
 
@@ -97,21 +77,17 @@ class _LeaderboardsState extends State<Leaderboards> {
         brightness: Brightness.light,
         automaticallyImplyLeading: false,
       ),
-      body: isLoading
-          ? waiting()
-          : SingleChildScrollView(
-              child: Container(
-                height: MediaQuery.of(context).size.height * 0.7,
-                child: ListView(
-                  scrollDirection: Axis.horizontal,
-                  shrinkWrap: true,
-                  padding: EdgeInsets.all(20.0),
-                  children: List.generate(quizTitles.length, (index) {
-                    return leaderboardsList(index);
-                  }),
-                ),
-              ),
-            ),
+      body: Container(
+        height: MediaQuery.of(context).size.height * 0.7,
+        child: ListView(
+          scrollDirection: Axis.horizontal,
+          shrinkWrap: true,
+          padding: EdgeInsets.all(20.0),
+          children: List.generate(quizTitles.length, (index) {
+            return leaderboardsList(index);
+          }),
+        ),
+      ),
       bottomNavigationBar: buildConvexAppBar(
         context,
         1,
@@ -148,56 +124,102 @@ class _QuizCardState extends State<QuizCard> {
   void initState() {
     dataBaseService.getUserData(widget.topUsers[0].uid).then(
       (value) {
-        setState(() {
-          user = value;
-          uploadedFileURL = user.data['uploadedFileURL'];
-          fullName = user.data['FullName'];
+        user = value;
+        uploadedFileURL = user.data['uploadedFileURL'];
+        fullName = user.data['FullName'];
 
-          widgets.insert(
-            0,
-            Column(
-              children: [
-                Container(
-                  color: Colors.blue,
-                  height: 1,
-                  width: MediaQuery.of(context).size.width * 0.6,
-                ),
-                Container(
-                  width: MediaQuery.of(context).size.width * 0.7,
-                  padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: <Widget>[
-                      uploadedFileURL == null || uploadedFileURL == 'null'
-                          ? Container()
-                          : CircleAvatar(
-                              backgroundImage: NetworkImage(uploadedFileURL),
-                            ),
-                      Text('3: ' + fullName),
-                      Container(
-                        padding:
-                            EdgeInsets.symmetric(vertical: 8, horizontal: 20),
-                        child: Text(
-                          widget.topUsers[0].result,
-                          style: TextStyle(
-                            color: Colors.white,
+        widgets.insert(
+          0,
+          Column(
+            children: [
+              Container(
+                color: Colors.blue,
+                height: 1,
+                width: MediaQuery.of(context).size.width * 0.6,
+              ),
+              Container(
+                width: MediaQuery.of(context).size.width * 0.7,
+                padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: <Widget>[
+                    uploadedFileURL == null || uploadedFileURL == 'null'
+                        ? Container()
+                        : CircleAvatar(
+                            backgroundImage: NetworkImage(uploadedFileURL),
                           ),
-                        ),
-                        decoration: BoxDecoration(
-                          color: Colors.blue,
-                          borderRadius: BorderRadius.circular(20),
+                    Text('3: ' + fullName),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      child: Text(
+                        widget.topUsers[0].result,
+                        style: TextStyle(
+                          color: Colors.white,
                         ),
                       ),
-                    ],
-                  ),
+                      decoration: BoxDecoration(
+                        color: Colors.blue,
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
-          );
+              ),
+            ],
+          ),
+        );
 
-          dataBaseService.getUserData(widget.topUsers[1].uid).then(
-            (value) {
-              setState(() {
+        dataBaseService.getUserData(widget.topUsers[1].uid).then(
+          (value) {
+            user = value;
+            uploadedFileURL = user.data['uploadedFileURL'];
+            fullName = user.data['FullName'];
+
+            widgets.insert(
+              0,
+              Column(
+                children: [
+                  Container(
+                    color: Colors.blue,
+                    height: 1,
+                    width: MediaQuery.of(context).size.width * 0.6,
+                  ),
+                  Container(
+                    width: MediaQuery.of(context).size.width * 0.7,
+                    padding: EdgeInsets.symmetric(horizontal: 10, vertical: 10),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: <Widget>[
+                        uploadedFileURL == null || uploadedFileURL == 'null'
+                            ? Container()
+                            : CircleAvatar(
+                                backgroundImage: NetworkImage(uploadedFileURL),
+                              ),
+                        Text('2: ' + fullName),
+                        Container(
+                          padding:
+                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          child: Text(
+                            widget.topUsers[1].result,
+                            style: TextStyle(
+                              color: Colors.white,
+                            ),
+                          ),
+                          decoration: BoxDecoration(
+                            color: Colors.blue,
+                            borderRadius: BorderRadius.circular(20),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ],
+              ),
+            );
+
+            dataBaseService.getUserData(widget.topUsers[2].uid).then(
+              (value) {
                 user = value;
                 uploadedFileURL = user.data['uploadedFileURL'];
                 fullName = user.data['FullName'];
@@ -224,12 +246,12 @@ class _QuizCardState extends State<QuizCard> {
                                     backgroundImage:
                                         NetworkImage(uploadedFileURL),
                                   ),
-                            Text('2: ' + fullName),
+                            Text('1: ' + fullName),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 20),
                               child: Text(
-                                widget.topUsers[1].result,
+                                widget.topUsers[2].result,
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
@@ -245,66 +267,10 @@ class _QuizCardState extends State<QuizCard> {
                     ],
                   ),
                 );
-
-                dataBaseService.getUserData(widget.topUsers[2].uid).then(
-                  (value) {
-                    setState(() {
-                      user = value;
-                      uploadedFileURL = user.data['uploadedFileURL'];
-                      fullName = user.data['FullName'];
-
-                      widgets.insert(
-                        0,
-                        Column(
-                          children: [
-                            Container(
-                              color: Colors.blue,
-                              height: 1,
-                              width: MediaQuery.of(context).size.width * 0.6,
-                            ),
-                            Container(
-                              width: MediaQuery.of(context).size.width * 0.7,
-                              padding: EdgeInsets.symmetric(
-                                  horizontal: 10, vertical: 10),
-                              child: Row(
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: <Widget>[
-                                  uploadedFileURL == null ||
-                                          uploadedFileURL == 'null'
-                                      ? Container()
-                                      : CircleAvatar(
-                                          backgroundImage:
-                                              NetworkImage(uploadedFileURL),
-                                        ),
-                                  Text('1: ' + fullName),
-                                  Container(
-                                    padding: EdgeInsets.symmetric(
-                                        vertical: 8, horizontal: 20),
-                                    child: Text(
-                                      widget.topUsers[2].result,
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                      ),
-                                    ),
-                                    decoration: BoxDecoration(
-                                      color: Colors.blue,
-                                      borderRadius: BorderRadius.circular(20),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-                    });
-                  },
-                );
-              });
-            },
-          );
-        });
+              },
+            );
+          },
+        );
       },
     );
 
