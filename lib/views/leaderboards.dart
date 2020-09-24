@@ -61,7 +61,7 @@ class _LeaderboardsState extends State<Leaderboards> {
 
   leaderboardsList(int index) {
     List<UserLeaderboards> topUsers = [];
-    for (int i = 0; i < 3; i++) {
+    for (int i = 0; i < quizSnapshots[index].documents.length; i++) {
       UserLeaderboards user = new UserLeaderboards();
       user.uid = quizSnapshots[index].documents[i].data["userId"];
       user.result = quizSnapshots[index].documents[i].data["result"];
@@ -69,9 +69,16 @@ class _LeaderboardsState extends State<Leaderboards> {
         topUsers.add(user);
       }
     }
+
     topUsers.sort((a, b) {
       return toDouble(a.result).compareTo(toDouble(b.result));
     });
+
+    for (var t = 0; t < topUsers.length / 2; t++) {
+      var temp = topUsers[t];
+      topUsers[t] = topUsers[topUsers.length - 1 - t];
+      topUsers[topUsers.length - 1 - t] = temp;
+    }
 
     return QuizCard(
       title: quizTitles[index],
@@ -141,7 +148,7 @@ class _QuizCardState extends State<QuizCard> {
 
   @override
   void initState() {
-    dataBaseService.getUserData(widget.topUsers[0].uid).then(
+    dataBaseService.getUserData(widget.topUsers[2].uid).then(
       (value) {
         user = value;
         uploadedFileURL = user.data['uploadedFileURL'];
@@ -172,7 +179,7 @@ class _QuizCardState extends State<QuizCard> {
                       padding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                       child: Text(
-                        widget.topUsers[0].result,
+                        widget.topUsers[2].result,
                         style: TextStyle(
                           color: Colors.white,
                         ),
@@ -237,12 +244,11 @@ class _QuizCardState extends State<QuizCard> {
               ),
             );
 
-            dataBaseService.getUserData(widget.topUsers[2].uid).then(
+            dataBaseService.getUserData(widget.topUsers[0].uid).then(
               (value) {
                 user = value;
                 uploadedFileURL = user.data['uploadedFileURL'];
                 fullName = user.data['FullName'];
-
                 widgets.insert(
                   0,
                   Column(
@@ -270,7 +276,7 @@ class _QuizCardState extends State<QuizCard> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 20),
                               child: Text(
-                                widget.topUsers[2].result,
+                                widget.topUsers[0].result,
                                 style: TextStyle(
                                   color: Colors.white,
                                 ),
@@ -286,6 +292,7 @@ class _QuizCardState extends State<QuizCard> {
                     ],
                   ),
                 );
+
                 setState(() {
                   isLoading = false;
                 });
