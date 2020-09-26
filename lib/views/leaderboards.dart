@@ -24,21 +24,21 @@ class _LeaderboardsState extends State<Leaderboards> {
     'Africa',
     'UEFA Champions League',
     'Tunisia',
-    'Countries Flags',
     'Countries & Capitals',
+    'Countries Flags',
   ];
   List<String> quizImages = [
     'https://greateyecare.com/images/blog/africa-2.jpg',
     'https://i.eurosport.com/2020/03/16/2794949-57682990-2560-1440.jpg',
     'https://i.pinimg.com/originals/99/6e/80/996e8096e984f051f6da569e154c8c41.jpg',
-    'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
     'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
+    'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
   ];
   List<QuerySnapshot> quizSnapshots = [];
   List<List<Widget>> widgetsLists = [];
 
   waiting() {
-    Timer(Duration(seconds: 2), () {
+    Timer(Duration(seconds: 4), () {
       setState(() {
         isLoading = false;
       });
@@ -59,9 +59,9 @@ class _LeaderboardsState extends State<Leaderboards> {
         });
       });
 
-    Timer(Duration(seconds: 1), () {
+    Timer(Duration(seconds: 2), () async {
       for (var index = 0; index < quizTitles.length; index++) {
-        widgetsLists.add(leaderboardsList(index));
+        await widgetsLists.add(leaderboardsList(index));
       }
     });
 
@@ -116,6 +116,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
+                    Text(
+                      '🥉',
+                      style: TextStyle(fontSize: 30),
+                    ),
                     uploadedFileURL == null || uploadedFileURL == 'null'
                         ? CircleAvatar(
                             backgroundColor: Colors.white,
@@ -125,7 +129,15 @@ class _LeaderboardsState extends State<Leaderboards> {
                         : CircleAvatar(
                             backgroundImage: NetworkImage(uploadedFileURL),
                           ),
-                    Text('3: ' + fullName),
+                    SizedBox(
+                      width: MediaQuery.of(context).size.width * 0.25,
+                      child: Center(
+                        child: Text(
+                          fullName,
+                          style: TextStyle(fontSize: 14),
+                        ),
+                      ),
+                    ),
                     Container(
                       padding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -168,6 +180,11 @@ class _LeaderboardsState extends State<Leaderboards> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
+                        Text(
+                          '🥈',
+                          style: TextStyle(
+                              color: Colors.purpleAccent, fontSize: 30),
+                        ),
                         uploadedFileURL == null || uploadedFileURL == 'null'
                             ? CircleAvatar(
                                 backgroundColor: Colors.white,
@@ -177,7 +194,15 @@ class _LeaderboardsState extends State<Leaderboards> {
                             : CircleAvatar(
                                 backgroundImage: NetworkImage(uploadedFileURL),
                               ),
-                        Text('2: ' + fullName),
+                        SizedBox(
+                          width: MediaQuery.of(context).size.width * 0.25,
+                          child: Center(
+                            child: Text(
+                              fullName,
+                              style: TextStyle(fontSize: 14),
+                            ),
+                          ),
+                        ),
                         Container(
                           padding:
                               EdgeInsets.symmetric(vertical: 8, horizontal: 20),
@@ -221,6 +246,11 @@ class _LeaderboardsState extends State<Leaderboards> {
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
+                            Text(
+                              '🥇',
+                              style: TextStyle(
+                                  color: Colors.purpleAccent, fontSize: 30),
+                            ),
                             uploadedFileURL == null || uploadedFileURL == 'null'
                                 ? CircleAvatar(
                                     backgroundColor: Colors.white,
@@ -231,7 +261,15 @@ class _LeaderboardsState extends State<Leaderboards> {
                                     backgroundImage:
                                         NetworkImage(uploadedFileURL),
                                   ),
-                            Text('1:  ' + fullName),
+                            SizedBox(
+                              width: MediaQuery.of(context).size.width * 0.25,
+                              child: Center(
+                                child: Text(
+                                  fullName,
+                                  style: TextStyle(fontSize: 14),
+                                ),
+                              ),
+                            ),
                             Container(
                               padding: EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 20),
@@ -284,7 +322,7 @@ class _LeaderboardsState extends State<Leaderboards> {
           ? waiting()
           : SingleChildScrollView(
               child: Container(
-                height: MediaQuery.of(context).size.height * 0.8,
+                height: MediaQuery.of(context).size.height * 0.82,
                 child: ListView(
                   scrollDirection: Axis.horizontal,
                   shrinkWrap: true,

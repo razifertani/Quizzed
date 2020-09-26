@@ -32,7 +32,7 @@ class _LandingState extends State<Landing> {
 
   startTime() async {
     lang = AppLocalizations.of(context).translate('lang');
-    var duration = new Duration(seconds: 4);
+    var duration = new Duration(seconds: 6);
     return new Timer(duration, route);
   }
 
