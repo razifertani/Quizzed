@@ -34,6 +34,7 @@ class _ResultsState extends State<Results> {
   bool isLoading = true;
   DocumentSnapshot user;
   String fullName, uploadedFileURL;
+  String quizTitle;
 
   @override
   void initState() {
@@ -42,22 +43,33 @@ class _ResultsState extends State<Results> {
       uploadedFileURL = user.data['uploadedFileURL'];
       fullName = user.data['FullName'];
 
-      if (toDouble(widget.quizResult) > 90.0) {
+      if (toDouble(widget.quizResult) > 69.0) {
+        if (widget.quizTitle == 'Africa' || widget.quizTitle == 'Afrique')
+          quizTitle = 'Africa';
+        if (widget.quizTitle == 'Countries & Capitals' ||
+            widget.quizTitle == 'Pays et Capitales')
+          quizTitle = 'Countries & Capitals';
+        if (widget.quizTitle == 'UEFA Champions League' ||
+            widget.quizTitle == 'UEFA Ligue des Champions')
+          quizTitle = 'UEFA Champions League';
+        if (widget.quizTitle == 'Tunisia' || widget.quizTitle == 'Tunisie')
+          quizTitle = 'Tunisia';
+        if (widget.quizTitle == 'Countries Flags' ||
+            widget.quizTitle == 'Drapeaux des pays')
+          quizTitle = 'Countries Flags';
+
         Map<String, dynamic> questionMap = {
           "userId": widget.userUID,
           "userFullName": fullName,
           "userImage": uploadedFileURL,
-          "quizTitle": widget.quizTitle,
-          "quizImage": widget.imageURL,
           "result": widget.quizResult,
         };
 
         Map<String, String> quizData = {
-          "quizTitle": widget.quizTitle,
+          "quizTitle": quizTitle,
           "quizImage": widget.imageURL,
         };
-        dataBaseService.addLeaderboardsData(
-            questionMap, widget.quizTitle, quizData);
+        dataBaseService.addLeaderboardsData(questionMap, quizTitle, quizData);
       }
     });
 
