@@ -165,7 +165,17 @@ class DataBaseService {
   }
 
   Future<void> addLeaderboardsData(
-      Map leaderboardsData, String quizTitle) async {
+      Map leaderboardsData, String quizTitle, Map quizData) async {
+    await Firestore.instance
+        .collection("Leaderboards")
+        .document(quizTitle)
+        .setData(quizData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+
     await Firestore.instance
         .collection('Leaderboards')
         .document(quizTitle)
@@ -188,5 +198,9 @@ class DataBaseService {
         .document(quizTitle)
         .collection('HighScore')
         .getDocuments();
+  }
+
+  getLeaderboards() async {
+    return Firestore.instance.collection('Leaderboards').snapshots();
   }
 }
