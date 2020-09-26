@@ -21,23 +21,29 @@ class _LeaderboardsState extends State<Leaderboards> {
   final dataBaseService = locator.get<DataBaseService>();
   bool isLoading = true;
   List<String> quizTitles = [
-    'Countries Flags',
     'Africa',
-    'Tunisia',
-    'Countries & Capitals',
     'UEFA Champions League',
+    'Tunisia',
+    'Countries Flags',
+    'Countries & Capitals',
   ];
   List<String> quizImages = [
-    'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
     'https://greateyecare.com/images/blog/africa-2.jpg',
-    'https://i.pinimg.com/originals/99/6e/80/996e8096e984f051f6da569e154c8c41.jpg',
-    'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
     'https://i.eurosport.com/2020/03/16/2794949-57682990-2560-1440.jpg',
+    'https://i.pinimg.com/originals/99/6e/80/996e8096e984f051f6da569e154c8c41.jpg',
+    'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
+    'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
   ];
   List<QuerySnapshot> quizSnapshots = [];
+  List<List<Widget>> widgetsLists = [];
 
-  @override
-  void initState() {
+  waiting() {
+    Timer(Duration(seconds: 2), () {
+      setState(() {
+        isLoading = false;
+      });
+    });
+
     for (var i = 0; i < quizTitles.length; i++)
       Firestore.instance
           .collection('Leaderboards')
@@ -53,19 +59,14 @@ class _LeaderboardsState extends State<Leaderboards> {
         });
       });
 
-    super.initState();
-  }
-
-  waiting() {
     Timer(Duration(seconds: 1), () {
-      setState(() {
-        isLoading = false;
-      });
+      for (var index = 0; index < quizTitles.length; index++) {
+        widgetsLists.add(leaderboardsList(index));
+      }
     });
-    return Container(
-      child: Center(
-        child: CircularProgressIndicator(),
-      ),
+
+    return Center(
+      child: CircularProgressIndicator(),
     );
   }
 
@@ -116,7 +117,11 @@ class _LeaderboardsState extends State<Leaderboards> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     uploadedFileURL == null || uploadedFileURL == 'null'
-                        ? Container()
+                        ? CircleAvatar(
+                            backgroundColor: Colors.white,
+                            backgroundImage: NetworkImage(
+                                'https://cdn.onlinewebfonts.com/svg/img_212915.png'),
+                          )
                         : CircleAvatar(
                             backgroundImage: NetworkImage(uploadedFileURL),
                           ),
@@ -164,7 +169,11 @@ class _LeaderboardsState extends State<Leaderboards> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         uploadedFileURL == null || uploadedFileURL == 'null'
-                            ? Container()
+                            ? CircleAvatar(
+                                backgroundColor: Colors.white,
+                                backgroundImage: NetworkImage(
+                                    'https://cdn.onlinewebfonts.com/svg/img_212915.png'),
+                              )
                             : CircleAvatar(
                                 backgroundImage: NetworkImage(uploadedFileURL),
                               ),
@@ -213,7 +222,11 @@ class _LeaderboardsState extends State<Leaderboards> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             uploadedFileURL == null || uploadedFileURL == 'null'
-                                ? Container()
+                                ? CircleAvatar(
+                                    backgroundColor: Colors.white,
+                                    backgroundImage: NetworkImage(
+                                        'https://cdn.onlinewebfonts.com/svg/img_212915.png'),
+                                  )
                                 : CircleAvatar(
                                     backgroundImage:
                                         NetworkImage(uploadedFileURL),
@@ -245,10 +258,14 @@ class _LeaderboardsState extends State<Leaderboards> {
         );
       },
     );
+    return widgets;
+  }
+
+  returnWidgets(int index) {
     return QuizCard(
       title: quizTitles[index],
       image: quizImages[index],
-      widgets: widgets,
+      widgets: widgetsLists[index],
     );
   }
 
@@ -273,7 +290,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                   shrinkWrap: true,
                   padding: EdgeInsets.all(20.0),
                   children: List.generate(quizTitles.length, (index) {
-                    return leaderboardsList(index);
+                    return returnWidgets(index);
                   }),
                 ),
               ),
