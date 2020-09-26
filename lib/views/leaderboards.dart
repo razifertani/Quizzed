@@ -27,6 +27,7 @@ class _LeaderboardsState extends State<Leaderboards> {
     'Countries & Capitals',
     'Countries Flags',
   ];
+  List<String> quizTitless = [];
   List<String> quizImages = [
     'https://greateyecare.com/images/blog/africa-2.jpg',
     'https://i.eurosport.com/2020/03/16/2794949-57682990-2560-1440.jpg',
@@ -34,6 +35,7 @@ class _LeaderboardsState extends State<Leaderboards> {
     'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
     'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
   ];
+  List<String> quizImagess = [];
   List<QuerySnapshot> quizSnapshots = [];
   List<List<Widget>> widgetsLists = [];
 
@@ -53,8 +55,10 @@ class _LeaderboardsState extends State<Leaderboards> {
         result.documents.forEach((result) {
           dataBaseService
               .getLeaderboardsData(result.data['quizTitle'])
-              .then((value) {
-            quizSnapshots.add(value);
+              .then((value) async {
+            quizTitless.add(result.data['quizTitle']);
+            quizImagess.add(result.data['quizImage']);
+            await quizSnapshots.add(value);
           });
         });
       });
@@ -301,8 +305,8 @@ class _LeaderboardsState extends State<Leaderboards> {
 
   returnWidgets(int index) {
     return QuizCard(
-      title: quizTitles[index],
-      image: quizImages[index],
+      title: quizTitless[index],
+      image: quizImagess[index],
       widgets: widgetsLists[index],
     );
   }

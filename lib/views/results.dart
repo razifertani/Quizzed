@@ -5,6 +5,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
+import 'package:string_validator/string_validator.dart';
 
 class Results extends StatefulWidget {
   final String userUID;
@@ -41,7 +42,7 @@ class _ResultsState extends State<Results> {
       uploadedFileURL = user.data['uploadedFileURL'];
       fullName = user.data['FullName'];
 
-      if (100 > 90.0) {
+      if (toDouble(widget.quizResult) > 90.0) {
         Map<String, dynamic> questionMap = {
           "userId": widget.userUID,
           "userFullName": fullName,
@@ -51,7 +52,10 @@ class _ResultsState extends State<Results> {
           "result": widget.quizResult,
         };
 
-        Map<String, String> quizData = {"quizTitle": widget.quizTitle};
+        Map<String, String> quizData = {
+          "quizTitle": widget.quizTitle,
+          "quizImage": widget.imageURL,
+        };
         dataBaseService.addLeaderboardsData(
             questionMap, widget.quizTitle, quizData);
       }
