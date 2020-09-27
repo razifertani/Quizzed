@@ -154,6 +154,7 @@ class _SignInState extends State<SignIn> {
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.8,
+                        height: MediaQuery.of(context).size.width * 0.12,
                         child: RaisedButton(
                           onPressed: () {
                             signIn();
@@ -166,6 +167,9 @@ class _SignInState extends State<SignIn> {
                           child: Text(
                             AppLocalizations.of(context)
                                 .translate('Signin/eighth'),
+                            style: TextStyle(
+                              fontSize: 22,
+                            ),
                           ),
                         ),
                       ),
@@ -176,7 +180,6 @@ class _SignInState extends State<SignIn> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            width: MediaQuery.of(context).size.width * 0.6,
                             child: Text(
                               AppLocalizations.of(context)
                                   .translate('Signin/ninth'),

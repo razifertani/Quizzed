@@ -174,6 +174,7 @@ class _ResultsState extends State<Results> {
                 ),
                 Container(
                   width: MediaQuery.of(context).size.width * 0.5,
+                  height: MediaQuery.of(context).size.width * 0.12,
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.of(context).push(
@@ -201,6 +202,9 @@ class _ResultsState extends State<Results> {
                     ),
                     child: Text(
                       AppLocalizations.of(context).translate('results/sixth'),
+                      style: TextStyle(
+                        fontSize: 22,
+                      ),
                     ),
                   ),
                 ),

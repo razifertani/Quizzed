@@ -99,7 +99,7 @@ class _LeaderboardsState extends State<Leaderboards> {
       topUsers[topUsers.length - 1 - t] = temp;
     }
 
-    dataBaseService.getUserData(topUsers[2].uid).then(
+    dataBaseService.getUserData(topUsers[4].uid).then(
       (value) {
         user = value;
         uploadedFileURL = user.data['uploadedFileURL'];
@@ -121,8 +121,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: <Widget>[
                     Text(
-                      '🥉',
-                      style: TextStyle(fontSize: 30),
+                      '',
+                      style:
+                          TextStyle(color: Colors.purpleAccent, fontSize: 30),
                     ),
                     uploadedFileURL == null || uploadedFileURL == 'null'
                         ? CircleAvatar(
@@ -142,7 +143,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                         child: Center(
                           child: Text(
                             fullName,
-                            style: TextStyle(fontSize: 14),
+                            style: TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.bold,
+                            ),
                           ),
                         ),
                       ),
@@ -151,9 +155,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                       padding:
                           EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                       child: Text(
-                        topUsers[2].result,
+                        topUsers[4].result + ' %',
                         style: TextStyle(
                           color: Colors.white,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                       decoration: BoxDecoration(
@@ -168,7 +173,7 @@ class _LeaderboardsState extends State<Leaderboards> {
           ),
         );
 
-        dataBaseService.getUserData(topUsers[1].uid).then(
+        dataBaseService.getUserData(topUsers[3].uid).then(
           (value) {
             user = value;
             uploadedFileURL = user.data['uploadedFileURL'];
@@ -190,7 +195,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: <Widget>[
                         Text(
-                          '🥈',
+                          '',
                           style: TextStyle(
                               color: Colors.purpleAccent, fontSize: 30),
                         ),
@@ -212,7 +217,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                             child: Center(
                               child: Text(
                                 fullName,
-                                style: TextStyle(fontSize: 14),
+                                style: TextStyle(
+                                  fontSize: 14,
+                                  fontWeight: FontWeight.bold,
+                                ),
                               ),
                             ),
                           ),
@@ -221,9 +229,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                           padding:
                               EdgeInsets.symmetric(vertical: 8, horizontal: 20),
                           child: Text(
-                            topUsers[1].result,
+                            topUsers[3].result + ' %',
                             style: TextStyle(
                               color: Colors.white,
+                              fontWeight: FontWeight.bold,
                             ),
                           ),
                           decoration: BoxDecoration(
@@ -238,7 +247,7 @@ class _LeaderboardsState extends State<Leaderboards> {
               ),
             );
 
-            dataBaseService.getUserData(topUsers[0].uid).then(
+            dataBaseService.getUserData(topUsers[2].uid).then(
               (value) {
                 user = value;
                 uploadedFileURL = user.data['uploadedFileURL'];
@@ -261,9 +270,8 @@ class _LeaderboardsState extends State<Leaderboards> {
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: <Widget>[
                             Text(
-                              '🥇',
-                              style: TextStyle(
-                                  color: Colors.purpleAccent, fontSize: 30),
+                              '🥉',
+                              style: TextStyle(fontSize: 30),
                             ),
                             uploadedFileURL == null || uploadedFileURL == 'null'
                                 ? CircleAvatar(
@@ -284,7 +292,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                                 child: Center(
                                   child: Text(
                                     fullName,
-                                    style: TextStyle(fontSize: 14),
+                                    style: TextStyle(
+                                      fontSize: 14,
+                                      fontWeight: FontWeight.bold,
+                                    ),
                                   ),
                                 ),
                               ),
@@ -293,9 +304,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                               padding: EdgeInsets.symmetric(
                                   vertical: 8, horizontal: 20),
                               child: Text(
-                                topUsers[0].result,
+                                topUsers[2].result + ' %',
                                 style: TextStyle(
                                   color: Colors.white,
+                                  fontWeight: FontWeight.bold,
                                 ),
                               ),
                               decoration: BoxDecoration(
@@ -308,6 +320,182 @@ class _LeaderboardsState extends State<Leaderboards> {
                       ),
                     ],
                   ),
+                );
+
+                dataBaseService.getUserData(topUsers[1].uid).then(
+                  (value) {
+                    user = value;
+                    uploadedFileURL = user.data['uploadedFileURL'];
+                    fullName = user.data['FullName'];
+
+                    widgets.insert(
+                      0,
+                      Column(
+                        children: [
+                          Container(
+                            color: Colors.blue,
+                            height: 1,
+                            width: MediaQuery.of(context).size.width * 0.6,
+                          ),
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.7,
+                            padding: EdgeInsets.symmetric(
+                                horizontal: 10, vertical: 10),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: <Widget>[
+                                Text(
+                                  '🥈',
+                                  style: TextStyle(
+                                      color: Colors.purpleAccent, fontSize: 30),
+                                ),
+                                uploadedFileURL == null ||
+                                        uploadedFileURL == 'null'
+                                    ? CircleAvatar(
+                                        backgroundColor: Colors.white,
+                                        backgroundImage: NetworkImage(
+                                            'https://cdn.onlinewebfonts.com/svg/img_212915.png'),
+                                      )
+                                    : CircleAvatar(
+                                        backgroundImage:
+                                            NetworkImage(uploadedFileURL),
+                                      ),
+                                Padding(
+                                  padding: EdgeInsets.only(left: 3.0),
+                                  child: SizedBox(
+                                    width:
+                                        MediaQuery.of(context).size.width > 350
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.25
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .width *
+                                                0.18,
+                                    child: Center(
+                                      child: Text(
+                                        fullName,
+                                        style: TextStyle(
+                                          fontSize: 14,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Container(
+                                  padding: EdgeInsets.symmetric(
+                                      vertical: 8, horizontal: 20),
+                                  child: Text(
+                                    topUsers[1].result + ' %',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  decoration: BoxDecoration(
+                                    color: Colors.blue,
+                                    borderRadius: BorderRadius.circular(20),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                        ],
+                      ),
+                    );
+
+                    dataBaseService.getUserData(topUsers[0].uid).then(
+                      (value) {
+                        user = value;
+                        uploadedFileURL = user.data['uploadedFileURL'];
+                        fullName = user.data['FullName'];
+
+                        widgets.insert(
+                          0,
+                          Column(
+                            children: [
+                              Container(
+                                color: Colors.blue,
+                                height: 1,
+                                width: MediaQuery.of(context).size.width * 0.6,
+                              ),
+                              Container(
+                                width: MediaQuery.of(context).size.width * 0.7,
+                                padding: EdgeInsets.symmetric(
+                                    horizontal: 10, vertical: 10),
+                                child: Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceBetween,
+                                  children: <Widget>[
+                                    Text(
+                                      '🥇',
+                                      style: TextStyle(
+                                        color: Colors.purpleAccent,
+                                        fontSize: 30,
+                                      ),
+                                    ),
+                                    uploadedFileURL == null ||
+                                            uploadedFileURL == 'null'
+                                        ? CircleAvatar(
+                                            backgroundColor: Colors.white,
+                                            backgroundImage: NetworkImage(
+                                                'https://cdn.onlinewebfonts.com/svg/img_212915.png'),
+                                          )
+                                        : CircleAvatar(
+                                            backgroundImage:
+                                                NetworkImage(uploadedFileURL),
+                                          ),
+                                    Padding(
+                                      padding: EdgeInsets.only(left: 3.0),
+                                      child: SizedBox(
+                                        width:
+                                            MediaQuery.of(context).size.width >
+                                                    350
+                                                ? MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.25
+                                                : MediaQuery.of(context)
+                                                        .size
+                                                        .width *
+                                                    0.18,
+                                        child: Center(
+                                          child: Text(
+                                            fullName,
+                                            style: TextStyle(
+                                              fontSize: 14,
+                                              fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Container(
+                                      padding: EdgeInsets.symmetric(
+                                          vertical: 8, horizontal: 20),
+                                      child: Text(
+                                        topUsers[0].result + ' %',
+                                        style: TextStyle(
+                                          color: Colors.white,
+                                          fontWeight: FontWeight.bold,
+                                        ),
+                                      ),
+                                      decoration: BoxDecoration(
+                                        color: Colors.blue,
+                                        borderRadius: BorderRadius.circular(20),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+                      },
+                    );
+                  },
                 );
               },
             );
