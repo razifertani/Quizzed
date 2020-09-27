@@ -152,15 +152,21 @@ class _SignInState extends State<SignIn> {
                       SizedBox(
                         height: MediaQuery.of(context).size.height * 0.04,
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          signIn();
-                        },
-                        child: blueButton(
-                          context,
-                          AppLocalizations.of(context)
-                              .translate('Signin/eighth'),
-                          MediaQuery.of(context).size.width * 0.9,
+                      Container(
+                        width: MediaQuery.of(context).size.width * 0.8,
+                        child: RaisedButton(
+                          onPressed: () {
+                            signIn();
+                          },
+                          textColor: Colors.white,
+                          color: Colors.blue,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(20.0),
+                          ),
+                          child: Text(
+                            AppLocalizations.of(context)
+                                .translate('Signin/eighth'),
+                          ),
                         ),
                       ),
                       SizedBox(
@@ -169,11 +175,14 @@ class _SignInState extends State<SignIn> {
                       Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text(
-                            AppLocalizations.of(context)
-                                .translate('Signin/ninth'),
-                            style: TextStyle(
-                              fontSize: 16,
+                          Container(
+                            width: MediaQuery.of(context).size.width * 0.6,
+                            child: Text(
+                              AppLocalizations.of(context)
+                                  .translate('Signin/ninth'),
+                              style: TextStyle(
+                                fontSize: 16,
+                              ),
                             ),
                           ),
                           GestureDetector(

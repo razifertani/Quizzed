@@ -133,12 +133,17 @@ class _LeaderboardsState extends State<Leaderboards> {
                         : CircleAvatar(
                             backgroundImage: NetworkImage(uploadedFileURL),
                           ),
-                    SizedBox(
-                      width: MediaQuery.of(context).size.width * 0.25,
-                      child: Center(
-                        child: Text(
-                          fullName,
-                          style: TextStyle(fontSize: 14),
+                    Padding(
+                      padding: EdgeInsets.only(left: 3.0),
+                      child: SizedBox(
+                        width: MediaQuery.of(context).size.width > 350
+                            ? MediaQuery.of(context).size.width * 0.25
+                            : MediaQuery.of(context).size.width * 0.18,
+                        child: Center(
+                          child: Text(
+                            fullName,
+                            style: TextStyle(fontSize: 14),
+                          ),
                         ),
                       ),
                     ),
@@ -198,12 +203,17 @@ class _LeaderboardsState extends State<Leaderboards> {
                             : CircleAvatar(
                                 backgroundImage: NetworkImage(uploadedFileURL),
                               ),
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width * 0.25,
-                          child: Center(
-                            child: Text(
-                              fullName,
-                              style: TextStyle(fontSize: 14),
+                        Padding(
+                          padding: EdgeInsets.only(left: 3.0),
+                          child: SizedBox(
+                            width: MediaQuery.of(context).size.width > 350
+                                ? MediaQuery.of(context).size.width * 0.25
+                                : MediaQuery.of(context).size.width * 0.18,
+                            child: Center(
+                              child: Text(
+                                fullName,
+                                style: TextStyle(fontSize: 14),
+                              ),
                             ),
                           ),
                         ),
@@ -265,12 +275,17 @@ class _LeaderboardsState extends State<Leaderboards> {
                                     backgroundImage:
                                         NetworkImage(uploadedFileURL),
                                   ),
-                            SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.25,
-                              child: Center(
-                                child: Text(
-                                  fullName,
-                                  style: TextStyle(fontSize: 14),
+                            Padding(
+                              padding: EdgeInsets.only(left: 3.0),
+                              child: SizedBox(
+                                width: MediaQuery.of(context).size.width > 350
+                                    ? MediaQuery.of(context).size.width * 0.25
+                                    : MediaQuery.of(context).size.width * 0.18,
+                                child: Center(
+                                  child: Text(
+                                    fullName,
+                                    style: TextStyle(fontSize: 14),
+                                  ),
                                 ),
                               ),
                             ),

@@ -172,31 +172,40 @@ class _ResultsState extends State<Results> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
-                GestureDetector(
-                  onTap: () {
-                    Navigator.of(context).push(
-                      PageRouteBuilder(
-                        pageBuilder: (BuildContext context, _, __) {
-                          return Home(
-                            userUID: widget.userUID,
-                            lang: widget.lang,
-                          );
-                        },
-                        transitionsBuilder:
-                            (_, Animation<double> animation, __, Widget child) {
-                          return new FadeTransition(
-                              opacity: animation, child: child);
-                        },
-                      ),
-                    );
-                  },
-                  child: blueButton(
-                      context,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.5,
+                  child: RaisedButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (BuildContext context, _, __) {
+                            return Home(
+                              userUID: widget.userUID,
+                              lang: widget.lang,
+                            );
+                          },
+                          transitionsBuilder: (_, Animation<double> animation,
+                              __, Widget child) {
+                            return new FadeTransition(
+                              opacity: animation,
+                              child: child,
+                            );
+                          },
+                        ),
+                      );
+                    },
+                    textColor: Colors.white,
+                    color: Colors.blue,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20.0),
+                    ),
+                    child: Text(
                       AppLocalizations.of(context).translate('results/sixth'),
-                      MediaQuery.of(context).size.height * 0.3),
+                    ),
+                  ),
                 ),
                 SizedBox(
-                  height: MediaQuery.of(context).size.height * 0.1,
+                  height: MediaQuery.of(context).size.height * 0.08,
                 ),
                 Text(
                   (widget.correctAnswers * (100) / widget.total) > 70.0

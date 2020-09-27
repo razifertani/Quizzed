@@ -100,7 +100,7 @@ ConvexAppBar buildConvexAppBar(
     BuildContext context, int index, String userUID, String lang) {
   return ConvexAppBar(
     backgroundColor: Colors.blue,
-    height: MediaQuery.of(context).size.height * 0.08,
+    height: MediaQuery.of(context).size.height * 0.1,
     items: [
       TabItem(
         icon: Icons.people,
