@@ -11,6 +11,8 @@ import 'package:firebase_storage/firebase_storage.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 
+import 'package:string_validator/string_validator.dart';
+
 class Profile extends StatefulWidget {
   final String userUID;
   final String lang;
@@ -104,7 +106,7 @@ class _ProfileState extends State<Profile> {
                 IconButton(
                   icon: Icon(
                     Icons.settings,
-                    color: Colors.black,
+                    color: Theme.of(context).textTheme.bodyText2.color,
                   ),
                   onPressed: () {
                     Alert(
@@ -237,11 +239,10 @@ class _ProfileState extends State<Profile> {
                     Text(
                       AppLocalizations.of(context)
                           .translate('Profile/eleventh'),
-                      style: TextStyle(
-                        fontSize: 25,
-                        fontWeight: FontWeight.w500,
-                        color: Colors.black87,
-                      ),
+                      style: Theme.of(context).textTheme.bodyText1.copyWith(
+                            fontSize: 25,
+                            fontWeight: FontWeight.w500,
+                          ),
                     ),
                     SizedBox(
                       height: MediaQuery.of(context).size.height * 0.03,
@@ -316,13 +317,8 @@ class _ProfileState extends State<Profile> {
                         onChanged: (value) {
                           fullNameWritten = value;
                         },
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(),
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/twelfth'),
                           labelStyle: TextStyle(
@@ -333,11 +329,7 @@ class _ProfileState extends State<Profile> {
                               ? AppLocalizations.of(context)
                                   .translate('Profile/thirteenth')
                               : fullName,
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
+                          hintStyle: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                     ),
@@ -349,13 +341,8 @@ class _ProfileState extends State<Profile> {
                         onChanged: (value) {
                           emailWritten = value;
                         },
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(),
                           enabled: false,
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/fourteenth'),
@@ -366,11 +353,7 @@ class _ProfileState extends State<Profile> {
                           hintText: '$email ' +
                               AppLocalizations.of(context)
                                   .translate('Profile/fifteenth'),
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
+                          hintStyle: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                     ),
@@ -382,14 +365,9 @@ class _ProfileState extends State<Profile> {
                         onChanged: (value) {
                           passwordWrittern = value;
                         },
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                         obscureText: true,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(),
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/sixteenth'),
                           labelStyle: TextStyle(
@@ -398,11 +376,7 @@ class _ProfileState extends State<Profile> {
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: AppLocalizations.of(context)
                               .translate('Profile/seventeenth'),
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
+                          hintStyle: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                     ),
@@ -414,13 +388,8 @@ class _ProfileState extends State<Profile> {
                         onChanged: (value) {
                           ageWritten = value;
                         },
-                        style: TextStyle(
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.black87,
-                        ),
+                        style: Theme.of(context).textTheme.bodyText1,
                         decoration: InputDecoration(
-                          contentPadding: EdgeInsets.only(),
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/eighteenth'),
                           labelStyle: TextStyle(
@@ -428,11 +397,7 @@ class _ProfileState extends State<Profile> {
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: age,
-                          hintStyle: TextStyle(
-                            fontSize: 16,
-                            fontWeight: FontWeight.bold,
-                            color: Colors.black87,
-                          ),
+                          hintStyle: Theme.of(context).textTheme.bodyText1,
                         ),
                       ),
                     ),
@@ -447,7 +412,9 @@ class _ProfileState extends State<Profile> {
                           height: MediaQuery.of(context).size.height * 0.06,
                           child: RaisedButton(
                             onPressed: () {
-                              if (passwordWrittern == password) {
+                              if (passwordWrittern == password &&
+                                  toDouble(ageWritten) < 100.0 &&
+                                  toDouble(ageWritten) > 0) {
                                 if (fullNameWritten != null) {
                                   fullName = fullNameWritten;
                                 }

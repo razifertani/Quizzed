@@ -1,3 +1,4 @@
+import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
 
@@ -28,7 +29,12 @@ class _SettingsState extends State<Settings> {
       ),
       body: Container(
         child: Center(
-          child: Text('Settings'),
+          child: OutlineButton(
+            child: Text('Settings'),
+            onPressed: () {
+              AdaptiveTheme.of(context).toggleThemeMode();
+            },
+          ),
         ),
       ),
       bottomNavigationBar: buildConvexAppBar(

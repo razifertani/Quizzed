@@ -25,6 +25,7 @@ dependencies:
   image_picker: ^0.6.0+17    
   firebase_storage: ^3.0.3
   string_validator: ^0.1.4
+  adaptive_theme: ^1.0.0
   
   cupertino_icons: ^0.1.3
 

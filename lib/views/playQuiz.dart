@@ -15,14 +15,14 @@ class PlayQuiz extends StatefulWidget {
   final String quizTitle;
   final String imageURL;
 
-  const PlayQuiz(
-      {Key key,
-      @required this.quizId,
-      @required this.userUID,
-      @required this.quizTitle,
-      @required this.imageURL,
-      @required this.lang})
-      : super(key: key);
+  const PlayQuiz({
+    Key key,
+    @required this.quizId,
+    @required this.userUID,
+    @required this.quizTitle,
+    @required this.imageURL,
+    @required this.lang,
+  }) : super(key: key);
 
   @override
   _PlayQuizState createState() => _PlayQuizState();
@@ -211,10 +211,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
         children: <Widget>[
           Text(
             "Q${widget.index + 1}:  ${widget.question.question}",
-            style: TextStyle(
-              fontSize: 18,
-              color: Colors.black87,
-            ),
+            style: Theme.of(context).textTheme.bodyText2,
           ),
           SizedBox(
             height: MediaQuery.of(context).size.height * 0.02,

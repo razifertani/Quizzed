@@ -28,13 +28,6 @@ class _LeaderboardsState extends State<Leaderboards> {
     'Countries Flags',
   ];
   List<String> quizTitless = [];
-  // List<String> quizImages = [
-  //   'https://greateyecare.com/images/blog/africa-2.jpg',
-  //   'https://i.eurosport.com/2020/03/16/2794949-57682990-2560-1440.jpg',
-  //   'https://i.pinimg.com/originals/99/6e/80/996e8096e984f051f6da569e154c8c41.jpg',
-  //   'https://www.riotgames.com/darkroom/1440/b2b587d91d3c5d2922953ac62fbb2cb8:dfd0d5c2d07f981fb8cda29623b5e54e/paris.jpg',
-  //   'https://kids.nationalgeographic.com/content/dam/kidsea/kids-core-objects/backgrounds/1900x1068_herolead_countries.adapt.1900.1.jpg',
-  // ];
   List<String> quizImagess = [];
   List<QuerySnapshot> quizSnapshots = [];
   List<List<Widget>> widgetsLists = [];
@@ -122,12 +115,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                   children: <Widget>[
                     Text(
                       '',
-                      style:
-                          TextStyle(color: Colors.purpleAccent, fontSize: 30),
                     ),
                     uploadedFileURL == null || uploadedFileURL == 'null'
                         ? CircleAvatar(
-                            backgroundColor: Colors.white,
                             backgroundImage: NetworkImage(
                                 'https://cdn.onlinewebfonts.com/svg/img_212915.png'),
                           )
@@ -143,10 +133,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                         child: Center(
                           child: Text(
                             fullName,
-                            style: TextStyle(
-                              fontSize: 14,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.headline1,
                           ),
                         ),
                       ),
@@ -217,10 +204,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                             child: Center(
                               child: Text(
                                 fullName,
-                                style: TextStyle(
-                                  fontSize: 14,
-                                  fontWeight: FontWeight.bold,
-                                ),
+                                style: Theme.of(context).textTheme.headline1,
                               ),
                             ),
                           ),
@@ -292,10 +276,8 @@ class _LeaderboardsState extends State<Leaderboards> {
                                 child: Center(
                                   child: Text(
                                     fullName,
-                                    style: TextStyle(
-                                      fontSize: 14,
-                                      fontWeight: FontWeight.bold,
-                                    ),
+                                    style:
+                                        Theme.of(context).textTheme.headline1,
                                   ),
                                 ),
                               ),
@@ -376,10 +358,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                                     child: Center(
                                       child: Text(
                                         fullName,
-                                        style: TextStyle(
-                                          fontSize: 14,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                        style: Theme.of(context)
+                                            .textTheme
+                                            .headline1,
                                       ),
                                     ),
                                   ),
@@ -464,10 +445,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                                         child: Center(
                                           child: Text(
                                             fullName,
-                                            style: TextStyle(
-                                              fontSize: 14,
-                                              fontWeight: FontWeight.bold,
-                                            ),
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .headline1,
                                           ),
                                         ),
                                       ),
@@ -566,7 +546,7 @@ class QuizCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Card(
       elevation: 30,
-      color: Colors.white,
+      color: Theme.of(context).textTheme.headline2.color,
       child: Column(
         children: [
           Container(
@@ -582,14 +562,12 @@ class QuizCard extends StatelessWidget {
           ),
           Padding(
             padding: EdgeInsets.symmetric(vertical: 18.0),
-            child: Text(
-              title,
-              style: TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.bold,
-                letterSpacing: 1,
-              ),
-            ),
+            child: Text(title,
+                style: Theme.of(context).textTheme.headline1.copyWith(
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1,
+                    )),
           ),
           Column(
             children: <Widget>[

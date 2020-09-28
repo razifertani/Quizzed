@@ -87,7 +87,7 @@ class _OptionTileState extends State<OptionTile> {
                   ? widget.description == widget.correctAnswer
                       ? Colors.green
                       : Colors.red
-                  : Colors.black54,
+                  : Theme.of(context).textTheme.bodyText2.color,
             ),
           ),
         ],

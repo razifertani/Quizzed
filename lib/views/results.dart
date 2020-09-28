@@ -4,7 +4,6 @@ import 'package:QuizzedGame/services/database.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/home.dart';
-import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:string_validator/string_validator.dart';
 
 class Results extends StatefulWidget {
@@ -141,17 +140,22 @@ class _ResultsState extends State<Results> {
                 SizedBox(
                   height: MediaQuery.of(context).size.height * 0.05,
                 ),
-                Text(
-                  (widget.correctAnswers * (100) / widget.total) > 70.0
-                      ? AppLocalizations.of(context).translate('results/first')
-                      : AppLocalizations.of(context)
-                          .translate('results/second'),
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 35,
-                    color: (widget.correctAnswers * (100) / widget.total) > 70.0
-                        ? Colors.green
-                        : Colors.red,
+                Container(
+                  width: MediaQuery.of(context).size.width * 0.8,
+                  child: Text(
+                    (widget.correctAnswers * (100) / widget.total) > 70.0
+                        ? AppLocalizations.of(context)
+                            .translate('results/first')
+                        : AppLocalizations.of(context)
+                            .translate('results/second'),
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 35,
+                      color:
+                          (widget.correctAnswers * (100) / widget.total) > 70.0
+                              ? Colors.green
+                              : Colors.red,
+                    ),
                   ),
                 ),
                 SizedBox(
@@ -173,8 +177,8 @@ class _ResultsState extends State<Results> {
                   height: MediaQuery.of(context).size.height * 0.1,
                 ),
                 Container(
-                  width: MediaQuery.of(context).size.width * 0.5,
-                  height: MediaQuery.of(context).size.width * 0.12,
+                  width: MediaQuery.of(context).size.width * 0.7,
+                  height: MediaQuery.of(context).size.height * 0.09,
                   child: RaisedButton(
                     onPressed: () {
                       Navigator.of(context).push(
