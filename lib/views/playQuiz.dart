@@ -184,8 +184,9 @@ class _PlayQuizState extends State<PlayQuiz>
           : CustomScrollView(
               slivers: [
                 SliverAppBar(
-                  backgroundColor: Colors.white,
+                  backgroundColor: Theme.of(context).backgroundColor,
                   expandedHeight: MediaQuery.of(context).size.height * 0.12,
+                  automaticallyImplyLeading: false,
                   flexibleSpace: FlexibleSpaceBar(
                     title: Countdown(
                       animation: StepTween(
