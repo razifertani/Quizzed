@@ -415,9 +415,7 @@ class _ProfileState extends State<Profile> {
                           height: MediaQuery.of(context).size.height * 0.06,
                           child: RaisedButton(
                             onPressed: () {
-                              if (passwordWrittern == password &&
-                                  toDouble(ageWritten) < 100.0 &&
-                                  toDouble(ageWritten) > 0) {
+                              if (passwordWrittern == password) {
                                 if (fullNameWritten != null) {
                                   fullName = fullNameWritten;
                                 }
