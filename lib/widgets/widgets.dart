@@ -103,25 +103,30 @@ ConvexAppBar buildConvexAppBar(
     height: MediaQuery.of(context).size.height * 0.09,
     items: [
       TabItem(
-        icon: Icons.people,
-        title: AppLocalizations.of(context).translate('Widgets/first'),
-      ),
+          icon: Icons.people,
+          title: MediaQuery.of(context).size.width > 450
+              ? AppLocalizations.of(context).translate('Widgets/first')
+              : ''),
       TabItem(
-        icon: Icons.list,
-        title: AppLocalizations.of(context).translate('Widgets/second'),
-      ),
+          icon: Icons.list,
+          title: MediaQuery.of(context).size.width > 450
+              ? AppLocalizations.of(context).translate('Widgets/second')
+              : ''),
       TabItem(
-        icon: Icons.home,
-        title: AppLocalizations.of(context).translate('Widgets/third'),
-      ),
+          icon: Icons.home,
+          title: MediaQuery.of(context).size.width > 450
+              ? AppLocalizations.of(context).translate('Widgets/third')
+              : ''),
       TabItem(
-        icon: Icons.history,
-        title: AppLocalizations.of(context).translate('Widgets/fourth'),
-      ),
+          icon: Icons.history,
+          title: MediaQuery.of(context).size.width > 450
+              ? AppLocalizations.of(context).translate('Widgets/fourth')
+              : ''),
       TabItem(
-        icon: Icons.settings,
-        title: AppLocalizations.of(context).translate('Widgets/fifth'),
-      ),
+          icon: Icons.settings,
+          title: MediaQuery.of(context).size.width > 450
+              ? AppLocalizations.of(context).translate('Widgets/fifth')
+              : ''),
     ],
     initialActiveIndex: index,
     onTap: (int i) {

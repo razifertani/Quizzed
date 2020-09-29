@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/signin.dart';
-import 'package:QuizzedGame/widgets/widgets.dart';
 import 'package:rflutter_alert/rflutter_alert.dart';
 import 'package:string_validator/string_validator.dart';
 

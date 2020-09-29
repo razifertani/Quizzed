@@ -1,6 +1,9 @@
+import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
+import 'package:settings_ui/settings_ui.dart';
+import 'package:system_settings/system_settings.dart';
 
 class Settings extends StatefulWidget {
   final String userUID;
@@ -15,6 +18,7 @@ class Settings extends StatefulWidget {
 class _SettingsState extends State<Settings> {
   bool isLoading = false;
   String userUID;
+  bool _leadingSwitchValue = true;
 
   @override
   Widget build(BuildContext context) {
@@ -27,15 +31,55 @@ class _SettingsState extends State<Settings> {
         brightness: Brightness.light,
         automaticallyImplyLeading: false,
       ),
-      body: Container(
-        child: Center(
-          child: OutlineButton(
-            child: Text('Settings'),
-            onPressed: () {
-              AdaptiveTheme.of(context).toggleThemeMode();
-            },
+      body: Column(
+        children: [
+          SettingsSection(
+            title: AppLocalizations.of(context).translate('settings/first'),
+            tiles: [
+              SettingsTile(
+                title: 'Language',
+                subtitle: AppLocalizations.of(context).translate('Lang'),
+                leading: Icon(Icons.language),
+                onTap: () {
+                  SystemSettings.locale();
+                },
+              ),
+              SettingsTile.switchTile(
+                title: 'Light Mode / Dark Mode',
+                leading: Icon(Icons.fingerprint),
+                switchValue: _leadingSwitchValue,
+                onToggle: (bool value) {
+                  setState(() {
+                    _leadingSwitchValue = value;
+                    AdaptiveTheme.of(context).toggleThemeMode();
+                  });
+                },
+              ),
+            ],
           ),
-        ),
+          SettingsSection(
+            title: 'Section',
+            tiles: [
+              SettingsTile(
+                title: 'Language',
+                subtitle: 'English',
+                leading: Icon(Icons.language),
+                onTap: () {},
+              ),
+              SettingsTile.switchTile(
+                title: 'Light Mode / Dark Mode',
+                leading: Icon(Icons.fingerprint),
+                switchValue: _leadingSwitchValue,
+                onToggle: (bool value) {
+                  setState(() {
+                    value == true ? value = false : value = true;
+                    AdaptiveTheme.of(context).toggleThemeMode();
+                  });
+                },
+              ),
+            ],
+          ),
+        ],
       ),
       bottomNavigationBar: buildConvexAppBar(
         context,

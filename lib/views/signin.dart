@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/signup.dart';
-import 'package:QuizzedGame/widgets/widgets.dart';
 
 class SignIn extends StatefulWidget {
   final String lang;

@@ -113,6 +113,9 @@ class _ProfileState extends State<Profile> {
                       context: context,
                       title: AppLocalizations.of(context)
                           .translate('Profile/first'),
+                      style: AlertStyle(
+                        titleStyle: Theme.of(context).textTheme.headline1,
+                      ),
                       content: Column(
                         children: <Widget>[
                           TextField(

@@ -1,5 +1,6 @@
 {
     "lang": "ar",
+    "Lang": "العربية",
 
     "Landing/first": "جميع الحقوق محفوظة ®",
     "Landing/second": "لا يوجد اتصال بالإنترنت !",
@@ -66,6 +67,8 @@
     "Profile/twenty-first" : "تسجيل",
 
     "playQuiz/first" : "لا توجد أسئلة !" ,
+    "playQuiz/second" : "انتهى الوقت !",
+    "playQuiz/third" : "النتائج",
 
     "results/first" : "تهانينا ! \n لقد نجحت في الاختبار",
     "results/second" : "للأسف ! \n لقد فشلت في الامتحان",
@@ -73,5 +76,8 @@
     "results/fourth" : " إجابات من ",
     "results/fifth" : " بشكل صحيح !",
     "results/sixth" : "عودة للصفحة الرئيسية",
-    "results/seventh" : "يمكنك إعادة الاختبار في أي وقت \n آمل أن تنجح في المرة القادمة!"
+    "results/seventh" : "يمكنك إعادة الاختبار في أي وقت \n آمل أن تنجح في المرة القادمة!",
+
+    "settings/first": "إعدادات"
+
 }

@@ -1,5 +1,6 @@
 {
     "lang": "fr",
+    "Lang": "Français",
 
     "Landing/first": "Tous droits réservés ®",
     "Landing/second": "Pas de connection internet !",
@@ -66,12 +67,18 @@
     "Profile/twenty-first" : "Enregistrer",
 
     "playQuiz/first" : "Pas de questions" ,
-
+    "playQuiz/second" : "PAS PLUS DE TEMPS !",
+    "playQuiz/third" : "Voir les resultas",
+    
     "results/first" : "Bravo ! \nVous avez réussi le quiz",
     "results/second" : "Dommage ! \nVous n'avez pas réussi le quiz",
     "results/third" : "Vous avez répondu à ",
     "results/fourth" : " réponses de ",
     "results/fifth" : " correctement !",
     "results/sixth" : "Revenir à l'écran d'acceuil",
-    "results/seventh" : "Vous pouvez repasser le quiz quand vous voulez\nEspérons que vous réussisez la prochaine fois !"
+    "results/seventh" : "Vous pouvez repasser le quiz quand vous voulez\nEspérons que vous réussisez la prochaine fois !",
+
+    "settings/first": "Réglages"
+
+    
 }

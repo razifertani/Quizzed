@@ -7,6 +7,7 @@ import 'package:QuizzedGame/models/question.dart';
 import 'package:QuizzedGame/services/database.dart';
 import 'package:QuizzedGame/views/results.dart';
 import 'package:QuizzedGame/widgets/widgets.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class PlayQuiz extends StatefulWidget {
   final String userUID;
@@ -37,6 +38,8 @@ class _PlayQuizState extends State<PlayQuiz>
   QuerySnapshot questionSnapshot;
   final dataBaseService = locator.get<DataBaseService>();
   bool isLoading = true;
+  AnimationController _controller;
+  bool clock = false;
 
   @override
   void initState() {
@@ -69,6 +72,60 @@ class _PlayQuizState extends State<PlayQuiz>
         total = questionSnapshot.documents.length;
       });
     }
+
+    _controller = AnimationController(
+      vsync: this,
+      duration: Duration(
+        minutes: 3,
+      ),
+    );
+    _controller.forward();
+
+    Timer(Duration(minutes: 3), () {
+      setState(() {
+        clock = true;
+        Alert(
+          context: context,
+          title: AppLocalizations.of(context).translate('playQuiz/second'),
+          style: AlertStyle(
+            titleStyle: Theme.of(context).textTheme.bodyText1,
+          ),
+          buttons: [
+            DialogButton(
+              onPressed: () {
+                Navigator.of(context).push(
+                  PageRouteBuilder(
+                    pageBuilder: (BuildContext context, _, __) {
+                      return Results(
+                        correctAnswers: _correct,
+                        total: total,
+                        userUID: widget.userUID,
+                        quizId: widget.quizId,
+                        quizTitle: widget.quizTitle,
+                        quizResult: '${(_correct * 100) / total}',
+                        imageURL: widget.imageURL,
+                        lang: widget.lang,
+                      );
+                    },
+                    transitionsBuilder:
+                        (_, Animation<double> animation, __, Widget child) {
+                      return FadeTransition(opacity: animation, child: child);
+                    },
+                  ),
+                );
+              },
+              child: Text(
+                AppLocalizations.of(context).translate('playQuiz/third'),
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ).show();
+      });
+    });
+
     super.initState();
   }
 
@@ -91,7 +148,9 @@ class _PlayQuizState extends State<PlayQuiz>
     questionModel.option3 = options[2];
     questionModel.option4 = options[3];
     questionModel.correctAnwser = questionSnapshot.data["correctanswer"];
-    questionModel.answered = false;
+    clock == true
+        ? questionModel.answered = true
+        : questionModel.answered = false;
 
     return questionModel;
   }
@@ -116,49 +175,72 @@ class _PlayQuizState extends State<PlayQuiz>
         title: Image.asset('Assets/appBar.png'),
         centerTitle: true,
         backgroundColor: Colors.transparent,
-        elevation: 0.0,
+        elevation: 0,
         brightness: Brightness.light,
         automaticallyImplyLeading: false,
       ),
       body: isLoading
           ? waiting()
-          : SingleChildScrollView(
-              child: Container(
-                child: Column(
-                  children: <Widget>[
-                    questionSnapshot.documents.length == 0
-                        ? Container(
-                            height: MediaQuery.of(context).size.height * 0.80,
-                            width: MediaQuery.of(context).size.width,
-                            child: Center(
-                              child: Text(
-                                AppLocalizations.of(context)
-                                    .translate('playQuiz/first'),
-                              ),
-                            ),
-                          )
-                        : ListView.builder(
-                            padding: EdgeInsets.symmetric(
-                              horizontal:
-                                  MediaQuery.of(context).size.width * 0.05,
-                              vertical:
-                                  MediaQuery.of(context).size.height * 0.02,
-                            ),
-                            shrinkWrap: true,
-                            physics: ClampingScrollPhysics(),
-                            itemCount: questionSnapshot.documents.length,
-                            itemBuilder: (context, index) {
-                              return QuizzPlay(
-                                question: getQuestionModelFromDatasnapshot(
-                                  questionSnapshot.documents[index],
-                                ),
-                                index: index,
-                              );
-                            },
-                          ),
-                  ],
+          : CustomScrollView(
+              slivers: [
+                SliverAppBar(
+                  backgroundColor: Colors.white,
+                  expandedHeight: MediaQuery.of(context).size.height * 0.12,
+                  flexibleSpace: FlexibleSpaceBar(
+                    title: Countdown(
+                      animation: StepTween(
+                        begin: 180,
+                        end: 0,
+                      ).animate(_controller),
+                    ),
+                    centerTitle: true,
+                  ),
                 ),
-              ),
+                SliverFillRemaining(
+                  child: SingleChildScrollView(
+                    child: Container(
+                      child: Column(
+                        children: <Widget>[
+                          questionSnapshot.documents.length == 0
+                              ? Container(
+                                  height:
+                                      MediaQuery.of(context).size.height * 0.80,
+                                  width: MediaQuery.of(context).size.width,
+                                  child: Center(
+                                    child: Text(
+                                      AppLocalizations.of(context)
+                                          .translate('playQuiz/first'),
+                                    ),
+                                  ),
+                                )
+                              : ListView.builder(
+                                  padding: EdgeInsets.symmetric(
+                                    horizontal:
+                                        MediaQuery.of(context).size.width *
+                                            0.05,
+                                    vertical:
+                                        MediaQuery.of(context).size.height *
+                                            0.02,
+                                  ),
+                                  shrinkWrap: true,
+                                  physics: ClampingScrollPhysics(),
+                                  itemCount: questionSnapshot.documents.length,
+                                  itemBuilder: (context, index) {
+                                    return QuizzPlay(
+                                      question:
+                                          getQuestionModelFromDatasnapshot(
+                                        questionSnapshot.documents[index],
+                                      ),
+                                      index: index,
+                                    );
+                                  },
+                                ),
+                        ],
+                      ),
+                    ),
+                  ),
+                ),
+              ],
             ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
@@ -188,6 +270,12 @@ class _PlayQuizState extends State<PlayQuiz>
         },
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
   }
 }
 
@@ -347,6 +435,28 @@ class _QuizzPlayState extends State<QuizzPlay> {
             ],
           ),
         ],
+      ),
+    );
+  }
+}
+
+// ignore: must_be_immutable
+class Countdown extends AnimatedWidget {
+  Countdown({Key key, this.animation}) : super(key: key, listenable: animation);
+  Animation<int> animation;
+
+  @override
+  Widget build(BuildContext context) {
+    Duration clockTimer = Duration(seconds: animation.value);
+
+    String timerText =
+        '${clockTimer.inMinutes.remainder(60).toString()}:${(clockTimer.inSeconds.remainder(60) % 60).toString().padLeft(2, '0')}';
+
+    return Text(
+      "$timerText",
+      style: TextStyle(
+        fontSize: MediaQuery.of(context).size.height * 0.05,
+        color: Theme.of(context).primaryColor,
       ),
     );
   }

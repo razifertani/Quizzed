@@ -1,5 +1,6 @@
 {
     "lang": "en",
+    "Lang": "English",
 
     "Landing/first": "All Rights Reserved ®",
     "Landing/second": "No internet connection !",
@@ -65,7 +66,9 @@
     "Profile/twentieth" : "Incorrect Password !",
     "Profile/twenty-first" : "SAVE",
 
-    "playQuiz/first" : "No questions !" ,
+    "playQuiz/first" : "No questions !",
+    "playQuiz/second" : "TIME IS OVER !",
+    "playQuiz/third" : "Go to the results",
 
     "results/first" : "Congratulations ! \nYou passed the quiz",
     "results/second" : "Unfortunately ! \nYou failed the exam",
@@ -73,5 +76,8 @@
     "results/fourth" : " answers from ",
     "results/fifth" : " correctly !",
     "results/sixth" : "Go to home",
-    "results/seventh" : "You can retake the quiz at any time\nHope you pass it next time !"
+    "results/seventh" : "You can retake the quiz at any time\nHope you pass it next time !",
+
+    "settings/first": "Settings"
+
 }
