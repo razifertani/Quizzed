@@ -78,7 +78,17 @@
     "results/sixth" : "Revenir à l'écran d'acceuil",
     "results/seventh" : "Vous pouvez repasser le quiz quand vous voulez\nEspérons que vous réussisez la prochaine fois !",
 
-    "settings/first": "Réglages"
-
-    
+    "settings/first": "Réglages",
+    "settings/second": "Qu'est ce qui s'est passé ?",
+    "settings/third": "Envoyer",
+    "settings/fourth": "Signaler un problème",
+    "settings/fifth": "Message envoyé avec succès",
+    "settings/sixth": "Langue",
+    "settings/seventh": "Mode lumière / mode sombre",
+    "settings/eighth": "Retour",
+    "settings/ninth": "Signaler un bug",
+    "settings/tenth": "Vous aimez le jeu ?",
+    "settings/eleventh": "Notez-le sur Playstore",
+    "settings/twelfth": "Contactez le développeur",
+    "settings/thirteenth": "Nous contacter"
 }

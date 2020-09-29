@@ -78,6 +78,17 @@
     "results/sixth" : "Go to home",
     "results/seventh" : "You can retake the quiz at any time\nHope you pass it next time !",
 
-    "settings/first": "Settings"
-
+    "settings/first": "Settings",
+    "settings/second": "What went wrong ?",
+    "settings/third": "Send",
+    "settings/fourth": "Report a problem",
+    "settings/fifth": "Message sent successfully",
+    "settings/sixth": "Language",
+    "settings/seventh": "Light Mode / Dark Mode",
+    "settings/eighth": "Feedback",
+    "settings/ninth": "Report a bug",
+    "settings/tenth": "Enjoying the game ?",
+    "settings/eleventh": "Note it on Playstore",
+    "settings/twelfth": "Contact the developer",
+    "settings/thirteenth": "Contact us"
 }

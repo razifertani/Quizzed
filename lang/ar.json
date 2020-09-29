@@ -78,6 +78,18 @@
     "results/sixth" : "عودة للصفحة الرئيسية",
     "results/seventh" : "يمكنك إعادة الاختبار في أي وقت \n آمل أن تنجح في المرة القادمة!",
 
-    "settings/first": "إعدادات"
-
+    "settings/first": "إعدادات",
+    "settings/second": "ماذا حصل ؟",
+    "settings/third": "إرسال",
+    "settings/fourth": "الإبلاغ عن مشكلة",
+    "settings/fifth": "تم ارسال الرسالة بنجاح",
+    "settings/sixth": "اللغة",
+    "settings/seventh": "وضع الضوء / الوضع الداكن",
+    "settings/eighth": "المراجعات",
+    "settings/ninth": "الإبلاغ عن خطأ",
+    "settings/tenth": "هل تستمتع باللعبة ؟",
+    "settings/eleventh": "لاحظ ذلك في المتجر",
+    "settings/twelfth": "اتصل بالمطور",
+    "settings/thirteenth": "اتصل بنا"
+    
 }

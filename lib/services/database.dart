@@ -203,4 +203,17 @@ class DataBaseService {
   getLeaderboards() async {
     return Firestore.instance.collection('Leaderboards').snapshots();
   }
+
+  Future<void> addBug(Map bugData, String userId) async {
+    await Firestore.instance
+        .collection("Bugs")
+        .document(userId)
+        .collection('Bugs')
+        .add(bugData)
+        .catchError(
+      (e) {
+        print(e.toString());
+      },
+    );
+  }
 }
