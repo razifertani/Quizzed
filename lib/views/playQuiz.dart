@@ -185,67 +185,73 @@ class _PlayQuizState extends State<PlayQuiz>
       ),
       body: isLoading
           ? waiting()
-          : CustomScrollView(
-              slivers: [
-                SliverAppBar(
-                  backgroundColor: Theme.of(context).backgroundColor,
-                  expandedHeight: MediaQuery.of(context).size.height * 0.12,
-                  automaticallyImplyLeading: false,
-                  flexibleSpace: FlexibleSpaceBar(
-                    title: Countdown(
-                      animation: StepTween(
-                        begin: 180,
-                        end: 0,
-                      ).animate(_controller),
+          : WillPopScope(
+              onWillPop: () {
+                return null;
+              },
+              child: CustomScrollView(
+                slivers: [
+                  SliverAppBar(
+                    backgroundColor: Theme.of(context).backgroundColor,
+                    expandedHeight: MediaQuery.of(context).size.height * 0.12,
+                    automaticallyImplyLeading: false,
+                    flexibleSpace: FlexibleSpaceBar(
+                      title: Countdown(
+                        animation: StepTween(
+                          begin: 180,
+                          end: 0,
+                        ).animate(_controller),
+                      ),
+                      centerTitle: true,
                     ),
-                    centerTitle: true,
                   ),
-                ),
-                SliverFillRemaining(
-                  child: SingleChildScrollView(
-                    child: Container(
-                      child: Column(
-                        children: <Widget>[
-                          questionSnapshot.documents.length == 0
-                              ? Container(
-                                  height:
-                                      MediaQuery.of(context).size.height * 0.80,
-                                  width: MediaQuery.of(context).size.width,
-                                  child: Center(
-                                    child: Text(
-                                      AppLocalizations.of(context)
-                                          .translate('playQuiz/first'),
-                                    ),
-                                  ),
-                                )
-                              : ListView.builder(
-                                  padding: EdgeInsets.symmetric(
-                                    horizontal:
-                                        MediaQuery.of(context).size.width *
-                                            0.05,
-                                    vertical:
-                                        MediaQuery.of(context).size.height *
-                                            0.02,
-                                  ),
-                                  shrinkWrap: true,
-                                  physics: ClampingScrollPhysics(),
-                                  itemCount: questionSnapshot.documents.length,
-                                  itemBuilder: (context, index) {
-                                    return QuizzPlay(
-                                      question:
-                                          getQuestionModelFromDatasnapshot(
-                                        questionSnapshot.documents[index],
+                  SliverFillRemaining(
+                    child: SingleChildScrollView(
+                      child: Container(
+                        child: Column(
+                          children: <Widget>[
+                            questionSnapshot.documents.length == 0
+                                ? Container(
+                                    height: MediaQuery.of(context).size.height *
+                                        0.80,
+                                    width: MediaQuery.of(context).size.width,
+                                    child: Center(
+                                      child: Text(
+                                        AppLocalizations.of(context)
+                                            .translate('playQuiz/first'),
                                       ),
-                                      index: index,
-                                    );
-                                  },
-                                ),
-                        ],
+                                    ),
+                                  )
+                                : ListView.builder(
+                                    padding: EdgeInsets.symmetric(
+                                      horizontal:
+                                          MediaQuery.of(context).size.width *
+                                              0.05,
+                                      vertical:
+                                          MediaQuery.of(context).size.height *
+                                              0.02,
+                                    ),
+                                    shrinkWrap: true,
+                                    physics: ClampingScrollPhysics(),
+                                    itemCount:
+                                        questionSnapshot.documents.length,
+                                    itemBuilder: (context, index) {
+                                      return QuizzPlay(
+                                        question:
+                                            getQuestionModelFromDatasnapshot(
+                                          questionSnapshot.documents[index],
+                                        ),
+                                        index: index,
+                                      );
+                                    },
+                                  ),
+                          ],
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
       floatingActionButton: FloatingActionButton(
         child: Icon(
