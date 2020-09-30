@@ -82,48 +82,52 @@ class _PlayQuizState extends State<PlayQuiz>
     _controller.forward();
 
     Timer(Duration(minutes: 3), () {
-      setState(() {
-        clock = true;
-        Alert(
-          context: context,
-          title: AppLocalizations.of(context).translate('playQuiz/second'),
-          style: AlertStyle(
-            titleStyle: Theme.of(context).textTheme.bodyText1,
-          ),
-          buttons: [
-            DialogButton(
-              onPressed: () {
-                Navigator.of(context).push(
-                  PageRouteBuilder(
-                    pageBuilder: (BuildContext context, _, __) {
-                      return Results(
-                        correctAnswers: _correct,
-                        total: total,
-                        userUID: widget.userUID,
-                        quizId: widget.quizId,
-                        quizTitle: widget.quizTitle,
-                        quizResult: '${(_correct * 100) / total}',
-                        imageURL: widget.imageURL,
-                        lang: widget.lang,
+      clock == false
+          ? setState(() {
+              clock = true;
+              Alert(
+                context: context,
+                title:
+                    AppLocalizations.of(context).translate('playQuiz/second'),
+                style: AlertStyle(
+                  titleStyle: Theme.of(context).textTheme.bodyText1,
+                ),
+                buttons: [
+                  DialogButton(
+                    onPressed: () {
+                      Navigator.of(context).push(
+                        PageRouteBuilder(
+                          pageBuilder: (BuildContext context, _, __) {
+                            return Results(
+                              correctAnswers: _correct,
+                              total: total,
+                              userUID: widget.userUID,
+                              quizId: widget.quizId,
+                              quizTitle: widget.quizTitle,
+                              quizResult: '${(_correct * 100) / total}',
+                              imageURL: widget.imageURL,
+                              lang: widget.lang,
+                            );
+                          },
+                          transitionsBuilder: (_, Animation<double> animation,
+                              __, Widget child) {
+                            return FadeTransition(
+                                opacity: animation, child: child);
+                          },
+                        ),
                       );
                     },
-                    transitionsBuilder:
-                        (_, Animation<double> animation, __, Widget child) {
-                      return FadeTransition(opacity: animation, child: child);
-                    },
+                    child: Text(
+                      AppLocalizations.of(context).translate('playQuiz/third'),
+                      style: TextStyle(
+                        color: Colors.white,
+                      ),
+                    ),
                   ),
-                );
-              },
-              child: Text(
-                AppLocalizations.of(context).translate('playQuiz/third'),
-                style: TextStyle(
-                  color: Colors.white,
-                ),
-              ),
-            ),
-          ],
-        ).show();
-      });
+                ],
+              ).show();
+            })
+          : null;
     });
 
     super.initState();
@@ -248,6 +252,7 @@ class _PlayQuizState extends State<PlayQuiz>
           Icons.check,
         ),
         onPressed: () {
+          clock = true;
           Navigator.of(context).push(
             new PageRouteBuilder(
               pageBuilder: (BuildContext context, _, __) {
@@ -457,7 +462,19 @@ class Countdown extends AnimatedWidget {
       "$timerText",
       style: TextStyle(
         fontSize: MediaQuery.of(context).size.height * 0.05,
-        color: Theme.of(context).primaryColor,
+        color: timerText == '0:10' ||
+                // timerText == '0:09' ||
+                timerText == '0:08' ||
+                // timerText == '0:07' ||
+                timerText == '0:06' ||
+                // timerText == '0:05' ||
+                timerText == '0:04' ||
+                // timerText == '0:03' ||
+                timerText == '0:02' ||
+                // timerText == '0:01' ||
+                timerText == '0:00'
+            ? Colors.red
+            : Theme.of(context).primaryColor,
       ),
     );
   }
