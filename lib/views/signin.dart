@@ -187,7 +187,7 @@ class _SignInState extends State<SignIn> {
                               ),
                             ),
                           ),
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               Navigator.of(context).push(
                                 new PageRouteBuilder(

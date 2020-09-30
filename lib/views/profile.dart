@@ -232,7 +232,7 @@ class _ProfileState extends State<Profile> {
                 horizontal: MediaQuery.of(context).size.width * 0.06,
                 vertical: MediaQuery.of(context).size.height * 0.02,
               ),
-              child: GestureDetector(
+              child: InkWell(
                 onTap: () {
                   FocusScope.of(context).unfocus();
                 },

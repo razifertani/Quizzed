@@ -324,7 +324,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         if (!widget.question.answered) {
                           if (widget.question.option1 ==
@@ -349,7 +349,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                         optionSelected: optionSelected,
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         if (!widget.question.answered) {
                           if (widget.question.option2 ==
@@ -374,7 +374,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                         optionSelected: optionSelected,
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         if (!widget.question.answered) {
                           if (widget.question.option3 ==
@@ -399,7 +399,7 @@ class _QuizzPlayState extends State<QuizzPlay> {
                         optionSelected: optionSelected,
                       ),
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         if (!widget.question.answered) {
                           if (widget.question.option4 ==

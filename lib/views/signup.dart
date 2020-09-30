@@ -232,7 +232,7 @@ class _SignUpState extends State<SignUp> {
                               ),
                             ),
                           ),
-                          GestureDetector(
+                          InkWell(
                             onTap: () {
                               Navigator.of(context).push(
                                 new PageRouteBuilder(
