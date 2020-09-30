@@ -30,6 +30,7 @@ class _ProfileState extends State<Profile> {
   String uid, fullName, email, password, age, uploadedFileURL;
   String fullNameWritten, emailWritten, passwordWrittern, ageWritten;
   String oldPassword, newPassword, newnewPassword;
+  bool obscure = true;
 
   @override
   void initState() {
@@ -367,8 +368,16 @@ class _ProfileState extends State<Profile> {
                           passwordWrittern = value;
                         },
                         style: Theme.of(context).textTheme.bodyText1,
-                        obscureText: true,
+                        obscureText: obscure,
                         decoration: InputDecoration(
+                          suffixIcon: IconButton(
+                            icon: Icon(Icons.remove_red_eye),
+                            onPressed: () {
+                              setState(() {
+                                obscure = !obscure;
+                              });
+                            },
+                          ),
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/sixteenth'),
                           labelStyle: TextStyle(
