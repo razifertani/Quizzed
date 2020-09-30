@@ -99,7 +99,7 @@ class _OptionTileState extends State<OptionTile> {
 ConvexAppBar buildConvexAppBar(
     BuildContext context, int index, String userUID, String lang) {
   return ConvexAppBar(
-    backgroundColor: Colors.blue,
+    backgroundColor: Theme.of(context).primaryColor,
     height: MediaQuery.of(context).size.height * 0.09,
     items: [
       TabItem(

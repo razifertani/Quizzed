@@ -59,7 +59,7 @@ class _LandingState extends State<Landing> {
         Container(
           width: MediaQuery.of(context).size.width,
           height: MediaQuery.of(context).size.height,
-          color: Colors.blue,
+          color: Theme.of(context).primaryColor,
           child: Image.asset(
             'Assets/logo.jpg',
             fit: BoxFit.fitWidth,
@@ -109,7 +109,7 @@ class _LandingState extends State<Landing> {
                           checkConnectivity();
                         },
                         elevation: 15,
-                        color: Colors.blue,
+                        color: Theme.of(context).primaryColor,
                         child: Text(
                           AppLocalizations.of(context)
                               .translate('Landing/third'),

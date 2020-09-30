@@ -77,7 +77,10 @@
     "results/fifth" : " بشكل صحيح !",
     "results/sixth" : "عودة للصفحة الرئيسية",
     "results/seventh" : "يمكنك إعادة الاختبار في أي وقت \n آمل أن تنجح في المرة القادمة!",
-
+    "results/eighth" : "لقد نجحت في الاختبار ",
+    "results/ninth" : " ب ",
+    "results/tenth" : "%, \nهل تستطيع هزيمتي ؟",
+    
     "settings/first": "إعدادات",
     "settings/second": "ماذا حصل ؟",
     "settings/third": "إرسال",

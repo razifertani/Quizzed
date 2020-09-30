@@ -77,7 +77,10 @@
     "results/fifth" : " correctly !",
     "results/sixth" : "Go to home",
     "results/seventh" : "You can retake the quiz at any time\nHope you pass it next time !",
-
+    "results/eighth" : "I passed the ",
+    "results/ninth" : " quiz with ",
+    "results/tenth" : "%, \nCan you beat my score ?",
+    
     "settings/first": "Settings",
     "settings/second": "What went wrong ?",
     "settings/third": "Send",

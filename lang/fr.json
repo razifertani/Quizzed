@@ -77,7 +77,10 @@
     "results/fifth" : " correctement !",
     "results/sixth" : "Revenir à l'écran d'acceuil",
     "results/seventh" : "Vous pouvez repasser le quiz quand vous voulez\nEspérons que vous réussisez la prochaine fois !",
-
+    "results/eighth" : "J'ai réussi le quiz ",
+    "results/ninth" : " avec ",
+    "results/tenth" : "%, \nPouvez-vous battre mon score ?",
+    
     "settings/first": "Réglages",
     "settings/second": "Qu'est ce qui s'est passé ?",
     "settings/third": "Envoyer",

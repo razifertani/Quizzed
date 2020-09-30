@@ -289,7 +289,7 @@ class _ProfileState extends State<Profile> {
                                       MediaQuery.of(context).size.width * 0.01,
                                   color: Colors.white,
                                 ),
-                                color: Colors.blue,
+                                color: Theme.of(context).primaryColor,
                               ),
                               child: IconButton(
                                 padding: EdgeInsets.only(
@@ -325,7 +325,7 @@ class _ProfileState extends State<Profile> {
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/twelfth'),
                           labelStyle: TextStyle(
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: fullName == "null"
@@ -350,7 +350,7 @@ class _ProfileState extends State<Profile> {
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/fourteenth'),
                           labelStyle: TextStyle(
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: '$email ' +
@@ -374,7 +374,7 @@ class _ProfileState extends State<Profile> {
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/sixteenth'),
                           labelStyle: TextStyle(
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: AppLocalizations.of(context)
@@ -396,7 +396,7 @@ class _ProfileState extends State<Profile> {
                           labelText: AppLocalizations.of(context)
                               .translate('Profile/eighteenth'),
                           labelStyle: TextStyle(
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                           ),
                           floatingLabelBehavior: FloatingLabelBehavior.always,
                           hintText: age,
@@ -478,7 +478,7 @@ class _ProfileState extends State<Profile> {
                                 );
                               }
                             },
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                             padding: EdgeInsets.symmetric(
                               horizontal:
                                   MediaQuery.of(context).size.width * 0.13,

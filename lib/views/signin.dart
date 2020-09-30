@@ -159,7 +159,7 @@ class _SignInState extends State<SignIn> {
                             signIn();
                           },
                           textColor: Colors.white,
-                          color: Colors.blue,
+                          color: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),

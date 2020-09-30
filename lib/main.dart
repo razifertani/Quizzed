@@ -81,7 +81,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      initial: AdaptiveThemeMode.dark,
+      initial: AdaptiveThemeMode.light,
       builder: (theme, darkTheme) => MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Quiz Game',

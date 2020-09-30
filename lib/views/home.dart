@@ -116,7 +116,7 @@ class _HomeState extends State<Home> {
             icon: Icon(
               Icons.exit_to_app,
               size: 30.0,
-              color: Colors.blue,
+              color: Theme.of(context).primaryColor,
             ),
             onPressed: () {
               showDialog(

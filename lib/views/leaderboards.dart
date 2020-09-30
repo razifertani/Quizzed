@@ -103,7 +103,7 @@ class _LeaderboardsState extends State<Leaderboards> {
           Column(
             children: [
               Container(
-                color: Colors.blue,
+                color: Theme.of(context).primaryColor,
                 height: 1,
                 width: MediaQuery.of(context).size.width * 0.6,
               ),
@@ -149,7 +149,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                         ),
                       ),
                       decoration: BoxDecoration(
-                        color: Colors.blue,
+                        color: Theme.of(context).primaryColor,
                         borderRadius: BorderRadius.circular(20),
                       ),
                     ),
@@ -171,7 +171,7 @@ class _LeaderboardsState extends State<Leaderboards> {
               Column(
                 children: [
                   Container(
-                    color: Colors.blue,
+                    color: Theme.of(context).primaryColor,
                     height: 1,
                     width: MediaQuery.of(context).size.width * 0.6,
                   ),
@@ -220,7 +220,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                             ),
                           ),
                           decoration: BoxDecoration(
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                             borderRadius: BorderRadius.circular(20),
                           ),
                         ),
@@ -242,7 +242,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                   Column(
                     children: [
                       Container(
-                        color: Colors.blue,
+                        color: Theme.of(context).primaryColor,
                         height: 1,
                         width: MediaQuery.of(context).size.width * 0.6,
                       ),
@@ -293,7 +293,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                                 ),
                               ),
                               decoration: BoxDecoration(
-                                color: Colors.blue,
+                                color: Theme.of(context).primaryColor,
                                 borderRadius: BorderRadius.circular(20),
                               ),
                             ),
@@ -315,7 +315,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                       Column(
                         children: [
                           Container(
-                            color: Colors.blue,
+                            color: Theme.of(context).primaryColor,
                             height: 1,
                             width: MediaQuery.of(context).size.width * 0.6,
                           ),
@@ -376,7 +376,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                                     ),
                                   ),
                                   decoration: BoxDecoration(
-                                    color: Colors.blue,
+                                    color: Theme.of(context).primaryColor,
                                     borderRadius: BorderRadius.circular(20),
                                   ),
                                 ),
@@ -398,7 +398,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                           Column(
                             children: [
                               Container(
-                                color: Colors.blue,
+                                color: Theme.of(context).primaryColor,
                                 height: 1,
                                 width: MediaQuery.of(context).size.width * 0.6,
                               ),
@@ -463,7 +463,7 @@ class _LeaderboardsState extends State<Leaderboards> {
                                         ),
                                       ),
                                       decoration: BoxDecoration(
-                                        color: Colors.blue,
+                                        color: Theme.of(context).primaryColor,
                                         borderRadius: BorderRadius.circular(20),
                                       ),
                                     ),

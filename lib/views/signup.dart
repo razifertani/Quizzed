@@ -204,7 +204,7 @@ class _SignUpState extends State<SignUp> {
                             signUp();
                           },
                           textColor: Colors.white,
-                          color: Colors.blue,
+                          color: Theme.of(context).primaryColor,
                           shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(20.0),
                           ),
