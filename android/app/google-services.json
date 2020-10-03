@@ -10,7 +10,7 @@
       "client_info": {
         "mobilesdk_app_id": "1:835782499183:android:5f9add7bd0e48bd12fe69a",
         "android_client_info": {
-          "package_name": "com.example.quizzed"
+          "package_name": "com.app.quizzed"
         }
       },
       "oauth_client": [
