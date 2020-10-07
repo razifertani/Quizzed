@@ -43,7 +43,7 @@ class _ResultsState extends State<Results> {
       uploadedFileURL = user.data['uploadedFileURL'];
       fullName = user.data['FullName'];
 
-      if (toDouble(widget.quizResult) > 69.0) {
+      if (toDouble(widget.quizResult) > 79.0) {
         if (widget.quizTitle == 'Africa' || widget.quizTitle == 'Afrique')
           quizTitle = 'Africa';
         if (widget.quizTitle == 'Countries & Capitals' ||
@@ -60,8 +60,6 @@ class _ResultsState extends State<Results> {
 
         Map<String, dynamic> questionMap = {
           "userId": widget.userUID,
-          "userFullName": fullName,
-          "userImage": uploadedFileURL,
           "result": widget.quizResult,
         };
 
@@ -78,7 +76,7 @@ class _ResultsState extends State<Results> {
       "quizzTitle": widget.quizTitle,
       "quizzResult": widget.quizResult,
       "quizzImage": widget.imageURL,
-      "quizzPassed": ((widget.correctAnswers * (100)) / widget.total) > 70.0
+      "quizzPassed": ((widget.correctAnswers * (100)) / widget.total) > 79.0
           ? true
           : false,
     };
@@ -130,7 +128,7 @@ class _ResultsState extends State<Results> {
                       style: TextStyle(
                         fontSize: 40,
                         color:
-                            widget.correctAnswers * (100) / widget.total > 70.0
+                            widget.correctAnswers * (100) / widget.total > 79.0
                                 ? Colors.green
                                 : Colors.red,
                       ),
@@ -140,7 +138,7 @@ class _ResultsState extends State<Results> {
                     '%',
                     style: TextStyle(
                       fontSize: 40,
-                      color: widget.correctAnswers * (100) / widget.total > 70.0
+                      color: widget.correctAnswers * (100) / widget.total > 79.0
                           ? Colors.green
                           : Colors.red,
                     ),
@@ -153,14 +151,14 @@ class _ResultsState extends State<Results> {
               Container(
                 width: MediaQuery.of(context).size.width * 0.8,
                 child: Text(
-                  (widget.correctAnswers * (100) / widget.total) > 70.0
+                  (widget.correctAnswers * (100) / widget.total) > 79.0
                       ? AppLocalizations.of(context).translate('results/first')
                       : AppLocalizations.of(context)
                           .translate('results/second'),
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 35,
-                    color: (widget.correctAnswers * (100) / widget.total) > 70.0
+                    color: (widget.correctAnswers * (100) / widget.total) > 79.0
                         ? Colors.green
                         : Colors.red,
                   ),
@@ -224,7 +222,7 @@ class _ResultsState extends State<Results> {
                 height: MediaQuery.of(context).size.height * 0.08,
               ),
               Text(
-                (widget.correctAnswers * (100) / widget.total) > 70.0
+                (widget.correctAnswers * (100) / widget.total) > 79.0
                     ? ''
                     : AppLocalizations.of(context).translate('results/seventh'),
                 textAlign: TextAlign.center,
