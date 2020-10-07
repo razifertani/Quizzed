@@ -65,7 +65,7 @@ class _PlayQuizState extends State<PlayQuiz>
         total = questionSnapshot.documents.length;
       });
     } else {
-      dataBaseService.getQuizDataQuestionsEN(widget.quizId).then((value) {
+      dataBaseService.getQuizDataQuestionsFR(widget.quizId).then((value) {
         questionSnapshot = value;
         _left = 0;
         _correct = 0;
@@ -469,15 +469,10 @@ class Countdown extends AnimatedWidget {
       style: TextStyle(
         fontSize: MediaQuery.of(context).size.height * 0.05,
         color: timerText == '0:10' ||
-                // timerText == '0:09' ||
                 timerText == '0:08' ||
-                // timerText == '0:07' ||
                 timerText == '0:06' ||
-                // timerText == '0:05' ||
                 timerText == '0:04' ||
-                // timerText == '0:03' ||
                 timerText == '0:02' ||
-                // timerText == '0:01' ||
                 timerText == '0:00'
             ? Colors.red
             : Theme.of(context).primaryColor,

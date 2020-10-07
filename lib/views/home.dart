@@ -48,7 +48,7 @@ class _HomeState extends State<Home> {
         });
       });
     } else {
-      dataBaseService.getQuizDataEN().then((value) {
+      dataBaseService.getQuizDataFR().then((value) {
         setState(() {
           quizStream = value;
         });

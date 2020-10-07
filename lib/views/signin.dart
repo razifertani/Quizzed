@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:QuizzedGame/views/signup.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class SignIn extends StatefulWidget {
   final String lang;
@@ -18,19 +19,26 @@ class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final authentificationService = locator.get<AuthentificationService>();
   String email, password;
-
+  bool checkBoxValue = false;
   bool isLoading = false;
   String userUID;
 
-  signIn() async {
+  signIn(bool checkBoxValue) async {
     if (_formKey.currentState.validate()) {
       setState(() {
         isLoading = true;
       });
       await authentificationService.signIn(email, password).then(
-        (value) {
+        (value) async {
           if (value != null) {
             print('Sign In UID: ' + value.uid + '  -------------');
+            if (checkBoxValue == true) {
+              SharedPreferences prefs = await SharedPreferences.getInstance();
+              if (checkBoxValue == true) {
+                prefs.setBool("Remember", true);
+                prefs.setString("UserUID", value.uid);
+              }
+            }
 
             Future.delayed(
               Duration(milliseconds: 200),
@@ -149,14 +157,34 @@ class _SignInState extends State<SignIn> {
                         },
                       ),
                       SizedBox(
-                        height: MediaQuery.of(context).size.height * 0.04,
+                        height: MediaQuery.of(context).size.height * 0.015,
+                      ),
+                      Row(
+                        children: [
+                          Checkbox(
+                            value: checkBoxValue,
+                            activeColor: Theme.of(context).primaryColor,
+                            onChanged: (bool newValue) {
+                              setState(() {
+                                checkBoxValue = newValue;
+                              });
+                            },
+                          ),
+                          Text(
+                            'Remember me',
+                            style: Theme.of(context).textTheme.headline1,
+                          ),
+                        ],
+                      ),
+                      SizedBox(
+                        height: MediaQuery.of(context).size.height * 0.015,
                       ),
                       Container(
                         width: MediaQuery.of(context).size.width * 0.8,
                         height: MediaQuery.of(context).size.width * 0.12,
                         child: RaisedButton(
                           onPressed: () {
-                            signIn();
+                            signIn(checkBoxValue);
                           },
                           textColor: Colors.white,
                           color: Theme.of(context).primaryColor,
