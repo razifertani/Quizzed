@@ -14,7 +14,7 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   cloud_firestore: ^0.13.3
-  firebase_auth: ^0.15.2
+  firebase_auth: 
   provider: ^3.2.0
   random_string: ^2.0.1
   convex_bottom_bar: ^2.4.1
@@ -31,6 +31,7 @@ dependencies:
   url_launcher: ^5.7.2
   share: ^0.6.3+1
   shared_preferences: ^0.5.12
+  firebase_messaging: 
   
   cupertino_icons: ^0.1.3
 

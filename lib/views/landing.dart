@@ -1,6 +1,7 @@
 import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
 import 'package:QuizzedGame/services/database.dart';
+import 'package:QuizzedGame/services/pushNotifications.dart';
 import 'package:QuizzedGame/views/home.dart';
 import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
@@ -19,6 +20,12 @@ class _LandingState extends State<Landing> {
   bool isConnected = true;
   final dataBaseService = locator.get<DataBaseService>();
   String lang;
+  final PushNotificationService _pushNotificationService =
+      locator<PushNotificationService>();
+
+  Future handleStartUpLogic() async {
+    await _pushNotificationService.initialise();
+  }
 
   @override
   void initState() {

@@ -1,3 +1,4 @@
+import 'package:QuizzedGame/services/pushNotifications.dart';
 import 'package:get_it/get_it.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -10,5 +11,8 @@ void setupServices() {
   );
   locator.registerLazySingleton<DataBaseService>(
     () => DataBaseService(),
+  );
+  locator.registerLazySingleton(
+    () => PushNotificationService(),
   );
 }
