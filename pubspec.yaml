@@ -32,6 +32,7 @@ dependencies:
   share: ^0.6.3+1
   shared_preferences: ^0.5.12
   firebase_messaging: 
+  firebase_admob:
   
   cupertino_icons: ^0.1.3
 

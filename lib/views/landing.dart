@@ -7,6 +7,7 @@ import 'package:data_connection_checker/data_connection_checker.dart';
 import 'package:flutter/material.dart';
 import 'dart:async';
 import 'package:QuizzedGame/views/signin.dart';
+import 'package:flutter/services.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class Landing extends StatefulWidget {
@@ -29,6 +30,10 @@ class _LandingState extends State<Landing> {
 
   @override
   void initState() {
+    SystemChrome.setSystemUIOverlayStyle(SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      systemNavigationBarColor: Colors.transparent,
+    ));
     checkConnectivity();
     super.initState();
   }

@@ -139,8 +139,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                       ),
                     ),
                     Container(
-                      padding:
-                          EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                      padding: EdgeInsets.symmetric(
+                        vertical: 8,
+                        horizontal: 12,
+                      ),
                       child: Text(
                         topUsers[4].result + ' %',
                         style: TextStyle(
@@ -210,8 +212,10 @@ class _LeaderboardsState extends State<Leaderboards> {
                           ),
                         ),
                         Container(
-                          padding:
-                              EdgeInsets.symmetric(vertical: 8, horizontal: 20),
+                          padding: EdgeInsets.symmetric(
+                            vertical: 8,
+                            horizontal: 12,
+                          ),
                           child: Text(
                             topUsers[3].result + ' %',
                             style: TextStyle(
@@ -284,7 +288,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                             ),
                             Container(
                               padding: EdgeInsets.symmetric(
-                                  vertical: 8, horizontal: 20),
+                                vertical: 8,
+                                horizontal: 12,
+                              ),
                               child: Text(
                                 topUsers[2].result + ' %',
                                 style: TextStyle(
@@ -367,7 +373,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                                 ),
                                 Container(
                                   padding: EdgeInsets.symmetric(
-                                      vertical: 8, horizontal: 20),
+                                    vertical: 8,
+                                    horizontal: 12,
+                                  ),
                                   child: Text(
                                     topUsers[1].result + ' %',
                                     style: TextStyle(
@@ -454,7 +462,9 @@ class _LeaderboardsState extends State<Leaderboards> {
                                     ),
                                     Container(
                                       padding: EdgeInsets.symmetric(
-                                          vertical: 8, horizontal: 20),
+                                        vertical: 8,
+                                        horizontal: 12,
+                                      ),
                                       child: Text(
                                         topUsers[0].result + ' %',
                                         style: TextStyle(

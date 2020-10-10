@@ -1,7 +1,9 @@
 import 'dart:async';
 import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
+import 'package:QuizzedGame/services/adMobService.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/models/question.dart';
 import 'package:QuizzedGame/services/database.dart';
@@ -37,12 +39,20 @@ class _PlayQuizState extends State<PlayQuiz>
     with SingleTickerProviderStateMixin {
   QuerySnapshot questionSnapshot;
   final dataBaseService = locator.get<DataBaseService>();
+  final adMobService = locator.get<AdMobService>();
+
   bool isLoading = true;
   AnimationController _controller;
   bool clock = false;
 
+  InterstitialAd interstitialAd;
+
   @override
   void initState() {
+    FirebaseAdMob.instance.initialize(
+      appId: 'ca-app-pub-2777704196383623~4585291892',
+    );
+
     if (widget.lang == 'en') {
       dataBaseService.getQuizDataQuestionsEN(widget.quizId).then((value) {
         questionSnapshot = value;
@@ -258,6 +268,10 @@ class _PlayQuizState extends State<PlayQuiz>
           Icons.check,
         ),
         onPressed: () {
+          adMobService.createInterstitialAd()
+            ..load()
+            ..show();
+
           clock = true;
           Navigator.of(context).push(
             new PageRouteBuilder(
@@ -287,6 +301,7 @@ class _PlayQuizState extends State<PlayQuiz>
   @override
   void dispose() {
     _controller.dispose();
+    interstitialAd.dispose();
     super.dispose();
   }
 }

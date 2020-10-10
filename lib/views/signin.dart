@@ -1,6 +1,8 @@
 import 'dart:async';
 import 'package:QuizzedGame/appLocalizations.dart';
 import 'package:QuizzedGame/locator.dart';
+import 'package:QuizzedGame/services/adMobService.dart';
+import 'package:firebase_admob/firebase_admob.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/services/authentification.dart';
 import 'package:QuizzedGame/views/home.dart';
@@ -18,10 +20,31 @@ class SignIn extends StatefulWidget {
 class _SignInState extends State<SignIn> {
   final _formKey = GlobalKey<FormState>();
   final authentificationService = locator.get<AuthentificationService>();
+  final adMobService = locator.get<AdMobService>();
+
   String email, password;
   bool checkBoxValue = false;
   bool isLoading = false;
   String userUID;
+
+  BannerAd bannerAd;
+
+  @override
+  void initState() {
+    FirebaseAdMob.instance.initialize(
+      appId: 'ca-app-pub-2777704196383623~4585291892',
+    );
+    bannerAd = adMobService.createBannerAd()
+      ..load()
+      ..show();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    bannerAd.dispose();
+    super.dispose();
+  }
 
   signIn(bool checkBoxValue) async {
     if (_formKey.currentState.validate()) {

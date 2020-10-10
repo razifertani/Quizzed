@@ -2,6 +2,7 @@ import 'package:adaptive_theme/adaptive_theme.dart';
 import 'package:flutter/material.dart';
 import 'package:QuizzedGame/views/landing.dart';
 import 'package:QuizzedGame/locator.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:QuizzedGame/appLocalizations.dart';
 
@@ -111,3 +112,34 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
+/*
+RaisedButton(
+              child: Text('Click on Ads'),
+              onPressed: () {
+                createInterstitialAd()
+                  ..load()
+                  ..show();
+              },
+            ),
+*/
+
+/*
+@override
+  void initState() {
+    FirebaseAdMob.instance.initialize(
+      appId: 'ca-app-pub-2777704196383623~4585291892',
+    );
+    _bannerAd = createBannerAd()
+      ..load()
+      ..show();
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _bannerAd.dispose();
+    _interstitialAd.dispose();
+    super.dispose();
+  }
+*/
